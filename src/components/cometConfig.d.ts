@@ -1,16 +1,21 @@
+import type {
+	ThemeColor, ColorPair, ThemeGradient, AspectRatio 
+} from '../types';
+
 /**
  * Comet global config from the Config class which is made available to JavaScript
- * using wp_localize_script
+ * - using wp_localize_script in WordPress plugins
+ * - using a decorator in this library's Storybook
  */
 interface Config {
 	defaults?: Record<string, any>;
 	globalBackground?: ThemeColor;
 	palette?: Record<ThemeColor, string>;
-	colourPairs?: ColourPair[];
-	colourPairOverrides?: Record<string, ColourPair[]>;
+	colourPairs?: ColorPair[];
+	colourPairOverrides?: Record<string, ColorPair[]>;
 	gradients?: ThemeGradient[];
 	sectionBackgrounds?: Record<string, ThemeColor|ThemeGradient>;
-	aspectRatios?: { name: string; value: string }[];
+	aspectRatios?: AspectRatio[];
 	ajaxUrl?: string;
 	nonce?: string;
 	context?: {
@@ -18,33 +23,3 @@ interface Config {
 		id: number;
 	}
 }
-
-declare global {
-	const comet: Config;
-
-	interface Window {
-		comet: Config;
-	}
-}
-
-type ThemeColor =
-	'primary' |
-	'secondary' |
-	'accent' |
-	'error' |
-	'success' |
-	'warning' |
-	'info' |
-	'light' |
-	'dark' |
-	'white';
-
-type ColourPair = {
-	foreground: ThemeColor;
-	background: ThemeColor;
-};
-
-// Note: If you're looking for where colours and gradients are set, it's theme.json.
-// Another note: Only the slugs are passed through to the PHP render functions,
-// the values in theme.json are used for the editor but not for rendering
-type ThemeGradient = string;

@@ -1,6 +1,7 @@
 # Comet Gutenberg Controls
 
-A collection of customised controls for the WordPress Block Editor intended for use with the [Comet Components](https://github.com/doubleedesign/comet-components) plugin. These have been separated out from the main plugin to enable simpler independent development and isolated testing of these control UI components.
+A collection of customised controls for the WordPress Block Editor intended for use with the [Comet Components](https://github.com/doubleedesign/comet-components) plugin. Largely built using the existing [@wordpress/components library](https://wordpress.github.io/gutenberg), this library provides custom attribute controls and handling logic to suit Comet Components. It has been separated out from the main Comet Components WordPress plugin to enable simpler independent development and 
+isolated testing.
 
 ---
 ## Development
@@ -8,25 +9,25 @@ A collection of customised controls for the WordPress Block Editor intended for 
 Install dependencies:
 
 ```powershell
-npm install
+pnpm install
 ```
 
 Run Storybook to see and test the available components:
 
 ```powershell
-npm run storybook
+pnpm run storybook
 ```
 
 To make changes to the component JavaScript: Either set up Rollup to auto-compile on file changes, or run the build script after making changes:
 
 ```powershell
-npm run build
+pnpm run build
 ```
 
 To make changes to the CSS, ensure you have [Sass](https://sass-lang.com/install) installed globally and set up a file watcher in WebStorm/PhpStorm with the following values:
 
-- Arguments: `$ProjectFileDir$/src/$FileNameWithoutExtension$.scss:$ProjectFileDir$/dist/$FileNameWithoutExtension$.css`
-- Output paths to refresh: `$ProjectFileDir$/dist/$FileNameWithoutExtension$.css:$ProjectFileDir$/dist/$FileNameWithoutExtension$.css.map`
+- Arguments: `$ProjectFileDir$/src/style.scss:$ProjectFileDir$/dist/style.css`
+- Output paths to refresh: `$ProjectFileDir$/dist/style.css:$ProjectFileDir$/dist/style.css.map`
 - Working directory: `$FileDir$`
 
 Or from the terminal, run the following to compile:

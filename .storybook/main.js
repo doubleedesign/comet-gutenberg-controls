@@ -6,7 +6,7 @@ const config = {
     addons: [
         "@storybook/addon-webpack5-compiler-swc",
         "@storybook/addon-a11y",
-        "@storybook/addon-docs"
+        "@storybook/addon-docs",
     ],
     framework: "@storybook/react-webpack5"
 };

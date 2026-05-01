@@ -1,7 +1,15 @@
 /* global wp */
+import React from 'react';
 import { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption } from '@wordpress/components';
+import { EditorControlProps } from '../types';
 
-export const GroupLayout = ({ attributes, setAttributes }) => {
+export type GroupLayoutProps = EditorControlProps & {
+	attributes: {
+		layout: 'list' | 'grid';
+	}
+};
+
+export const GroupLayout = ({ attributes, setAttributes }: GroupLayoutProps) => {
 	// TODO: Use component defaults from comet JS object (which are set using the PHP global Config object). They should take precedence over block.json
 	if (!attributes?.layout) {
 		return null;

@@ -9,7 +9,7 @@ export type HtmlTagProps = EditorControlProps & {
 	};
 };
 
-export const HtmlTag = ({ name, attributes, setAttributes }) => {
+export const HtmlTag = ({ name, attributes, setAttributes }: HtmlTagProps) => {
 	if (!attributes?.tagName) {
 		return null;
 	}

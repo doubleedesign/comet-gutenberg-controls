@@ -3,7 +3,11 @@ export const COMMON_STORY_ARGS = {
 	name: 'comet/demo-block',
 }
 
-export const COMMON_STORY_ARGTYPES = {
+/**
+ * Storybook argTypes mapping to the EditorControlProps type,
+ * except for attributes which are handled on a per-component basis
+ */
+export const EDITOR_CONTROL_PROPS_ARGTYPES = {
     name: {
         description: 'The block name as per the WordPress block.json definition',
         control: { disable: true },
