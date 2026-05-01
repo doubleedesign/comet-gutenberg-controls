@@ -1,48 +1,52 @@
-// rollup.config.js
-import { babel } from '@rollup/plugin-babel';
+import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import { createFilter } from '@rollup/pluginutils';
 import { glob } from 'glob';
+import * as fs from "node:fs";
+import * as path from "node:path";
+
 
 export default [
-	// Block editor components
-	{
-		input: glob.sync('src/components/**/*.jsx'),
-		output: {
-			dir: 'src/components',
-			format: 'es',
-			entryFileNames: (chunkInfo) => {
-				const name = chunkInfo.name.replace(/^src\/components\//, '');
+    {
+        input: glob.sync('src/**/*.tsx', {
+            ignore: [
+                'src/components/**/*.stories.tsx',
+                'src/components/**/*.test.tsx',
+                'src/components/**/*.spec.tsx',
+                'src/mocks/**/*.ts',
+                'src/mocks/**/*.tsx',
+            ]
+        }),
+        output: {
+            dir: 'dist',
+            format: 'es',
+            entryFileNames: (chunkInfo) => {
+                // chunkInfo.name is e.g. "src/components/HtmlTag/HtmlTag"
+                // Strip "src/components/" to get "HtmlTag/HtmlTag"
+                const name = chunkInfo.name.replace(/^src\/components\//, '')
 
-				return `${name}.dist.js`;
-			},
-			sourcemap: true,
-			preserveModules: true,
-		},
-		external: [
-			/^@wordpress\/.+$/,
-			'react',
-			'react-dom'
-		],
-		plugins: [
-			wordpressGlobals(),
-			resolve({
-				extensions: ['.js', '.jsx'],
-				browser: true
-			}),
-			babel({
-				babelHelpers: 'bundled',
-				presets: [
-					'@babel/preset-react'
-				],
-				plugins: [
-					'@babel/plugin-syntax-dynamic-import'
-				],
-				extensions: ['.js', '.jsx']
-			})
-		]
-	}
+                return `${name}.dist.js`;
+            },
+            sourcemap: true,
+            preserveModules: true,
+            preserveModulesRoot: 'src/components',
+        },
+        plugins: [
+            wordpressGlobals(),
+            resolve({ extensions: ['.ts', '.tsx'], browser: true }),
+            typescript({
+                tsconfig: './tsconfig.json',
+            }),
+        ],
+        external: [
+            /^@wordpress\/.+$/,
+            'react',
+            'react-dom',
+            'react/jsx-runtime',
+        ],
+    },
 ];
+
 
 // Custom plugin to transform WordPress imports to globals
 // Note: This does not work with @wordpress/icons
@@ -51,6 +55,7 @@ function wordpressGlobals(options = {}) {
 	const wpPackages = {
 		'@wordpress/blocks': 'wp.blocks',
 		'@wordpress/block-editor': 'wp.blockEditor',
+        'react/jsx-runtime': 'wp.element',
 		'@wordpress/element': 'wp.element',
 		'@wordpress/data': 'wp.data',
 		'@wordpress/components': 'wp.components',

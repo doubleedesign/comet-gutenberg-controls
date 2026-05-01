@@ -1,13 +1,17 @@
 /** @type { import('@storybook/react-webpack5').Preview } */
 const preview = {
-  parameters: {
-    controls: {
-      matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
-      },
+    parameters: {
+        controls: {
+            expanded: true,
+            matchers: {
+                color: /(background|color)$/i,
+                date: /Date$/i,
+            },
+        },
+        docs: {
+            inlineStories: true,
+        }
     },
-  },
 };
 
 export default preview;
