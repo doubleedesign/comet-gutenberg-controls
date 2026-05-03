@@ -1,0 +1,21 @@
+{
+	"usesTypeScript": true,
+	"usesStyledComponents": false,
+	"usesCssModule": false,
+	"cssPreprocessor": "css",
+	"testLibrary": "Vitest",
+	"component": {
+		"default": {
+			"path": "src/components",
+			"withStyle": false,
+			"withTest": true,
+			"withStory": true,
+			"withLazy": false,
+			"customTemplates": {
+				"component": "templates/TemplateName.tsx",
+				"test": "templates/TemplateName.test.tsx",
+				"story": "templates/TemplateName.stories.tsx"
+			}
+		}
+	}
+}
