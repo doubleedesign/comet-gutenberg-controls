@@ -13,8 +13,13 @@
 		"esModuleInterop": true,
 		"noImplicitAny": false,
 		"declaration": true,
+		"types": ["vitest/globals"]
 	},
-	"include": ["src/**/*"],
+	"include": [
+		"src/**/*",
+		"vitest.config.ts",
+		"vitest.setup.ts"
+	],
 	"exclude": [
 		"src/**/*.stories.tsx",
 		"src/**/*.test.tsx",
