@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { PageNav } from "../../.storybook/components/PageNav.tsx";
+
+<Meta title="Docs/Testing" />
+
+# Testing
+
+All new components should have unit tests and at least one story. Changes to existing components should include accompanying unit tests, and new stories where appropriate (or just controls, if a whole extra story is not necessary).
+
+Boilerplate for all three files can be generated using [generate-react-cli](https://github.com/arminbro/generate-react-cli) like so:
+
+```powershell
+npx generate-react-cli component MyNewControl
+```
+
+If you have already created the component file, it will be ignored and just the story and test boilerplates will be generated.
+
+Run Storybook with:
+
+```powershell
+pnpm run storybook
+```
+
+And all unit tests with:
+
+```powershell
+pnpm run test
+```
+
+
+<PageNav />

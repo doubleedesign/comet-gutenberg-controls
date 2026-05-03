@@ -14,6 +14,8 @@ export default [
                 'src/components/**/*.spec.tsx',
                 'src/mocks/*.ts',
                 'src/mocks/*.tsx',
+                'src/docs/**/*.tsx',
+                'src/docs/**/*.ts',
             ]
         }),
         output: {

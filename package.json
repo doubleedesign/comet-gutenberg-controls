@@ -11,7 +11,9 @@
 		"lint": "eslint --fix",
 		"build": "npm run lint && npm run compile",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build"
+		"build-storybook": "storybook build",
+		"test": "vitest run src/components",
+		"test:watch": "vitest watch src/components"
 	},
 	"devDependencies": {
 		"@babel/eslint-parser": "^7.28.6",

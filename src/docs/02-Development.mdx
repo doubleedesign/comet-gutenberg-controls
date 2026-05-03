@@ -1,0 +1,63 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { PageNav } from "../../.storybook/components/PageNav.tsx";
+
+<Meta title="Docs/Development" />
+
+# Development
+
+## Setup
+
+Install dependencies:
+
+```powershell
+pnpm install
+```
+
+Run Storybook to see and test the available components:
+
+```powershell
+pnpm run storybook
+```
+
+To make changes to the component JavaScript: Either set up Rollup to auto-compile on file changes, or run the build script after making changes:
+
+```powershell
+pnpm run build
+```
+
+To make changes to the CSS, ensure you have [Sass](https://sass-lang.com/install) installed globally and set up a file watcher in WebStorm/PhpStorm with the following values:
+
+- Arguments: `$ProjectFileDir$/src/style.scss:$ProjectFileDir$/dist/style.css`
+- Output paths to refresh: `$ProjectFileDir$/dist/style.css:$ProjectFileDir$/dist/style.css.map`
+- Working directory: `$FileDir$`
+
+Or from the terminal, run the following to compile:
+
+```powershell
+sass src/style.scss:dist/style.css
+```
+
+## Creating a new control
+
+New component boilerplate should be generated from the provided template using [generate-react-cli](https://github.com/arminbro/generate-react-cli) like so:
+
+```powershell
+npx generate-react-cli component MyNewControl
+```
+
+### Important notes
+- Most React hooks and types, such as `useMemo`, `useCallback`, `useEffect`, and `type ComponentType` should be imported from `@wordpress/element`, not React itself.
+- Inner components such as selectboxes should be imported from `@wordpress/components` where a suitable component is available.
+- If a small amount of custom CSS is necessary, put it in `style.scss`. (Because most styling should come from WordPress, I have opted not to have per-component styling by default in this library.) If developing a highly custom component that needs a lot of its own CSS, it can have its own file, but generally all the styling is bundled together.
+
+## Compiling
+
+At the time of writing, this package is not published on NPM, just GitHub, so the compiled code is committed to the repo in the `dist` folder. After making changes, recompile the library with:
+
+```powershell
+pnpm run build
+```
+
+**Note:** If you delete the `dist` folder and rebuild, make sure you also compile the stylesheet again too, and that the resulting `style.css` is in `dist` as expected.
+
+<PageNav />

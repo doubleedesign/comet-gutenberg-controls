@@ -98,7 +98,7 @@ export default [
 		}
 	},
     {
-        files: ['./src/components/**/*.ts', './src/components/**/*.tsx', './src/index.tsx'],
+        files: ['./src/components/**/*.ts', './src/components/**/*.tsx', './src/index.tsx', './templates/*.tsx'],
         languageOptions: {
             parser: tsParser,
             parserOptions: {

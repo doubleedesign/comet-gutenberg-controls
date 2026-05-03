@@ -39,6 +39,16 @@ const preview = {
             inlineStories: true,
             theme: mergedTheme,
         },
+        options: {
+            storySort: {
+                order: [
+                    'Docs',
+                    'Components',
+                    'Internals',
+                    '*'
+                ],
+            },
+        },
     },
     decorators: [
         withMaxWidth('280px'),
