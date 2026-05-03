@@ -1,7 +1,6 @@
-import { __experimentalNumberControl } from '@wordpress/components';
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip.dist.js';
 
-const ItemCount = ({ attributes, setAttributes }) => {
+const { __experimentalNumberControl } = wp.components;const ItemCount = ({ attributes, setAttributes }) => {
     if (!attributes?.itemCount) {
         return null;
     }

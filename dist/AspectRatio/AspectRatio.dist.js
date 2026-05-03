@@ -1,7 +1,6 @@
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip.dist.js';
-import { SelectControl } from '@wordpress/components';
 
-const AspectRatio = ({ name, attributes, setAttributes }) => {
+const React = React;const { SelectControl } = wp.components;const AspectRatio = ({ name, attributes, setAttributes }) => {
     if (!attributes?.aspectRatio || !comet.aspectRatios) {
         return null;
     }

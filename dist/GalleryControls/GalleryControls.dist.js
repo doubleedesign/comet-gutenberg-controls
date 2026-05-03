@@ -1,7 +1,6 @@
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip.dist.js';
-import { ToggleControl } from '@wordpress/components';
 
-const GalleryControls = ({ name, attributes, setAttributes }) => {
+const { ToggleControl } = wp.components;const GalleryControls = ({ name, attributes, setAttributes }) => {
     if (name !== 'comet/gallery') {
         return null;
     }

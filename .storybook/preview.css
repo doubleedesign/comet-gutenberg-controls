@@ -136,11 +136,11 @@
 }
 @layer doublee-tokens {
   :root {
-    --font-family-body: 'Berkeley Old Style', 'Californian FB', Georgia, serif;
-    --font-family-headings: 'Copernicus New Cond', sans-serif;
-    --font-family-accent: 'Neue Montreal', 'Neue Helvetica', Helvetica, Arial, sans-serif;
-    --font-family-labels: 'Neue Montreal', 'Neue Helvetica', Helvetica, Arial, sans-serif;
-    --font-family-code: 'Fira Code', Consolas, system-ui-monospace, monospace;
+    --font-family-body: "Berkeley Old Style", "Californian FB", Georgia, serif;
+    --font-family-headings: "Copernicus New Cond", sans-serif;
+    --font-family-accent: "Neue Montreal", "Neue Helvetica", Helvetica, Arial, sans-serif;
+    --font-family-labels: "Neue Montreal", "Neue Helvetica", Helvetica, Arial, sans-serif;
+    --font-family-code: "Fira Code", Consolas, system-ui-monospace, monospace;
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -151,21 +151,7 @@
     --line-height-headings: 1.2;
     --letter-spacing-body: -0.01em;
     --letter-spacing-tight: -0.02em;
-  }
-  @media (min-width: 768px) {
-    :root {
-      --typescale: 1.25;
-    }
-  }
-  :root {
     --font-size-base: 1rem;
-  }
-  @media (min-width: 1024px) {
-    :root {
-      --font-size-base: calc(17 / 16 * 100%);
-    }
-  }
-  :root {
     --font-size-sm: 0.9rem;
     --font-size-body: 1rem;
     --font-size-md: calc(1rem * var(--typescale));
@@ -205,20 +191,31 @@
     --color-body-text: #181825;
     --color-body-text-muted: oklch(from color-mix(in srgb, var(--color-body-text) 85%, gray 15%) calc(l + 0.35) calc(c * 0.8) calc(h));
   }
+  @media (min-width: 768px) {
+    :root {
+      --typescale: 1.25;
+    }
+  }
+  @media (min-width: 1024px) {
+    :root {
+      --font-size-base: calc(17 / 16 * 100%);
+    }
+  }
 }
 .prismjs {
   background: #181825;
   color: white;
   tab-size: 2;
+  /** Based on Catpuccin Mocha - https://prismjs.catppuccin.com/mocha.css */
+  /* https://prismjs.com/tokens.html */
+  /* Diff */
+  /* Other */
 }
 .prismjs * {
   font-family: "Fira Code", monospace;
   font-weight: 300;
   font-size: 0.9rem;
   line-height: 1.4;
-}
-.prismjs {
-  /** Based on Catpuccin Mocha - https://prismjs.catppuccin.com/mocha.css */
 }
 .prismjs code[class*=language-],
 .prismjs pre[class*=language-] {
@@ -227,9 +224,6 @@
 .prismjs :not(pre) > code[class*=language-],
 .prismjs pre[class*=language-] {
   background: #181825;
-}
-.prismjs {
-  /* https://prismjs.com/tokens.html */
 }
 .prismjs .token.keyword {
   color: #cba6f7;
@@ -311,17 +305,11 @@
 .prismjs .token.selector {
   color: #89b4fa;
 }
-.prismjs {
-  /* Diff */
-}
 .prismjs .token.deleted {
   color: #f38ba8;
 }
 .prismjs .token.inserted {
   color: #a6e3a1;
-}
-.prismjs {
-  /* Other */
 }
 .prismjs .token.important,
 .prismjs .token.bold {
@@ -342,6 +330,10 @@
   background: #181825;
   color: white;
   tab-size: 2;
+  /** Based on Catpuccin Mocha - https://prismjs.catppuccin.com/mocha.css */
+  /* https://prismjs.com/tokens.html */
+  /* Diff */
+  /* Other */
 }
 .docblock-source .prismjs *,
 .docs-story + div .prismjs *,
@@ -350,11 +342,6 @@
   font-weight: 300;
   font-size: 0.9rem;
   line-height: 1.4;
-}
-.docblock-source .prismjs,
-.docs-story + div .prismjs,
-[id*="tabpanel-storybook/html/panel"] .prismjs {
-  /** Based on Catpuccin Mocha - https://prismjs.catppuccin.com/mocha.css */
 }
 .docblock-source .prismjs code[class*=language-],
 .docblock-source .prismjs pre[class*=language-],
@@ -371,11 +358,6 @@
 [id*="tabpanel-storybook/html/panel"] .prismjs :not(pre) > code[class*=language-],
 [id*="tabpanel-storybook/html/panel"] .prismjs pre[class*=language-] {
   background: #181825;
-}
-.docblock-source .prismjs,
-.docs-story + div .prismjs,
-[id*="tabpanel-storybook/html/panel"] .prismjs {
-  /* https://prismjs.com/tokens.html */
 }
 .docblock-source .prismjs .token.keyword,
 .docs-story + div .prismjs .token.keyword,
@@ -517,11 +499,6 @@
 [id*="tabpanel-storybook/html/panel"] .prismjs .token.selector {
   color: #89b4fa;
 }
-.docblock-source .prismjs,
-.docs-story + div .prismjs,
-[id*="tabpanel-storybook/html/panel"] .prismjs {
-  /* Diff */
-}
 .docblock-source .prismjs .token.deleted,
 .docs-story + div .prismjs .token.deleted,
 [id*="tabpanel-storybook/html/panel"] .prismjs .token.deleted {
@@ -531,11 +508,6 @@
 .docs-story + div .prismjs .token.inserted,
 [id*="tabpanel-storybook/html/panel"] .prismjs .token.inserted {
   color: #a6e3a1;
-}
-.docblock-source .prismjs,
-.docs-story + div .prismjs,
-[id*="tabpanel-storybook/html/panel"] .prismjs {
-  /* Other */
 }
 .docblock-source .prismjs .token.important,
 .docblock-source .prismjs .token.bold,

@@ -7,15 +7,15 @@ import * as path from "node:path";
 
 export default [
     {
-        input: glob.sync('src/**/*.tsx', {
+        input: glob.sync('src/**/*.{ts,tsx}', {
             ignore: [
-                'src/components/**/*.stories.tsx',
-                'src/components/**/*.test.tsx',
-                'src/components/**/*.spec.tsx',
-                'src/mocks/*.ts',
-                'src/mocks/*.tsx',
-                'src/docs/**/*.tsx',
-                'src/docs/**/*.ts',
+                'src/**/*.stories.{ts,tsx}',
+                'src/**/*.test.{ts,tsx}',
+                'src/**/*.spec.{ts,tsx}',
+                'src/mocks/**',
+                'src/docs/**',
+                'src/**/*.d.ts',
+                'src/**/types.{ts,tsx}',
             ]
         }),
         output: {
@@ -44,6 +44,7 @@ export default [
             'react',
             'react-dom',
             'react/jsx-runtime',
+            /src\/mocks\/.+/,
         ],
     },
 ];
@@ -52,7 +53,7 @@ export default [
 // Custom plugin to transform WordPress imports to globals
 // Note: This does not work with @wordpress/icons
 function wordpressGlobals(options = {}) {
-	const filter = createFilter(options.include || ['**/*.js', '**/*.jsx'], options.exclude || 'node_modules/**');
+	const filter = createFilter(options.include || ['**/*.ts', '**/*.tsx'], options.exclude || 'node_modules/**');
 	const wpPackages = {
 		'@wordpress/blocks': 'wp.blocks',
 		'@wordpress/block-editor': 'wp.blockEditor',

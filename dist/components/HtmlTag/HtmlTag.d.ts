@@ -5,8 +5,4 @@ export type HtmlTagProps = EditorControlProps & {
         tagName?: string;
     };
 };
-export declare const HtmlTag: ({ name, attributes, setAttributes }: {
-    name: any;
-    attributes: any;
-    setAttributes: any;
-}) => React.JSX.Element | null;
+export declare const HtmlTag: ({ name, attributes, setAttributes }: HtmlTagProps) => React.JSX.Element | null;

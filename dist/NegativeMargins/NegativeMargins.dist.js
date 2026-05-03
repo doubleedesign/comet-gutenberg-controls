@@ -1,7 +1,6 @@
-import { BaseControl, PanelRow, __experimentalUnitControl } from '@wordpress/components';
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip.dist.js';
 
-const NegativeMargins = ({ name, attributes, setAttributes }) => {
+const { PanelRow, BaseControl, __experimentalUnitControl } = wp.components;const NegativeMargins = ({ name, attributes, setAttributes }) => {
     // Checking against potentially empty attribute values causes problems here so we have to check actual block types :(
     if (name !== 'comet/image') {
         return null;

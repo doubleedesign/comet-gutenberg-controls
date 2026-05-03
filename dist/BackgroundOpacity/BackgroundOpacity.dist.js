@@ -1,7 +1,5 @@
-import { RangeControl } from '@wordpress/components';
-
 /* global wp */
-const BackgroundOpacity = ({ name, attributes, setAttributes }) => {
+const { RangeControl } = wp.components;const BackgroundOpacity = ({ name, attributes, setAttributes }) => {
     if (!attributes?.backgroundOpacity) {
         return null;
     }

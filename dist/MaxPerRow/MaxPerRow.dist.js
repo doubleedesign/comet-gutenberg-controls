@@ -1,9 +1,8 @@
-import { __experimentalNumberControl } from '@wordpress/components';
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip.dist.js';
 
 /* eslint-disable max-len */
 /* global comet, wp */
-const MaxPerRow = ({ name, attributes, setAttributes }) => {
+const { __experimentalNumberControl } = wp.components;const MaxPerRow = ({ name, attributes, setAttributes }) => {
     if (!attributes?.maxPerRow) {
         return null;
     }

@@ -1,8 +1,5 @@
-import { Dropdown, ColorPalette, Button, ColorIndicator, GradientPicker } from '@wordpress/components';
-import { useRef, useState, useMemo } from '@wordpress/element';
-
 /* global wp */
-const ColorControls = ({ name, attributes, setAttributes }) => {
+const { Dropdown, Button, ColorIndicator, ColorPalette, GradientPicker } = wp.components;const { useMemo, useRef, useState } = wp.element;const ColorControls = ({ name, attributes, setAttributes }) => {
     if (!Object.keys(attributes).some(attr => ['colorTheme', 'backgroundColor', 'sectionBackground'].includes(attr))) {
         return null;
     }

@@ -1,6 +1,4 @@
-import { SelectControl } from '@wordpress/components';
-
-const BackgroundType = ({ attributes, setAttributes }) => {
+const { SelectControl } = wp.components;const BackgroundType = ({ attributes, setAttributes }) => {
     if (!attributes?.backgroundType) {
         return null;
     }

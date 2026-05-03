@@ -1,6 +1,4 @@
-import { Tooltip, Button } from '@wordpress/components';
-
-const FieldTooltip = ({ tooltip }) => {
+const React = React;const { Button, Tooltip } = wp.components;const FieldTooltip = ({ tooltip }) => {
     if (!tooltip) {
         return null;
     }

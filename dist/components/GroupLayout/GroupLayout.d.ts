@@ -1,4 +1,8 @@
-export declare const GroupLayout: ({ attributes, setAttributes }: {
-    attributes: any;
-    setAttributes: any;
-}) => import("react").JSX.Element | null;
+import React from 'react';
+import { EditorControlProps } from '../types';
+export type GroupLayoutProps = EditorControlProps & {
+    attributes: {
+        layout: 'list' | 'grid';
+    };
+};
+export declare const GroupLayout: ({ attributes, setAttributes }: GroupLayoutProps) => React.JSX.Element | null;

@@ -1,7 +1,5 @@
-import { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption } from '@wordpress/components';
-
 /* global wp */
-const LayoutOrder = ({ attributes, setAttributes }) => {
+const { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption } = wp.components;const LayoutOrder = ({ attributes, setAttributes }) => {
     if (!attributes?.order) {
         return null;
     }

@@ -1,7 +1,5 @@
-import { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption } from '@wordpress/components';
-
 /* global wp */
-const VerticalAlignment = ({ attributes, setAttributes }) => {
+const { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption } = wp.components;const VerticalAlignment = ({ attributes, setAttributes }) => {
     // TODO: Use component defaults from comet JS object (which are set using the PHP global Config object). They should take precedence over block.json
     if (!attributes?.vAlign) {
         return null;

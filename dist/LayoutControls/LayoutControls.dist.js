@@ -1,4 +1,3 @@
-import { PanelBody } from '@wordpress/components';
 import { ContainerSize } from '../ContainerSize/ContainerSize.dist.js';
 import { GroupLayout } from '../GroupLayout/GroupLayout.dist.js';
 import { VerticalAlignment } from '../VerticalAlignment/VerticalAlignment.dist.js';
@@ -13,7 +12,7 @@ import { GalleryControls } from '../GalleryControls/GalleryControls.dist.js';
 import { LayoutOrder } from '../LayoutOrder/LayoutOrder.dist.js';
 
 /* global wp */
-const LayoutControls = (props) => {
+const { PanelBody } = wp.components;const LayoutControls = (props) => {
     // If the block does not have any layout attributes, do not render the controls
     const componentDefault = Object.keys(comet?.defaults[props.name.replace('comet/', '')] ?? {}) ?? [];
     const currentAttributes = Object.keys(props.attributes) ?? [];

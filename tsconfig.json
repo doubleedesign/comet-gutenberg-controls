@@ -24,6 +24,10 @@
 		"src/**/*.stories.tsx",
 		"src/**/*.test.tsx",
 		"src/**/*.spec.tsx",
-		"src/**/*.mdx"
+		"src/**/*.mdx",
+		"src/mocks/*.tsx",
+		"src/mocks/*.ts",
+		"src/docs/*.tsx",
+		"src/docs/*.ts"
 	]
 }

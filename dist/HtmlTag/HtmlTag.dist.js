@@ -1,8 +1,6 @@
-import React from 'react';
-import { SelectControl, ExternalLink } from '@wordpress/components';
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip.dist.js';
 
-const HtmlTag = ({ name, attributes, setAttributes }) => {
+const React = React;const { ExternalLink, SelectControl } = wp.components;const HtmlTag = ({ name, attributes, setAttributes }) => {
     if (!attributes?.tagName) {
         return null;
     }

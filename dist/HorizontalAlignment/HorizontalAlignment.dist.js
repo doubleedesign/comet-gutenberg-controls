@@ -1,8 +1,7 @@
-import { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption } from '@wordpress/components';
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip.dist.js';
 
 /* global wp */
-const HorizontalAlignment = ({ attributes, setAttributes }) => {
+const { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption } = wp.components;const HorizontalAlignment = ({ attributes, setAttributes }) => {
     // TODO: Use component defaults from comet JS object (which are set using the PHP global Config object). They should take precedence over block.json
     if (!attributes?.hAlign) {
         return null;

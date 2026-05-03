@@ -1,12 +1,10 @@
-import { InspectorControls, InspectorAdvancedControls } from '@wordpress/block-editor';
 import { LayoutControls } from './LayoutControls/LayoutControls.dist.js';
-import { PanelBody } from '@wordpress/components';
 import { ColorControls } from './ColorControls/ColorControls.dist.js';
 import { BackgroundOpacity } from './BackgroundOpacity/BackgroundOpacity.dist.js';
 import { BackgroundType } from './BackgroundType/BackgroundType.dist.js';
 import { HtmlTag } from './HtmlTag/HtmlTag.dist.js';
 
-/**
+const { InspectorAdvancedControls, InspectorControls } = wp.blockEditor;const { PanelBody } = wp.components;/**
  * Render BlockEdit component with controls for custom attributes
  * @param BlockEdit The original BlockEdit component
  * @param {Object} props The block edit props

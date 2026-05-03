@@ -1,9 +1,8 @@
-import { RangeControl } from '@wordpress/components';
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip.dist.js';
 
 /* global wp */
 /* eslint-disable max-len */
-const ContentMaxWidth = ({ name, attributes, setAttributes }) => {
+const { RangeControl } = wp.components;const ContentMaxWidth = ({ name, attributes, setAttributes }) => {
     if (!attributes?.contentMaxWidth) {
         return null;
     }

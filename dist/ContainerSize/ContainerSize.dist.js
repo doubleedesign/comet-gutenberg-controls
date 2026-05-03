@@ -1,8 +1,6 @@
-import { useMemo } from '@wordpress/element';
-import { SelectControl } from '@wordpress/components';
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip.dist.js';
 
-// TODO: Handle supporting innerSize where appropriate (it's not really built into the Core components unless we nest a container)
+const { useMemo } = wp.element;const { SelectControl } = wp.components;// TODO: Handle supporting innerSize where appropriate (it's not really built into the Core components unless we nest a container)
 const ContainerSize = ({ attributes, setAttributes }) => {
     if (!attributes?.size && !attributes?.innerSize) {
         return null;
