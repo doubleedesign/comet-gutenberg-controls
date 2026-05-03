@@ -15,17 +15,24 @@ npx generate-react-cli component MyNewControl
 
 If you have already created the component file, it will be ignored and just the story and test boilerplates will be generated.
 
+## Storybook
+
 Run Storybook with:
 
 ```powershell
 pnpm run storybook
 ```
 
-And all unit tests with:
+All stories are wrapped in some global decorators in `./storybook/preview.jsx` to mock some relevant context. Component control stories (not internal components that are not a getter/setter of block attributes) should also use the `withMockBlockContext` decorator.
+
+## Unit tests
+
+Unit tests are written using [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro).
+
+You can run individual tests, suites, or files from the "gutter icon" in WebStorm/PhpStorm, or run all from the terminal:
 
 ```powershell
 pnpm run test
 ```
-
 
 <PageNav />

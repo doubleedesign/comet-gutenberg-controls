@@ -80,14 +80,14 @@ export function PageNav() {
         <nav className="page-nav">
             {prev ? (
                 <button onClick={() => navigate(prev.id)} className="page-nav__prev">
-                    <span className="page-nav__label">Previous</span>
-                    <span className="page-nav__title">← {prev.title.split('/').at(-1)}</span>
+                    <span className="page-nav__label">← Previous</span>
+                    <span className="page-nav__title">{prev.title.split('/').at(-1)}</span>
                 </button>
             ) : null}
             {next ? (
                 <button onClick={() => navigate(next.id)} className="page-nav__next">
-                    <span className="page-nav__label">Next</span>
-                    <span className="page-nav__title">{next.title.split('/').at(-1)} →</span>
+                    <span className="page-nav__label">Next →</span>
+                    <span className="page-nav__title">{next.title.split('/').at(-1)}</span>
                 </button>
             ) : null}
         </nav>

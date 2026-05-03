@@ -1,2 +1,40 @@
 @use '../node_modules/@doubleedesign/doublee-site-style/doublee-fonts.scss';
+@use '../node_modules/@doubleedesign/doublee-site-style/doublee-common.scss';
 @use '../node_modules/@doubleedesign/doublee-site-style/doublee-storybook-preview.scss';
+
+.page-nav {
+	display: flex;
+	margin-block-start: var(--spacing-xxl);
+
+	&__prev,
+	&__next {
+		width: 20rem;
+		max-width: 50%;
+		display: inline-flex;
+		flex-direction: column;
+		background: transparent;
+
+		&:hover, &:focus, &:active {
+			color: var(--color-primary);
+			border-color: var(--color-primary);
+		}
+	}
+
+	&__label {
+		font: var(--font-captions);
+		font-size: 0.8rem;
+	}
+
+	&__title {
+		font: var(--font-labels);
+	}
+
+	&__prev {
+		align-items: flex-start;
+	}
+
+	&__next {
+		align-items: flex-end;
+		margin-inline-start: auto;
+	}
+}

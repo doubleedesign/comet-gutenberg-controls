@@ -13,18 +13,6 @@ Install dependencies:
 pnpm install
 ```
 
-Run Storybook to see and test the available components:
-
-```powershell
-pnpm run storybook
-```
-
-To make changes to the component JavaScript: Either set up Rollup to auto-compile on file changes, or run the build script after making changes:
-
-```powershell
-pnpm run build
-```
-
 To make changes to the CSS, ensure you have [Sass](https://sass-lang.com/install) installed globally and set up a file watcher in WebStorm/PhpStorm with the following values:
 
 - Arguments: `$ProjectFileDir$/src/style.scss:$ProjectFileDir$/dist/style.css`
@@ -52,12 +40,14 @@ npx generate-react-cli component MyNewControl
 
 ## Compiling
 
-At the time of writing, this package is not published on NPM, just GitHub, so the compiled code is committed to the repo in the `dist` folder. After making changes, recompile the library with:
+At the time of writing, this package is not published on NPM, just GitHub, so the compiled code is committed to the repo in the `dist` folder.
+
+After making changes, recompile the library with:
 
 ```powershell
 pnpm run build
 ```
 
-**Note:** If you delete the `dist` folder and rebuild, make sure you also compile the stylesheet again too, and that the resulting `style.css` is in `dist` as expected.
+This uses [Rollup](https://rollupjs.org/) to handle compiling the relevant files in a way that works with the WordPress block editor; and it compiles the shared CSS in `src/style.scss` to `dist/style.css` using [Sass](https://sass-lang.com/).
 
 <PageNav />

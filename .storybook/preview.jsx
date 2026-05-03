@@ -1,6 +1,5 @@
 import { withMaxWidth } from '@doubleedesign/storybook-assorted-decorators';
 import { withCometConfig } from '../src/mocks/with-comet-config.tsx';
-
 import { themes } from 'storybook/theming';
 import { create } from 'storybook/theming/create';
 import { doubleeTheme } from '@doubleedesign/doublee-site-style';
@@ -12,6 +11,7 @@ import { SyntaxHighlighter } from 'storybook/internal/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
 import php from 'react-syntax-highlighter/dist/esm/languages/prism/php';
 import powershell from 'react-syntax-highlighter/dist/esm/languages/prism/powershell';
+import {DocsContainer} from "@storybook/addon-docs/blocks";
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 SyntaxHighlighter.registerLanguage('php', php);
@@ -36,8 +36,15 @@ const preview = {
             exclude: ['attributes']
         },
         docs: {
-            inlineStories: true,
+            inlineStories: false, // put stories into an iframe
             theme: mergedTheme,
+            container: ({ children, context }) => (
+                <DocsContainer context={context}>
+                    <div className="sb-unstyled" data-typography-mode="docs">
+                        {children}
+                    </div>
+                </DocsContainer>
+            ),
         },
         options: {
             storySort: {
@@ -52,7 +59,7 @@ const preview = {
     },
     decorators: [
         withMaxWidth('280px'),
-        withCometConfig
+        withCometConfig,
     ],
 };
 
