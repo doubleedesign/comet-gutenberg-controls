@@ -5,7 +5,6 @@ import { glob } from 'glob';
 import * as fs from "node:fs";
 import * as path from "node:path";
 
-
 export default [
     {
         input: glob.sync('src/**/*.tsx', {
@@ -13,8 +12,8 @@ export default [
                 'src/components/**/*.stories.tsx',
                 'src/components/**/*.test.tsx',
                 'src/components/**/*.spec.tsx',
-                'src/mocks/**/*.ts',
-                'src/mocks/**/*.tsx',
+                'src/mocks/*.ts',
+                'src/mocks/*.tsx',
             ]
         }),
         output: {
