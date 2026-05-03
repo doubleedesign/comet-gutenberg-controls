@@ -22,8 +22,8 @@ importers:
         specifier: ^7.27.1
         version: 7.28.5(@babel/core@7.29.0)
       '@doubleedesign/doublee-site-style':
-        specifier: link:../doublee-site-style
-        version: link:../doublee-site-style
+        specifier: github:doubleedesign/doublee-site-style
+        version: https://codeload.github.com/doubleedesign/doublee-site-style/tar.gz/f25cc72ee604e159af204178dbd171403fb0b295
       '@doubleedesign/storybook-assorted-decorators':
         specifier: ^0.0.5
         version: 0.0.5
@@ -386,6 +386,13 @@ packages:
 
   '@date-fns/utc@2.1.1':
     resolution: {integrity: sha512-SlJDfG6RPeEX8wEVv6ZB3kak4MmbtyiI2qX/5zuKdordbrhB/iaJ58GVMZgJ6P1sJaM1gMgENFYYeg1JWrCFrA==}
+
+  '@doubleedesign/clientside-typographers-quotes@0.0.1':
+    resolution: {integrity: sha512-Ubeb7qoJ/+BVoR3mJa/Fvbow7eMsYfZ8np4OfoYY+dJwD43xuk1UfMLpZ09IsplUoKbhJCb3e3mfHUGMA1xyKg==}
+
+  '@doubleedesign/doublee-site-style@https://codeload.github.com/doubleedesign/doublee-site-style/tar.gz/f25cc72ee604e159af204178dbd171403fb0b295':
+    resolution: {tarball: https://codeload.github.com/doubleedesign/doublee-site-style/tar.gz/f25cc72ee604e159af204178dbd171403fb0b295}
+    version: 1.1.3
 
   '@doubleedesign/storybook-assorted-decorators@0.0.5':
     resolution: {integrity: sha512-6O6P9SN+RwnPED7Rf3gH6u+cZ+MjEHW8n9UeW/Vr4ubAtMdsBla3s9WzxvyE1z1I5FKQjeX8BREfNukLkPyGJw==}
@@ -4778,6 +4785,12 @@ snapshots:
   '@date-fns/tz@1.4.1': {}
 
   '@date-fns/utc@2.1.1': {}
+
+  '@doubleedesign/clientside-typographers-quotes@0.0.1': {}
+
+  '@doubleedesign/doublee-site-style@https://codeload.github.com/doubleedesign/doublee-site-style/tar.gz/f25cc72ee604e159af204178dbd171403fb0b295':
+    dependencies:
+      '@doubleedesign/clientside-typographers-quotes': 0.0.1
 
   '@doubleedesign/storybook-assorted-decorators@0.0.5':
     dependencies:
