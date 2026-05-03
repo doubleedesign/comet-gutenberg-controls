@@ -11,6 +11,8 @@ export function PageNav() {
     const [allEntries, setAllEntries] = useState<IndexEntry[]>([]);
     const [currentId, setCurrentId] = useState<string>('');
 
+	const prefixPath = window.location.hostname == 'localhost' ? '' : 'comet-gutenberg-controls';
+
     useEffect(() => {
         // Get current story ID from the global Storybook state
         const store = (globalThis as any).__STORYBOOK_STORY_STORE__;
@@ -20,7 +22,7 @@ export function PageNav() {
         }
 
         // Fetch the story index directly from Storybook's index endpoint
-        fetch('/index.json')
+        fetch(`${prefixPath}/index.json`)
             .then(res => res.json())
             .then(data => {
                 // Filter to only docs entries, preserve sidebar order
@@ -28,15 +30,9 @@ export function PageNav() {
                     .filter(entry => entry.type === 'docs');
                 setAllEntries(entries);
             })
-            .catch(() => {
-                // Fallback: try stories.json for older Storybook versions
-                fetch('/stories.json')
-                    .then(res => res.json())
-                    .then(data => {
-                        const entries = Object.values(data.stories as Record<string, IndexEntry>)
-                            .filter(entry => entry.type === 'docs');
-                        setAllEntries(entries);
-                    });
+            .catch((error) => {
+				console.error(error);
+				setAllEntries([]);
             });
     }, []);
 
