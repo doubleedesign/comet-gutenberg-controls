@@ -2,8 +2,8 @@
 @import url("https://use.typekit.net/svp5arr.css");
 @font-face {
   font-family: "Copernicus New Cond";
-  src: url("https://doublee.dev/fonts/CopernicusNewCond-130.woff2") format("woff2");
-  font-weight: 600;
+  src: url("https://doublee.dev/fonts/CopernicusNewCond-090.woff2") format("woff2");
+  font-weight: 300 400;
   font-style: normal;
 }
 @font-face {
@@ -13,44 +13,56 @@
   font-style: normal;
 }
 @font-face {
+  font-family: "Copernicus New Cond";
+  src: url("https://doublee.dev/fonts/CopernicusNewCond-130.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
   font-family: "Neue Montreal";
+  font-style: normal;
+  font-feature-settings: "ss01";
+  /*! Custom adjustments to suit the combination of fonts */
+  ascent-override: 85%;
   src: url("https://doublee.dev/fonts/PPNeueMontreal-Light.woff2") format("woff2");
   font-weight: 300;
-  font-style: normal;
-  /*! Custom adjustments to suit the combination of fonts */
-  ascent-override: 85%;
 }
 @font-face {
   font-family: "Neue Montreal";
+  font-style: normal;
+  font-feature-settings: "ss01";
+  /*! Custom adjustments to suit the combination of fonts */
+  ascent-override: 85%;
   src: url("https://doublee.dev/fonts/PPNeueMontreal-Book.woff2") format("woff2");
   font-weight: 400;
-  font-style: normal;
-  /*! Custom adjustments to suit the combination of fonts */
-  ascent-override: 85%;
 }
 @font-face {
   font-family: "Neue Montreal";
+  font-style: normal;
+  font-feature-settings: "ss01";
+  /*! Custom adjustments to suit the combination of fonts */
+  ascent-override: 85%;
   src: url("https://doublee.dev/fonts/PPNeueMontreal-Italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
-  /*! Custom adjustments to suit the combination of fonts */
-  ascent-override: 85%;
 }
 @font-face {
   font-family: "Neue Montreal";
+  font-style: normal;
+  font-feature-settings: "ss01";
+  /*! Custom adjustments to suit the combination of fonts */
+  ascent-override: 85%;
   src: url("https://doublee.dev/fonts/PPNeueMontreal-Medium.woff2") format("woff2");
   font-weight: 500;
-  font-style: normal;
-  /*! Custom adjustments to suit the combination of fonts */
-  ascent-override: 85%;
 }
 @font-face {
   font-family: "Neue Montreal";
-  src: url("https://doublee.dev/fonts/PPNeueMontreal-SemiBold.woff2") format("woff2");
-  font-weight: 600 700;
   font-style: normal;
+  font-feature-settings: "ss01";
   /*! Custom adjustments to suit the combination of fonts */
   ascent-override: 85%;
+  src: url("https://doublee.dev/fonts/PPNeueMontreal-SemiBold.woff2") format("woff2");
+  font-weight: 600 700;
 }
 @font-face {
   font-family: "Fira Code";
@@ -84,61 +96,77 @@
  * © 2026 MyFonts Inc. */
 @font-face {
   font-family: "Berkeley Old Style";
-  src: local("BerkeleyPro-Book"), url("https://doublee.dev/fonts/BerkeleyOldStyleBook.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 300 400;
   /*! Custom adjustments to suit the combination of fonts */
   size-adjust: 115%;
+  src: local("BerkeleyPro-Book"), url("https://doublee.dev/fonts/BerkeleyOldStyleBook.woff2") format("woff2");
+  font-weight: 300 400;
+  font-style: normal;
 }
 @font-face {
   font-family: "Berkeley Old Style";
-  font-style: italic;
-  font-weight: 300 400;
-  src: local("BerkeleyPro-BookItalic"), url("https://doublee.dev/fonts/BerkeleyOldStyleBookItalic.woff2") format("woff2");
   /*! Custom adjustments to suit the combination of fonts */
   size-adjust: 115%;
+  src: local("BerkeleyPro-BookItalic"), url("https://doublee.dev/fonts/BerkeleyOldStyleBookItalic.woff2") format("woff2");
+  font-weight: 300 400;
+  font-style: italic;
 }
 @media screen and (min-resolution: 150dpi) {
   @font-face {
     font-family: "Berkeley Old Style";
-    src: local("BerkeleyPro-Medium"), url("https://doublee.dev/fonts/BerkeleyOldStyleMedium.woff2") format("woff2");
-    font-style: normal;
-    font-weight: 400;
     /*! Custom adjustments to suit the combination of fonts */
     size-adjust: 115%;
+    src: local("BerkeleyPro-Medium"), url("https://doublee.dev/fonts/BerkeleyOldStyleMedium.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
   }
   @font-face {
     font-family: "Berkeley Old Style";
-    font-style: italic;
-    font-weight: 400;
-    src: local("BerkeleyPro-MediumItalic"), url("https://doublee.dev/fonts/BerkeleyOldStyleMediumItalic.woff2") format("woff2");
     /*! Custom adjustments to suit the combination of fonts */
     size-adjust: 115%;
+    src: local("BerkeleyPro-MediumItalic"), url("https://doublee.dev/fonts/BerkeleyOldStyleMediumItalic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
   }
 }
 @font-face {
   font-family: "Berkeley Old Style";
-  font-weight: 600 700;
-  src: local("BerkeleyPro-Bold"), url("https://doublee.dev/fonts/BerkeleyOldStyleBold.woff2") format("woff2");
   /*! Custom adjustments to suit the combination of fonts */
   size-adjust: 115%;
+  src: local("BerkeleyPro-Bold"), url("https://doublee.dev/fonts/BerkeleyOldStyleBold.woff2") format("woff2");
+  font-weight: 600 700;
 }
 @layer doublee-tokens {
   :root {
-    --font-family-body: "Berkeley Old Style", "Californian FB", Georgia, serif;
-    --font-family-headings: "Copernicus New Cond", sans-serif;
-    --font-family-accent: "Neue Montreal", "Neue Helvetica", Helvetica, Arial, sans-serif;
-    --font-family-labels: "Neue Montreal", "Neue Helvetica", Helvetica, Arial, sans-serif;
-    --font-family-code: "Fira Code", Consolas, system-ui-monospace, monospace;
+    --font-family-body: 'Berkeley Old Style', 'Californian FB', Georgia, serif;
+    --font-family-headings: 'Copernicus New Cond', sans-serif;
+    --font-family-accent: 'Neue Montreal', 'Neue Helvetica', Helvetica, Arial, sans-serif;
+    --font-family-labels: 'Neue Montreal', 'Neue Helvetica', Helvetica, Arial, sans-serif;
+    --font-family-code: 'Fira Code', Consolas, system-ui-monospace, monospace;
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
+    --typescale: 1.2;
     --line-height-base: 1.6;
     --line-height-headings: 1.2;
-    --typescale: 1.2;
+    --letter-spacing-body: -0.01em;
+    --letter-spacing-tight: -0.02em;
+  }
+  @media (min-width: 768px) {
+    :root {
+      --typescale: 1.25;
+    }
+  }
+  :root {
     --font-size-base: 1rem;
+  }
+  @media (min-width: 1024px) {
+    :root {
+      --font-size-base: calc(17 / 16 * 100%);
+    }
+  }
+  :root {
     --font-size-sm: 0.9rem;
     --font-size-body: 1rem;
     --font-size-md: calc(1rem * var(--typescale));
@@ -165,9 +193,9 @@
     --border-radius-sm: var(--spacing-xs);
     --border-radius-md: var(--spacing-sm);
     --border-radius-round: 100px;
-    --color-primary: #845ec2;
-    --color-secondary: #0abfa0;
-    --color-accent: #c92c5a;
+    --color-primary: #502595;
+    --color-secondary: #845ec2;
+    --color-accent: #b01b87;
     --color-info: #24a8e1;
     --color-warning: #ffc75f;
     --color-success: #0abfa0;
@@ -178,30 +206,19 @@
     --color-body-text: #181825;
     --color-body-text-muted: oklch(from color-mix(in srgb, var(--color-body-text) 85%, gray 15%) calc(l + 0.35) calc(c * 0.8) calc(h));
   }
-  @media (min-width: 768px) {
-    :root {
-      --typescale: 1.25;
-    }
-  }
-  @media (min-width: 1024px) {
-    :root {
-      --font-size-base: calc(17 / 16 * 100%);
-    }
-  }
 }
 .prismjs {
   background: #181825;
   color: white;
-  /** Based on Catpuccin Mocha - https://prismjs.catppuccin.com/mocha.css */
-  /* https://prismjs.com/tokens.html */
-  /* Diff */
-  /* Other */
 }
 .prismjs * {
   font-family: "Fira Code", monospace;
   font-weight: 300;
   font-size: 0.9rem;
   line-height: 1.4;
+}
+.prismjs {
+  /** Based on Catpuccin Mocha - https://prismjs.catppuccin.com/mocha.css */
 }
 .prismjs code[class*=language-],
 .prismjs pre[class*=language-] {
@@ -210,6 +227,9 @@
 .prismjs :not(pre) > code[class*=language-],
 .prismjs pre[class*=language-] {
   background: #181825;
+}
+.prismjs {
+  /* https://prismjs.com/tokens.html */
 }
 .prismjs .token.keyword {
   color: #cba6f7;
@@ -291,11 +311,17 @@
 .prismjs .token.selector {
   color: #89b4fa;
 }
+.prismjs {
+  /* Diff */
+}
 .prismjs .token.deleted {
   color: #f38ba8;
 }
 .prismjs .token.inserted {
   color: #a6e3a1;
+}
+.prismjs {
+  /* Other */
 }
 .prismjs .token.important,
 .prismjs .token.bold {
@@ -315,10 +341,6 @@
 [id*="tabpanel-storybook/html/panel"] .prismjs {
   background: #181825;
   color: white;
-  /** Based on Catpuccin Mocha - https://prismjs.catppuccin.com/mocha.css */
-  /* https://prismjs.com/tokens.html */
-  /* Diff */
-  /* Other */
 }
 .docblock-source .prismjs *,
 .docs-story + div .prismjs *,
@@ -327,6 +349,11 @@
   font-weight: 300;
   font-size: 0.9rem;
   line-height: 1.4;
+}
+.docblock-source .prismjs,
+.docs-story + div .prismjs,
+[id*="tabpanel-storybook/html/panel"] .prismjs {
+  /** Based on Catpuccin Mocha - https://prismjs.catppuccin.com/mocha.css */
 }
 .docblock-source .prismjs code[class*=language-],
 .docblock-source .prismjs pre[class*=language-],
@@ -343,6 +370,11 @@
 [id*="tabpanel-storybook/html/panel"] .prismjs :not(pre) > code[class*=language-],
 [id*="tabpanel-storybook/html/panel"] .prismjs pre[class*=language-] {
   background: #181825;
+}
+.docblock-source .prismjs,
+.docs-story + div .prismjs,
+[id*="tabpanel-storybook/html/panel"] .prismjs {
+  /* https://prismjs.com/tokens.html */
 }
 .docblock-source .prismjs .token.keyword,
 .docs-story + div .prismjs .token.keyword,
@@ -484,6 +516,11 @@
 [id*="tabpanel-storybook/html/panel"] .prismjs .token.selector {
   color: #89b4fa;
 }
+.docblock-source .prismjs,
+.docs-story + div .prismjs,
+[id*="tabpanel-storybook/html/panel"] .prismjs {
+  /* Diff */
+}
 .docblock-source .prismjs .token.deleted,
 .docs-story + div .prismjs .token.deleted,
 [id*="tabpanel-storybook/html/panel"] .prismjs .token.deleted {
@@ -493,6 +530,11 @@
 .docs-story + div .prismjs .token.inserted,
 [id*="tabpanel-storybook/html/panel"] .prismjs .token.inserted {
   color: #a6e3a1;
+}
+.docblock-source .prismjs,
+.docs-story + div .prismjs,
+[id*="tabpanel-storybook/html/panel"] .prismjs {
+  /* Other */
 }
 .docblock-source .prismjs .token.important,
 .docblock-source .prismjs .token.bold,
@@ -511,6 +553,10 @@
 .docs-story + div .prismjs *,
 [id*="tabpanel-storybook/html/panel"] .prismjs * {
   font-family: "Fira Code", monospace !important;
+}
+
+.sidebar-header img {
+  max-height: 40px;
 }
 
 #storybook-explorer-tree button {
@@ -582,6 +628,16 @@
 #storybook-sidebar-region .sidebar-header div:has(button[aria-label=Shortcuts]) button[aria-label=Shortcuts] > svg {
   width: 1.125rem;
   height: 1.125rem;
+}
+#storybook-sidebar-region .sidebar-header button[aria-label=Settings] {
+  margin-inline-start: auto;
+  top: 1.4rem;
+  left: 0.25rem;
+}
+#storybook-sidebar-region [role=search] {
+  width: calc(100% - 2rem);
+  padding-inline-end: 0.25rem;
+  border-inline-end: 1px solid hsla(212, 50%, 30%, 0.25);
 }
 #storybook-sidebar-region button[aria-label="Create a new story"] {
   display: none;

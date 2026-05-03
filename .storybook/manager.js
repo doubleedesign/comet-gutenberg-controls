@@ -11,8 +11,6 @@ const mergedTheme = create({
     brandImage: 'https://cometcomponents.io/docs/comet.png',
 });
 
-console.log(mergedTheme);
-
 addons.setConfig({
     theme: mergedTheme,
 });

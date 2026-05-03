@@ -47,6 +47,19 @@
 		}
 	}
 
+	.sidebar-header button[aria-label="Settings"] {
+		margin-inline-start: auto;
+		top: 1.4rem;
+		left: 0.25rem;
+	}
+
+	// Make room for the settings button
+	[role="search"] {
+		width: calc(100% - 2rem);
+		padding-inline-end: 0.25rem;
+		border-inline-end: 1px solid hsl(212 50% 30% / 0.25);
+	}
+
 	button[aria-label="Create a new story"] {
 		display: none;
 	}
