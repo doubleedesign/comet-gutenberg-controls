@@ -1,4 +1,3 @@
-import React from 'react';
 import { EditorControlProps } from '../types';
 import { BackgroundOpacity, BackgroundOpacityProps } from './BackgroundOpacity/BackgroundOpacity';
 import { BackgroundType, BackgroundTypeProps } from './BackgroundType/BackgroundType';

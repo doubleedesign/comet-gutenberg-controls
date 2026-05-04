@@ -1,5 +1,4 @@
 /* global wp */
-import React from 'react';
 import { RangeControl } from '@wordpress/components';
 import { EditorControlProps } from '../../types';
 

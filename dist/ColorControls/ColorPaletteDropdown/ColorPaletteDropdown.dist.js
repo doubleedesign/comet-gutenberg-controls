@@ -1,6 +1,6 @@
 import { ColorSwatch } from '../../ColorSwatch/ColorSwatch.dist.js';
 
-const React = React;const { Dropdown, Button, ColorIndicator, ColorPalette } = wp.components;const { useRef, useCallback, useEffect } = wp.element;function ColorPaletteDropdown({ label = 'Colour', value, palette, onChange, clearable = false }) {
+const { Dropdown, Button, ColorIndicator, ColorPalette } = wp.components;const { useRef, useCallback, useEffect } = wp.element;function ColorPaletteDropdown({ label = 'Colour', value, palette, onChange, clearable = false }) {
     const triggerRef = useRef();
     const handleChange = useCallback((newValue) => {
         // Handle clearable selector
@@ -25,12 +25,12 @@ const React = React;const { Dropdown, Button, ColorIndicator, ColorPalette } = w
             onChange(defaultColor);
         }
     }, [value, palette]);
-    return (React.createElement("div", { "data-testid": "comet-single-color-selector" },
-        React.createElement(Dropdown, { renderToggle: ({ onToggle, isOpen }) => (React.createElement(Button, { onClick: onToggle, "aria-expanded": isOpen, ref: triggerRef, __next40pxDefaultSize: true },
-                React.createElement(ColorIndicator, { colorValue: value ? `var(--color-${value})` : undefined, "data-testid": "comet-color-indicator", "aria-label": value ? `Selected colour: ${value}` : 'No colour selected' }),
-                label)), renderContent: ({ onToggle, ...props }) => (React.createElement(React.Fragment, null,
-                value !== undefined && React.createElement(ColorSwatch, { backgroundColor: value }),
-                React.createElement(ColorPalette, { clearable: clearable, value: `var(--color-${value})`, colors: palette, disableCustomColors: true, onChange: (newValue) => {
+    return (wp.element.createElement("div", { "data-testid": "comet-single-color-selector" },
+        wp.element.createElement(Dropdown, { renderToggle: ({ onToggle, isOpen }) => (wp.element.createElement(Button, { onClick: onToggle, "aria-expanded": isOpen, ref: triggerRef, __next40pxDefaultSize: true },
+                wp.element.createElement(ColorIndicator, { colorValue: value ? `var(--color-${value})` : undefined, "data-testid": "comet-color-indicator", "aria-label": value ? `Selected colour: ${value}` : 'No colour selected' }),
+                label)), renderContent: ({ onToggle, ...props }) => (wp.element.createElement(wp.element.Fragment, null,
+                value !== undefined && wp.element.createElement(ColorSwatch, { backgroundColor: value }),
+                wp.element.createElement(ColorPalette, { clearable: clearable, value: `var(--color-${value})`, colors: palette, disableCustomColors: true, onChange: (newValue) => {
                         handleChange(newValue);
                         onToggle(); // close dropdown after selection
                     } }))) })));

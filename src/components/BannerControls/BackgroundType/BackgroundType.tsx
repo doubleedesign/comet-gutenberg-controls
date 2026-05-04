@@ -1,4 +1,3 @@
-import React from 'react';
 import { SelectControl } from '@wordpress/components';
 import { EditorControlProps } from '../../types';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { EditorControlProps } from '../types';
 import { ThemeColor, ThemeGradient } from '../../types';
 export type ColorControlsProps = EditorControlProps & {
@@ -8,4 +7,4 @@ export type ColorControlsProps = EditorControlProps & {
         sectionBackground?: ThemeColor | ThemeGradient;
     };
 };
-export declare const ColorControls: (props: ColorControlsProps) => React.JSX.Element | null;
+export declare const ColorControls: (props: ColorControlsProps) => JSX.Element | null;

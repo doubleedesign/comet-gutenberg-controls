@@ -1,4 +1,3 @@
-import React from 'react';
 import { useMemo, useRef, useState, useEffect } from '@wordpress/element';
 import { Dropdown, Button, ColorIndicator, GradientPicker } from '@wordpress/components';
 import { ColorPair } from '../../../types';

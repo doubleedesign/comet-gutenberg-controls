@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Tooltip } from '@wordpress/components';
 
 export const FieldTooltip = ({ tooltip }) => {

@@ -11,15 +11,15 @@ const { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption
     }
     const ToggleGroupControl = __experimentalToggleGroupControl;
     const ToggleGroupControlOption = __experimentalToggleGroupControlOption;
-    return (React.createElement(ToggleGroupControl, { className: "comet-toggle-group", __next40pxDefaultSize: true, isBlock: true, label: React.createElement(React.Fragment, null,
+    return (wp.element.createElement(ToggleGroupControl, { className: "comet-toggle-group", __next40pxDefaultSize: true, isBlock: true, label: wp.element.createElement(wp.element.Fragment, null,
             "Horizontal Alignment",
-            React.createElement(FieldTooltip, { tooltip: 'How to align the content if it does not take up the full width of the container' })), onChange: (value) => setAttributes({ hAlign: value }), value: attributes.hAlign },
-        React.createElement(ToggleGroupControlOption, { label: React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24" },
-                React.createElement("path", { d: "M9 9v6h11V9H9zM4 20h1.5V4H4v16z" })), "aria-label": "Start", showTooltip: true, value: "start" }),
-        React.createElement(ToggleGroupControlOption, { label: React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24" },
-                React.createElement("path", { d: "M12.5 15v5H11v-5H4V9h7V4h1.5v5h7v6h-7Z" })), "aria-label": "Middle", showTooltip: true, value: "center" }),
-        React.createElement(ToggleGroupControlOption, { label: React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24" },
-                React.createElement("path", { d: "M4 15h11V9H4v6zM18.5 4v16H20V4h-1.5z" })), "aria-label": "End", showTooltip: true, value: "end" })));
+            wp.element.createElement(FieldTooltip, { tooltip: 'How to align the content if it does not take up the full width of the container' })), onChange: (value) => setAttributes({ hAlign: value }), value: attributes.hAlign },
+        wp.element.createElement(ToggleGroupControlOption, { label: wp.element.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24" },
+                wp.element.createElement("path", { d: "M9 9v6h11V9H9zM4 20h1.5V4H4v16z" })), "aria-label": "Start", showTooltip: true, value: "start" }),
+        wp.element.createElement(ToggleGroupControlOption, { label: wp.element.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24" },
+                wp.element.createElement("path", { d: "M12.5 15v5H11v-5H4V9h7V4h1.5v5h7v6h-7Z" })), "aria-label": "Middle", showTooltip: true, value: "center" }),
+        wp.element.createElement(ToggleGroupControlOption, { label: wp.element.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24" },
+                wp.element.createElement("path", { d: "M4 15h11V9H4v6zM18.5 4v16H20V4h-1.5z" })), "aria-label": "End", showTooltip: true, value: "end" })));
 };
 
 export { HorizontalAlignment };

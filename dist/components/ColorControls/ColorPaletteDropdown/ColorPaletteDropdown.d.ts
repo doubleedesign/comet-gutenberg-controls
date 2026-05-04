@@ -1,4 +1,3 @@
-import React from 'react';
 export type ColorPaletteDropdownProps = {
     label: string;
     value: string;
@@ -10,4 +9,4 @@ export type ColorPaletteDropdownProps = {
     onChange: (value: string) => void;
     clearable?: boolean;
 };
-export declare function ColorPaletteDropdown({ label, value, palette, onChange, clearable }: ColorPaletteDropdownProps): React.JSX.Element;
+export declare function ColorPaletteDropdown({ label, value, palette, onChange, clearable }: ColorPaletteDropdownProps): JSX.Element;

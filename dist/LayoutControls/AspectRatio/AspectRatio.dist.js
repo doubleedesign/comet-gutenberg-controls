@@ -1,6 +1,6 @@
 import { FieldTooltip } from '../../FieldTooltip/FieldTooltip.dist.js';
 
-const React = React;const { SelectControl } = wp.components;const AspectRatio = ({ name, attributes, setAttributes }) => {
+const { SelectControl } = wp.components;const AspectRatio = ({ name, attributes, setAttributes }) => {
     if (!attributes?.aspectRatio || !comet.aspectRatios) {
         return null;
     }
@@ -8,10 +8,10 @@ const React = React;const { SelectControl } = wp.components;const AspectRatio = 
         label: `${sentence_case(ratio.name)} (${ratio.value})`,
         value: ratio.value,
     }));
-    const label = name === 'comet/gallery' ? React.createElement(React.Fragment, null,
+    const label = name === 'comet/gallery' ? wp.element.createElement(wp.element.Fragment, null,
         "Aspect ratio",
-        React.createElement(FieldTooltip, { tooltip: 'The preferred aspect ratio for the image previews' })) : 'Aspect ratio';
-    return (React.createElement(SelectControl, { label: label, size: '__unstable-large', value: attributes.aspectRatio?.value, options: options, onChange: (newRatio) => setAttributes({ aspectRatio: newRatio }) }));
+        wp.element.createElement(FieldTooltip, { tooltip: 'The preferred aspect ratio for the image previews' })) : 'Aspect ratio';
+    return (wp.element.createElement(SelectControl, { label: label, size: '__unstable-large', value: attributes.aspectRatio?.value, options: options, onChange: (newRatio) => setAttributes({ aspectRatio: newRatio }) }));
 };
 function sentence_case(text) {
     return text

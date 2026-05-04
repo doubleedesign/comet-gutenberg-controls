@@ -1,4 +1,3 @@
-import React from 'react';
 import { ExternalLink, SelectControl } from '@wordpress/components';
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip';
 import { EditorControlProps } from '../types';

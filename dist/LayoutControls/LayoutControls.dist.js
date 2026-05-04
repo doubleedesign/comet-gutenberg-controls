@@ -11,7 +11,7 @@ import { AspectRatio } from './AspectRatio/AspectRatio.dist.js';
 import { LayoutOrder } from './LayoutOrder/LayoutOrder.dist.js';
 
 /* global wp */
-const React = React;const { PanelBody } = wp.components;const LayoutControls = (props) => {
+const { PanelBody } = wp.components;const LayoutControls = (props) => {
     // If the block does not have any layout attributes, do not render the controls
     const componentDefault = Object.keys(comet?.defaults[props?.name?.replace('comet/', '')] ?? {}) ?? [];
     const currentAttributes = Object.keys(props.attributes) ?? [];
@@ -30,18 +30,18 @@ const React = React;const { PanelBody } = wp.components;const LayoutControls = (
     if (!hasLayoutAttributes) {
         return null;
     }
-    return (React.createElement(PanelBody, { title: "Layout", initialOpen: true },
-        React.createElement(ContainerSize, { ...props }),
-        React.createElement(AspectRatio, { ...props }),
-        React.createElement(ContentMaxWidth, { ...props }),
-        React.createElement(NegativeMargins, { ...props }),
-        React.createElement(GroupLayout, { ...props }),
-        React.createElement(ItemCount, { ...props }),
-        React.createElement(MaxPerRow, { ...props }),
-        React.createElement(LayoutOrientation, { ...props }),
-        React.createElement(LayoutOrder, { ...props }),
-        React.createElement(HorizontalAlignment, { ...props }),
-        React.createElement(VerticalAlignment, { ...props })));
+    return (wp.element.createElement(PanelBody, { title: "Layout", initialOpen: true },
+        wp.element.createElement(ContainerSize, { ...props }),
+        wp.element.createElement(AspectRatio, { ...props }),
+        wp.element.createElement(ContentMaxWidth, { ...props }),
+        wp.element.createElement(NegativeMargins, { ...props }),
+        wp.element.createElement(GroupLayout, { ...props }),
+        wp.element.createElement(ItemCount, { ...props }),
+        wp.element.createElement(MaxPerRow, { ...props }),
+        wp.element.createElement(LayoutOrientation, { ...props }),
+        wp.element.createElement(LayoutOrder, { ...props }),
+        wp.element.createElement(HorizontalAlignment, { ...props }),
+        wp.element.createElement(VerticalAlignment, { ...props })));
 };
 
 export { LayoutControls };

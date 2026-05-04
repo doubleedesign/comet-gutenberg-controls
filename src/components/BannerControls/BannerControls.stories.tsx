@@ -1,6 +1,4 @@
-import React from 'react';
 import { BannerControls, BannerControlsProps } from './BannerControls';
-import { COMMON_STORY_ARGS, EDITOR_CONTROL_PROPS_ARGTYPES } from '../../mocks/common-story-args';
 import { withMockBlockContext } from '../../mocks/with-mock-block-context';
 import type { StoryObj, Meta } from '@storybook/react-webpack5';
 import { ComponentType } from '@wordpress/element';

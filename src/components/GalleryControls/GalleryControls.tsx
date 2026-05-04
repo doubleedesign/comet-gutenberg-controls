@@ -1,4 +1,3 @@
-import React from 'react';
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip';
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import { EditorControlProps } from '../types';

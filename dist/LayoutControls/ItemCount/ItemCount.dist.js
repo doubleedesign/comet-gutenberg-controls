@@ -5,9 +5,9 @@ const { __experimentalNumberControl } = wp.components;const ItemCount = ({ attri
         return null;
     }
     const NumberControl = __experimentalNumberControl;
-    return (React.createElement(NumberControl, { __next40pxDefaultSize: true, label: React.createElement(React.Fragment, null,
+    return (wp.element.createElement(NumberControl, { __next40pxDefaultSize: true, label: wp.element.createElement(wp.element.Fragment, null,
             "Item count",
-            React.createElement(FieldTooltip, { tooltip: 'How many items to display in total, if available' })), value: attributes.itemCount, min: 2, max: 12, onChange: (newCount) => setAttributes({ itemCount: newCount }) }));
+            wp.element.createElement(FieldTooltip, { tooltip: 'How many items to display in total, if available' })), value: attributes.itemCount, min: 2, max: 12, onChange: (newCount) => setAttributes({ itemCount: newCount }) }));
 };
 
 export { ItemCount };

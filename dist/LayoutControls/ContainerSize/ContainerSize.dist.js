@@ -1,20 +1,20 @@
 import { FieldTooltip } from '../../FieldTooltip/FieldTooltip.dist.js';
 import { CONTAINER_SIZES } from '../../constants.dist.js';
 
-const React = React;const { useMemo } = wp.element;const { SelectControl } = wp.components;// TODO: Handle supporting innerSize where appropriate (it's not really built into the Core components unless we nest a container)
+const { useMemo } = wp.element;const { SelectControl } = wp.components;// TODO: Handle supporting innerSize where appropriate (it's not really built into the Core components unless we nest a container)
 const ContainerSize = ({ attributes, setAttributes }) => {
     if (!attributes?.size && !attributes?.innerSize) {
         return null;
     }
     if (!attributes?.innerSize) {
-        return React.createElement(ContainerOnly, { attributes: attributes, setAttributes: setAttributes });
+        return wp.element.createElement(ContainerOnly, { attributes: attributes, setAttributes: setAttributes });
     }
-    return React.createElement(ContainerAndInner, { attributes: attributes, setAttributes: setAttributes });
+    return wp.element.createElement(ContainerAndInner, { attributes: attributes, setAttributes: setAttributes });
 };
 const ContainerOnly = ({ attributes, setAttributes }) => {
-    return (React.createElement(SelectControl, { label: React.createElement(React.Fragment, null,
+    return (wp.element.createElement(SelectControl, { label: wp.element.createElement(wp.element.Fragment, null,
             "Container size",
-            React.createElement(FieldTooltip, { tooltip: 'Represents the maximum width of the content area inside the block; may appear to have no effect on smaller viewports' })), size: '__unstable-large', value: attributes.size, options: CONTAINER_SIZES, onChange: (newSize) => setAttributes({ size: newSize }) }));
+            wp.element.createElement(FieldTooltip, { tooltip: 'Represents the maximum width of the content area inside the block; may appear to have no effect on smaller viewports' })), size: '__unstable-large', value: attributes.size, options: CONTAINER_SIZES, onChange: (newSize) => setAttributes({ size: newSize }) }));
 };
 const ContainerAndInner = ({ attributes, setAttributes }) => {
     const options = CONTAINER_SIZES;
@@ -45,13 +45,13 @@ const ContainerAndInner = ({ attributes, setAttributes }) => {
         const containerSizeIndex = options.findIndex(option => option.value === attributes.size);
         return innerOptions.slice(containerSizeIndex);
     }, [attributes.size]);
-    return (React.createElement(React.Fragment, null,
-        React.createElement(SelectControl, { label: React.createElement(React.Fragment, null,
+    return (wp.element.createElement(wp.element.Fragment, null,
+        wp.element.createElement(SelectControl, { label: wp.element.createElement(wp.element.Fragment, null,
                 "Container size",
-                React.createElement(FieldTooltip, { tooltip: 'Represents the maximum width of the content area inside the block; may appear to have no effect on smaller viewports' })), size: '__unstable-large', value: attributes.size, options: options, onChange: updateContainerSize }),
-        React.createElement(SelectControl, { label: React.createElement(React.Fragment, null,
+                wp.element.createElement(FieldTooltip, { tooltip: 'Represents the maximum width of the content area inside the block; may appear to have no effect on smaller viewports' })), size: '__unstable-large', value: attributes.size, options: options, onChange: updateContainerSize }),
+        wp.element.createElement(SelectControl, { label: wp.element.createElement(wp.element.Fragment, null,
                 "Inner content size",
-                React.createElement(FieldTooltip, { tooltip: 'Optionally override the inner content\'s overall max width; may appear to have no effect on smaller viewports' })), size: '__unstable-large', value: attributes.innerSize, options: filteredInnerOptions, onChange: updateinnerSize })));
+                wp.element.createElement(FieldTooltip, { tooltip: 'Optionally override the inner content\'s overall max width; may appear to have no effect on smaller viewports' })), size: '__unstable-large', value: attributes.innerSize, options: filteredInnerOptions, onChange: updateinnerSize })));
 };
 
 export { ContainerSize };

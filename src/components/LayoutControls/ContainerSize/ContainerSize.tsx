@@ -1,6 +1,5 @@
-import React from 'react';
-import { useMemo, useEffect, useState } from '@wordpress/element';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { useMemo } from '@wordpress/element';
+import { SelectControl } from '@wordpress/components';
 import { FieldTooltip } from '../../FieldTooltip/FieldTooltip';
 import { CONTAINER_SIZES } from '../../constants';
 

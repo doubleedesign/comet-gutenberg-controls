@@ -1,4 +1,3 @@
-import React from 'react';
 import { ColorPair } from '../../../types';
 export type ColorPairPaletteDropdownProps = {
     blockName: string;
@@ -14,4 +13,4 @@ export declare function ColorPairPaletteDropdown({ blockName, label, value, onCh
     label?: string | undefined;
     value: any;
     onChange: any;
-}): React.JSX.Element;
+}): JSX.Element;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dropdown, Button, ColorIndicator, ColorPalette } from '@wordpress/components';
 import { useRef, useCallback, useEffect } from '@wordpress/element';
 import { ColorSwatch } from '../../ColorSwatch/ColorSwatch';

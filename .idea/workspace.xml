@@ -5,63 +5,96 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4efc53ce-fc9f-48a4-bbf2-7a288629ae08" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ColorControls/ColorControls.stories.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ColorControls/ColorControls.test.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.stories.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.test.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.stories.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.test.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/LayoutControls/LayoutControls.stories.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/LayoutControls/LayoutControls.test.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mocks/common-defaults.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mocks/with-mock-wp-data-store.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/wp.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.storybook/preview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/.storybook/preview.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/BannerControls/BackgroundOpacity/BackgroundOpacity.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/BannerControls/BackgroundOpacity/BackgroundOpacity.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/BannerControls/BackgroundOpacity/BackgroundOpacity.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/BannerControls/BackgroundOpacity/BackgroundOpacity.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/BannerControls/BackgroundType/BackgroundType.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/BannerControls/BackgroundType/BackgroundType.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/BannerControls/BackgroundType/BackgroundType.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/BannerControls/BackgroundType/BackgroundType.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/BannerControls/BannerControls.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/BannerControls/BannerControls.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/BannerControls/BannerControls.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/BannerControls/BannerControls.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorControls.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorControls.dist.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorControls.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorControls.dist.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/AspectRatio/AspectRatio.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/AspectRatio/AspectRatio.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorSwatch/ColorSwatch.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorSwatch/ColorSwatch.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorSwatch/ColorSwatch.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorSwatch/ColorSwatch.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/CometBlockControls.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/CometBlockControls.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/CometBlockControls.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/CometBlockControls.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/FieldTooltip/FieldTooltip.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/FieldTooltip/FieldTooltip.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/FieldTooltip/FieldTooltip.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/FieldTooltip/FieldTooltip.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/GalleryControls/GalleryControls.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/GalleryControls/GalleryControls.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/GalleryControls/GalleryControls.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/GalleryControls/GalleryControls.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/HtmlTag/HtmlTag.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/HtmlTag/HtmlTag.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/HtmlTag/HtmlTag.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/HtmlTag/HtmlTag.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/AspectRatio/AspectRatio.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/AspectRatio/AspectRatio.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/AspectRatio/AspectRatio.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/AspectRatio/AspectRatio.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/ContainerSize/ContainerSize.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/ContainerSize/ContainerSize.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/ContainerSize/ContainerSize.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/ContainerSize/ContainerSize.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/ContentMaxWidth/ContentMaxWidth.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/ContentMaxWidth/ContentMaxWidth.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/ContentMaxWidth/ContentMaxWidth.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/ContentMaxWidth/ContentMaxWidth.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/GroupLayout/GroupLayout.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/GroupLayout/GroupLayout.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/GroupLayout/GroupLayout.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/GroupLayout/GroupLayout.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/HorizontalAlignment/HorizontalAlignment.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/HorizontalAlignment/HorizontalAlignment.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/HorizontalAlignment/HorizontalAlignment.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/HorizontalAlignment/HorizontalAlignment.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/ItemCount/ItemCount.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/ItemCount/ItemCount.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/ItemCount/ItemCount.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/ItemCount/ItemCount.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/LayoutControls.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/LayoutControls.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/LayoutControls.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/LayoutControls.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/LayoutOrder/LayoutOrder.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/LayoutOrder/LayoutOrder.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/LayoutOrder/LayoutOrder.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/LayoutOrder/LayoutOrder.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/LayoutOrientation/LayoutOrientation.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/LayoutOrientation/LayoutOrientation.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/LayoutOrientation/LayoutOrientation.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/LayoutOrientation/LayoutOrientation.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/MaxPerRow/MaxPerRow.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/MaxPerRow/MaxPerRow.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/MaxPerRow/MaxPerRow.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/MaxPerRow/MaxPerRow.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/NegativeMargins/NegativeMargins.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/NegativeMargins/NegativeMargins.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/NegativeMargins/NegativeMargins.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/NegativeMargins/NegativeMargins.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/VerticalAlignment/VerticalAlignment.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/VerticalAlignment/VerticalAlignment.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/VerticalAlignment/VerticalAlignment.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/VerticalAlignment/VerticalAlignment.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/BannerControls/BackgroundOpacity/BackgroundOpacity.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/BannerControls/BackgroundOpacity/BackgroundOpacity.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/BannerControls/BackgroundType/BackgroundType.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/BannerControls/BackgroundType/BackgroundType.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/BannerControls/BannerControls.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/BannerControls/BannerControls.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/ColorControls/ColorControls.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/ColorControls/ColorControls.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/ColorSwatch/ColorSwatch.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/ColorSwatch/ColorSwatch.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/CometBlockControls.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/CometBlockControls.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/components/FieldTooltip/FieldTooltip.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/FieldTooltip/FieldTooltip.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/GroupLayout/GroupLayout.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/GroupLayout/GroupLayout.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/GalleryControls/GalleryControls.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/GalleryControls/GalleryControls.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/components/HtmlTag/HtmlTag.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/HtmlTag/HtmlTag.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AspectRatio/AspectRatio.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/AspectRatio/AspectRatio.stories.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AspectRatio/AspectRatio.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/AspectRatio/AspectRatio.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BackgroundOpacity/BackgroundOpacity.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BannerControls/BackgroundOpacity/BackgroundOpacity.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BackgroundType/BackgroundType.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BannerControls/BackgroundType/BackgroundType.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/LayoutControls/AspectRatio/AspectRatio.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/LayoutControls/AspectRatio/AspectRatio.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/LayoutControls/ContainerSize/ContainerSize.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/LayoutControls/ContainerSize/ContainerSize.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/LayoutControls/ContentMaxWidth/ContentMaxWidth.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/LayoutControls/ContentMaxWidth/ContentMaxWidth.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/LayoutControls/GroupLayout/GroupLayout.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/LayoutControls/GroupLayout/GroupLayout.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/LayoutControls/HorizontalAlignment/HorizontalAlignment.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/LayoutControls/HorizontalAlignment/HorizontalAlignment.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/LayoutControls/ItemCount/ItemCount.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/LayoutControls/ItemCount/ItemCount.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/LayoutControls/LayoutControls.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/LayoutControls/LayoutControls.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/LayoutControls/LayoutOrder/LayoutOrder.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/LayoutControls/LayoutOrder/LayoutOrder.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/LayoutControls/LayoutOrientation/LayoutOrientation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/LayoutControls/LayoutOrientation/LayoutOrientation.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/LayoutControls/MaxPerRow/MaxPerRow.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/LayoutControls/MaxPerRow/MaxPerRow.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/LayoutControls/NegativeMargins/NegativeMargins.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/LayoutControls/NegativeMargins/NegativeMargins.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/components/LayoutControls/VerticalAlignment/VerticalAlignment.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/LayoutControls/VerticalAlignment/VerticalAlignment.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BannerControls/BackgroundOpacity/BackgroundOpacity.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BannerControls/BackgroundOpacity/BackgroundOpacity.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BannerControls/BackgroundType/BackgroundType.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BannerControls/BackgroundType/BackgroundType.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BannerControls/BannerControls.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BannerControls/BannerControls.stories.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BannerControls/BannerControls.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BannerControls/BannerControls.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ColorControls/ColorControls.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColorControls/ColorControls.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ColorSwatch/ColorSwatch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColorSwatch/ColorSwatch.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CometBlockControls.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CometBlockControls.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ContainerSize/ContainerSize.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/ContainerSize/ContainerSize.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ContentMaxWidth/ContentMaxWidth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/ContentMaxWidth/ContentMaxWidth.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/FieldTooltip/FieldTooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FieldTooltip/FieldTooltip.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/GalleryControls/GalleryControls.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GalleryControls/GalleryControls.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GroupLayout/GroupLayout.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/GroupLayout/GroupLayout.stories.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GroupLayout/GroupLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/GroupLayout/GroupLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HorizontalAlignment/HorizontalAlignment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/HorizontalAlignment/HorizontalAlignment.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HtmlTag/HtmlTag.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HtmlTag/HtmlTag.stories.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ItemCount/ItemCount.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/ItemCount/ItemCount.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HtmlTag/HtmlTag.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HtmlTag/HtmlTag.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LayoutControls/AspectRatio/AspectRatio.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/AspectRatio/AspectRatio.stories.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LayoutControls/AspectRatio/AspectRatio.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/AspectRatio/AspectRatio.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LayoutControls/ContainerSize/ContainerSize.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/ContainerSize/ContainerSize.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LayoutControls/GroupLayout/GroupLayout.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/GroupLayout/GroupLayout.stories.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LayoutControls/GroupLayout/GroupLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/GroupLayout/GroupLayout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LayoutControls/LayoutControls.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/LayoutControls.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LayoutOrder/LayoutOrder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/LayoutOrder/LayoutOrder.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LayoutOrientation/LayoutOrientation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/LayoutOrientation/LayoutOrientation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MaxPerRow/MaxPerRow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/MaxPerRow/MaxPerRow.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NegativeMargins/NegativeMargins.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/NegativeMargins/NegativeMargins.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/VerticalAlignment/VerticalAlignment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/VerticalAlignment/VerticalAlignment.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/docs/02-Development.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/src/docs/02-Development.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mocks/common-story-args.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/mocks/common-story-args.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mocks/with-comet-config.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/mocks/with-comet-config.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/TemplateName.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/templates/TemplateName.stories.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/TemplateName.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/templates/TemplateName.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,6 +142,9 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Vitest.ColorControls.executor": "Run",
+    "Vitest.ColorPairPaletteDropdown.executor": "Run",
+    "Vitest.ColorPaletteDropdown.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "master",
@@ -139,6 +175,54 @@
       <recent name="C:\Users\leesa\WebstormProjects\comet-gutenberg-controls\src\components\ColorControls" />
       <recent name="C:\Users\leesa\WebstormProjects\comet-gutenberg-controls\src\components\LayoutControls" />
     </key>
+  </component>
+  <component name="RunManager" selected="Vitest.ColorPaletteDropdown">
+    <configuration name="ColorControls" type="JavaScriptTestRunnerVitest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <vitest-package value="$PROJECT_DIR$/node_modules/vitest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <vitest-options value="--run" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/components/ColorControls/ColorControls.test.tsx" />
+      <test-names>
+        <test-name value="ColorControls" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="ColorPairPaletteDropdown" type="JavaScriptTestRunnerVitest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <vitest-package value="$PROJECT_DIR$/node_modules/vitest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <vitest-options value="--run" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/components/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.test.tsx" />
+      <test-names>
+        <test-name value="ColorPairPaletteDropdown" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="ColorPaletteDropdown" type="JavaScriptTestRunnerVitest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <vitest-package value="$PROJECT_DIR$/node_modules/vitest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <vitest-options value="--run" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/components/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.test.tsx" />
+      <test-names>
+        <test-name value="ColorPaletteDropdown" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Vitest.ColorPaletteDropdown" />
+        <item itemvalue="Vitest.ColorPairPaletteDropdown" />
+        <item itemvalue="Vitest.ColorControls" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

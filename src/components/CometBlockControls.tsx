@@ -1,5 +1,4 @@
-import React from 'react';
-import { InspectorAdvancedControls, InspectorControls } from '@wordpress/block-editor';
+import { InspectorAdvancedControls, InspectorControls, type ComponentType } from '@wordpress/block-editor';
 import { LayoutControls } from './LayoutControls/LayoutControls';
 import { ColorControls } from './ColorControls/ColorControls';
 import { HtmlTag } from './HtmlTag/HtmlTag';
@@ -8,7 +7,7 @@ import { GalleryControls } from './GalleryControls/GalleryControls';
 import { BannerControls } from './BannerControls/BannerControls';
 
 export type CometBlockControlsProps = EditorControlProps & {
-	BlockEdit: React.ComponentType<any>;
+	BlockEdit: ComponentType<any>;
 };
 
 /**

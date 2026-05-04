@@ -1,5 +1,4 @@
 /* global wp */
-import React from 'react';
 import { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption } from '@wordpress/components';
 import { EditorControlProps } from '../../types';
 

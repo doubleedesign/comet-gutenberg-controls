@@ -1,12 +1,12 @@
 /* global wp */
-const React = React;const { RangeControl } = wp.components;const BackgroundOpacity = ({ name, attributes, setAttributes }) => {
+const { RangeControl } = wp.components;const BackgroundOpacity = ({ name, attributes, setAttributes }) => {
     if (!attributes?.backgroundOpacity) {
         return null;
     }
     const defaultValue = comet?.defaults?.[name.replace('comet/', '')]?.backgroundOpacity
         ?? wp?.data?.select('core/blocks')?.getBlockType(name)?.attributes?.backgroundOpacity?.default
         ?? 0;
-    return (React.createElement(RangeControl, { __next40pxDefaultSize: true, initialPosition: attributes.backgroundOpacity ?? defaultValue, onChange: (value) => setAttributes({ backgroundOpacity: value }), label: "Background opacity", max: 100, min: 0, allowReset: true, resetFallbackValue: defaultValue }));
+    return (wp.element.createElement(RangeControl, { __next40pxDefaultSize: true, initialPosition: attributes.backgroundOpacity ?? defaultValue, onChange: (value) => setAttributes({ backgroundOpacity: value }), label: "Background opacity", max: 100, min: 0, allowReset: true, resetFallbackValue: defaultValue }));
 };
 
 export { BackgroundOpacity };

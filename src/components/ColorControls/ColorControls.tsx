@@ -1,9 +1,8 @@
 /* global wp */
-import React from 'react';
-import { useState, useRef, useMemo, useCallback } from '@wordpress/element';
+import { useRef, useMemo, useCallback } from '@wordpress/element';
 import { EditorControlProps } from '../types';
 import { PanelBody } from '@wordpress/components';
-import { ColourPalette, ThemeColor, ThemeGradient } from '../../types';
+import { ThemeColor, ThemeGradient } from '../../types';
 import { ColorPaletteDropdown } from './ColorPaletteDropdown/ColorPaletteDropdown';
 import { ColorPairPaletteDropdown } from './ColorPairPaletteDropdown/ColorPairPaletteDropdown';
 import { useValidatedPalette } from '../../hooks/use-validated-palette';

@@ -1,5 +1,3 @@
-import React from 'react';
-import { EditorControlProps } from '../types';
 import { ThemeColor } from '../../types';
 
 export type ColorSwatchProps = {

@@ -1,5 +1,4 @@
 /* global wp */
-import React from 'react';
 import { PanelBody } from '@wordpress/components';
 import { ContainerSize } from './ContainerSize/ContainerSize';
 import { GroupLayout } from './GroupLayout/GroupLayout';
@@ -11,7 +10,6 @@ import { MaxPerRow } from './MaxPerRow/MaxPerRow';
 import { ItemCount } from './ItemCount/ItemCount';
 import { NegativeMargins } from './NegativeMargins/NegativeMargins';
 import { AspectRatio } from './AspectRatio/AspectRatio';
-import { GalleryControls } from '../GalleryControls/GalleryControls';
 import { LayoutOrder } from './LayoutOrder/LayoutOrder';
 import { EditorControlProps } from '../types';
 

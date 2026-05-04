@@ -1,4 +1,3 @@
-import React from 'react';
 import { AspectRatio, AspectRatioProps } from './AspectRatio';
 import { EDITOR_CONTROL_PROPS_ARGTYPES } from '../../../mocks/common-story-args';
 import { withMockBlockContext } from '../../../mocks/with-mock-block-context';

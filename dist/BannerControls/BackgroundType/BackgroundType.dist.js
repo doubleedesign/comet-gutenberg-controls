@@ -1,4 +1,4 @@
-const React = React;const { SelectControl } = wp.components;const BackgroundType = ({ attributes, setAttributes }) => {
+const { SelectControl } = wp.components;const BackgroundType = ({ attributes, setAttributes }) => {
     if (!attributes?.backgroundType) {
         return null;
     }
@@ -6,7 +6,7 @@ const React = React;const { SelectControl } = wp.components;const BackgroundType
         { label: 'Content', value: 'content' },
         { label: 'Overlay', value: 'overlay' },
     ];
-    return (React.createElement(SelectControl, { label: "Background type", size: '__unstable-large', value: attributes.backgroundType, options: options, onChange: (newType) => setAttributes({ backgroundType: newType }) }));
+    return (wp.element.createElement(SelectControl, { label: "Background type", size: '__unstable-large', value: attributes.backgroundType, options: options, onChange: (newType) => setAttributes({ backgroundType: newType }) }));
 };
 
 export { BackgroundType };
