@@ -14,7 +14,7 @@ export function ColorPairPaletteDropdown({ blockName, label = 'Theme', value, on
 	const [foreground, setForeground] = useState(value?.foreground ?? '');
 	const [background, setBackground] = useState(value?.background !== 'transparent' ? value?.background : (comet?.globalBackground ?? 'white'));
 	const triggerRef = useRef();
-	const pairs = comet?.colourPairOverrides[blockName] ?? comet?.colourPairs ?? [];
+	const pairs = comet?.colourPairOverrides?.[blockName] ?? comet?.colourPairs ?? [];
 
 	const palette = pairs.map((pair: ColorPair) => ({
 		name: `${pair.foreground} on ${pair.background}`,

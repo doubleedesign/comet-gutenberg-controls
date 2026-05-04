@@ -7,11 +7,23 @@ const { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption
     const ToggleGroupControl = __experimentalToggleGroupControl;
     const ToggleGroupControlOption = __experimentalToggleGroupControlOption;
     return (wp.element.createElement(ToggleGroupControl, { className: "comet-toggle-group", __next40pxDefaultSize: true, isBlock: true, label: "Vertical alignment", onChange: (value) => setAttributes({ vAlign: value }), value: attributes.vAlign },
-        wp.element.createElement(ToggleGroupControlOption, { label: wp.element.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24" },
+        wp.element.createElement(ToggleGroupControlOption
+        // @ts-expect-error TS2322: Type Element is not assignable to type string
+        , { 
+            // @ts-expect-error TS2322: Type Element is not assignable to type string
+            label: wp.element.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24" },
                 wp.element.createElement("path", { d: "M9 20h6V9H9v11zM4 4v1.5h16V4H4z" })), "aria-label": "Start", showTooltip: true, value: "start" }),
-        wp.element.createElement(ToggleGroupControlOption, { label: wp.element.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24" },
+        wp.element.createElement(ToggleGroupControlOption
+        // @ts-expect-error TS2322: Type Element is not assignable to type string
+        , { 
+            // @ts-expect-error TS2322: Type Element is not assignable to type string
+            label: wp.element.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24" },
                 wp.element.createElement("path", { d: "M20 11h-5V4H9v7H4v1.5h5V20h6v-7.5h5z" })), "aria-label": "Middle", showTooltip: true, value: "center" }),
-        wp.element.createElement(ToggleGroupControlOption, { label: wp.element.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24" },
+        wp.element.createElement(ToggleGroupControlOption
+        // @ts-expect-error TS2322: Type Element is not assignable to type string
+        , { 
+            // @ts-expect-error TS2322: Type Element is not assignable to type string
+            label: wp.element.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24" },
                 wp.element.createElement("path", { d: "M15 4H9v11h6V4zM4 18.5V20h16v-1.5H4z" })), "aria-label": "End", showTooltip: true, value: "end" })));
 };
 

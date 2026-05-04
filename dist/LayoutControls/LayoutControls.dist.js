@@ -13,7 +13,7 @@ import { LayoutOrder } from './LayoutOrder/LayoutOrder.dist.js';
 /* global wp */
 const { PanelBody } = wp.components;const LayoutControls = (props) => {
     // If the block does not have any layout attributes, do not render the controls
-    const componentDefault = Object.keys(comet?.defaults[props?.name?.replace('comet/', '')] ?? {}) ?? [];
+    const componentDefault = Object.keys(comet?.defaults?.[props?.name?.replace('comet/', '')] ?? {}) ?? [];
     const currentAttributes = Object.keys(props.attributes) ?? [];
     if (componentDefault.length === 0 && currentAttributes.length === 0) {
         return null;

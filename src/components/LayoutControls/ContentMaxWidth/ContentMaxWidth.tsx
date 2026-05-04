@@ -14,6 +14,7 @@ export const ContentMaxWidth = ({ name, attributes, setAttributes }) => {
 
 	return (
 		<RangeControl
+			// @ts-expect-error TS2322: Type Element is not assignable to type string
 			label={<>
 				Content max width
 				<FieldTooltip

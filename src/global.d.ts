@@ -1,4 +1,4 @@
-import type { Config } from './components/cometConfig';
+import type { Config } from './types';
 
 declare global {
 	let comet: Config;

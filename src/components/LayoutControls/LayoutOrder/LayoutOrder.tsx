@@ -19,6 +19,7 @@ export const LayoutOrder = ({ attributes, setAttributes }) => {
 			value={attributes.order}
 		>
 			<ToggleGroupControlOption
+				// @ts-expect-error TS2322: Type Element is not assignable to type string
 				label={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<path d="m14.5 6.5-1 1 3.7 3.7H4v1.6h13.2l-3.7 3.7 1 1 5.6-5.5z"/>
 				</svg>}
@@ -27,6 +28,7 @@ export const LayoutOrder = ({ attributes, setAttributes }) => {
 				value="row"
 			/>
 			<ToggleGroupControlOption
+				// @ts-expect-error TS2322: Type Element is not assignable to type string
 				label={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<path d="M20 11.2H6.8l3.7-3.7-1-1L3.9 12l5.6 5.5 1-1-3.7-3.7H20z"/>
 				</svg>}

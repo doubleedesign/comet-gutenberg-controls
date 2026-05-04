@@ -1,4 +1,6 @@
 function useValidatedPalette({ blockName }) {
+    if (!comet.palette)
+        return [];
     let palette = Object.entries(comet?.palette)
         ?.filter(([key, value]) => !['black', 'white'].includes(key))
         ?.map(([key, value]) => ({ slug: key, name: key, color: value }))
@@ -18,7 +20,7 @@ function useValidatedPalette({ blockName }) {
     }
     if (!palette || palette.length === 0) {
         // eslint-disable-next-line max-len
-        console.error('No colour palette found in component library configuration. You can use theme.json or the comet_canvas_theme_colours filter to add colours. Developers: See set_colours() in ThemeStyle.php in the plugin source for more implementation details.');
+        console.error('No colour palette found in component library configuration. You can use the comet_canvas_theme_colours PHP filter to add colours. Developers: See set_colours() in ThemeStyle.php in the plugin source for more implementation details.');
         return null;
     }
     return palette;

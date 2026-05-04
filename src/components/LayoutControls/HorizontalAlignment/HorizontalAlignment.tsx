@@ -20,6 +20,7 @@ export const HorizontalAlignment = ({ attributes, setAttributes }) => {
 			className="comet-toggle-group"
 			__next40pxDefaultSize
 			isBlock
+			// @ts-expect-error TS2322: Type Element is not assignable to type string
 			label={
 				<>
 					Horizontal Alignment
@@ -32,6 +33,7 @@ export const HorizontalAlignment = ({ attributes, setAttributes }) => {
 			value={attributes.hAlign}
 		>
 			<ToggleGroupControlOption
+				// @ts-expect-error TS2322: Type Element is not assignable to type string
 				label={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<path d="M9 9v6h11V9H9zM4 20h1.5V4H4v16z"/>
 				</svg>}
@@ -40,6 +42,7 @@ export const HorizontalAlignment = ({ attributes, setAttributes }) => {
 				value="start"
 			/>
 			<ToggleGroupControlOption
+				// @ts-expect-error TS2322: Type Element is not assignable to type string
 				label={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<path d="M12.5 15v5H11v-5H4V9h7V4h1.5v5h7v6h-7Z"/>
 				</svg>}
@@ -48,6 +51,7 @@ export const HorizontalAlignment = ({ attributes, setAttributes }) => {
 				value="center"
 			/>
 			<ToggleGroupControlOption
+				// @ts-expect-error TS2322: Type Element is not assignable to type string
 				label={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<path d="M4 15h11V9H4v6zM18.5 4v16H20V4h-1.5z"/>
 				</svg>}

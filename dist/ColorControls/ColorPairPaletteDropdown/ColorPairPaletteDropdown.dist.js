@@ -4,7 +4,7 @@ const { useMemo, useRef, useState, useEffect } = wp.element;const { Dropdown, Bu
     const [foreground, setForeground] = useState(value?.foreground ?? '');
     const [background, setBackground] = useState(value?.background !== 'transparent' ? value?.background : (comet?.globalBackground ?? 'white'));
     const triggerRef = useRef();
-    const pairs = comet?.colourPairOverrides[blockName] ?? comet?.colourPairs ?? [];
+    const pairs = comet?.colourPairOverrides?.[blockName] ?? comet?.colourPairs ?? [];
     const palette = pairs.map((pair) => ({
         name: `${pair.foreground} on ${pair.background}`,
         slug: `${pair.foreground}-${pair.background}`,

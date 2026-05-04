@@ -26,7 +26,7 @@ export const MaxPerRow = ({ name, attributes, setAttributes }) => {
 			max={6}
 			onChange={(newMax) => {
 				try {
-					newMax = parseInt(newMax);
+					newMax = newMax ? parseInt(newMax) : attributes.maxPerRow;
 				}
 				catch {
 					newMax = attributes.maxPerRow;

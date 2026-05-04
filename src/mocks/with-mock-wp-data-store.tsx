@@ -16,7 +16,6 @@ export const withMockWpDataStore = (Story, context) => {
 				if (store === 'core/block-editor') {
 					return {
 						getSettings: () => ({
-							// This would get the colors from theme.json
 							colors: []
 						})
 					}
@@ -25,5 +24,6 @@ export const withMockWpDataStore = (Story, context) => {
 		},
 	};
 
+	// @ts-expect-error TS2874: This JSX tag requires wp to be in scope, but it could not be found.
 	return <Story />;
 }

@@ -36,7 +36,16 @@ function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsPr
 		return null;
 	}
 
-	const componentDefault = comet?.defaults[name.replace('comet/', '')] ?? {};
+	const sectionBackgrounds = comet?.sectionBackgrounds ? Object.entries(comet.sectionBackgrounds)
+		.map(([key, value]) => {
+			return ({
+				slug: key,
+				name: key,
+				color: value
+			});
+		}) : [];
+
+	const componentDefault = comet?.defaults?.[name.replace('comet/', '')] ?? {};
 	const values = useMemo(() => ({
 		colorTheme: attributes?.colorTheme ?? componentDefault?.colorTheme ?? null,
 		backgroundColor: attributes?.backgroundColor ?? componentDefault?.backgroundColor ?? null,
@@ -46,7 +55,7 @@ function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsPr
 	// Use refs to keep track of the presence of attribute support without the fields disappearing when the colour field is cleared
 	const hasColorThemeSupport = useRef(!!values.colorTheme);
 	const hasBackgroundColorSupport = useRef(!!values.backgroundColor);
-	const hasSectionBackgroundSupport = useRef(!!values?.sectionBackground);
+	const hasSectionBackgroundSupport = useRef(!!values?.sectionBackground && sectionBackgrounds.length > 0);
 	if (!hasColorThemeSupport.current && !hasBackgroundColorSupport.current && !hasSectionBackgroundSupport.current) {
 		return null;
 	}
@@ -56,7 +65,8 @@ function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsPr
 	}, [setAttributes]);
 
 	// TODO: This component needs a bunch more work in terms of handling valid combinations of background/section background,
-	//  including changing the available values when the selection changes
+	//  including changing the available values when the selection changes,
+	// and certain blocks being allowed certain backgrounds and others not
 
 	// If background colour is not supported, provide single colour theme option only
 	// Note: sectionBackground should not be available without backgroundColor being available as well, but that isn't enforced/validated anywhere
@@ -95,7 +105,7 @@ function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsPr
 					<ColorPaletteDropdown
 						label="Section background"
 						value={values.sectionBackground}
-						palette={palette}
+						palette={sectionBackgrounds}
 						clearable={true}
 						onChange={(newValue) => {
 							handleChange({ sectionBackground: newValue });

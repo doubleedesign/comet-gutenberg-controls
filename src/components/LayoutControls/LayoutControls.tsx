@@ -17,7 +17,7 @@ export type LayoutControlsProps = EditorControlProps;
 
 export const LayoutControls = (props: LayoutControlsProps) => {
 	// If the block does not have any layout attributes, do not render the controls
-	const componentDefault = Object.keys(comet?.defaults[props?.name?.replace('comet/', '')] ?? {}) ?? [];
+	const componentDefault = Object.keys(comet?.defaults?.[props?.name?.replace('comet/', '')] ?? {}) ?? [];
 	const currentAttributes = Object.keys(props.attributes) ?? [];
 	if (componentDefault.length === 0 && currentAttributes.length === 0) {
 		return null;
@@ -41,6 +41,7 @@ export const LayoutControls = (props: LayoutControlsProps) => {
 			<AspectRatio {...props} />
 			<ContentMaxWidth {...props}/>
 			<NegativeMargins {...props} />
+			{/* @ts-expect-error Property layout is missing in type Record<string, any> but required in type { layout: "list" | "grid"; } */}
 			<GroupLayout {...props} />
 			<ItemCount {...props} />
 			<MaxPerRow {...props} />
