@@ -35,6 +35,7 @@ export function ColorPaletteDropdown({ label = 'Colour', hexValue, palette, onCh
 				<ColorPalette
 					value={hex}
 					colors={palette}
+					disableCustomColors={true}
 					onChange={(color) => {
 						setHex(color ?? '');
 						onChange(getNameByColorValue(color));
