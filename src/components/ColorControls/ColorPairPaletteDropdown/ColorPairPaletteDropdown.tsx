@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMemo, useRef, useState } from '@wordpress/element';
+import { useMemo, useRef, useState, useEffect } from '@wordpress/element';
 import { Dropdown, Button, ColorIndicator, GradientPicker } from '@wordpress/components';
 import { ColorPair } from '../../../types';
 import { ColorSwatch } from '../../ColorSwatch/ColorSwatch';
@@ -24,6 +24,24 @@ export function ColorPairPaletteDropdown({ blockName, label = 'Theme', value, on
 		gradient: `linear-gradient(135deg, var(--color-${pair.foreground}) 0%, var(--color-${pair.foreground}) 50%, var(--color-${pair.background}) 50%, var(--color-${pair.background}) 100%)`,
 	}));
 
+	useEffect(() => {
+		if(!palette) return;
+
+		function validatePair(value) {
+			return palette.find((pair) => pair.slug === `${value.foreground}-${value.background}`) !== undefined;
+		}
+
+		if(!validatePair(value)) {
+			// If the current value is not valid, default to the first palette option
+			setForeground(palette[0]?.slug.split('-')[0] ?? '');
+			setBackground(palette[0]?.slug.split('-')[1] ?? '');
+			onChange({
+				foreground: palette[0]?.slug.split('-')[0] ?? '',
+				background: palette[0]?.slug.split('-')[1] ?? '',
+			});
+		}
+	}, [value, palette]);
+
 	const gradientPreview = useMemo(() => {
 		// eslint-disable-next-line max-len
 		return `linear-gradient(135deg, var(--color-${foreground}) 0%, var(--color-${foreground}) 50%, var(--color-${background}) 50%, var(--color-${background}) 100%)`;
@@ -45,32 +63,38 @@ export function ColorPairPaletteDropdown({ blockName, label = 'Theme', value, on
 	};
 
 	return (
-		<Dropdown
-			renderToggle={({ onToggle, isOpen }) => (
-				<Button onClick={onToggle}
-					aria-expanded={isOpen}
-					ref={triggerRef}
-					__next40pxDefaultSize
-				>
-					<ColorIndicator colorValue={gradientPreview}/>
-					{label}
-				</Button>
-			)}
-			renderContent={({ isOpen, onToggle }) => (
-				<>
-					<ColorSwatch colorTheme={foreground} backgroundColor={background} />
-					<GradientPicker
-						value={gradientPreview}
-						gradients={palette}
-						disableCustomGradients={true}
-						className={`comet-color-controls comet-color-controls--${blockName}`}
-						onChange={(value) => {
-							handleChange(value);
-							onToggle(); // close dropdown after selection
-						}}
-					/>
-				</>
-			)}
-		/>
+		<div data-testid="comet-color-pair-selector">
+			<Dropdown
+				renderToggle={({ onToggle, isOpen }) => (
+					<Button onClick={onToggle}
+						aria-expanded={isOpen}
+						ref={triggerRef}
+						__next40pxDefaultSize
+					>
+						<ColorIndicator
+							colorValue={gradientPreview}
+							data-testid="comet-color-pair-indicator"
+							aria-label={`Selected value: ${foreground} on ${background}`}
+						/>
+						{label}
+					</Button>
+				)}
+				renderContent={({ isOpen, onToggle }) => (
+					<>
+						<ColorSwatch colorTheme={foreground} backgroundColor={background} />
+						<GradientPicker
+							value={gradientPreview}
+							gradients={palette}
+							disableCustomGradients={true}
+							className={`comet-color-controls comet-color-controls--${blockName}`}
+							onChange={(value) => {
+								handleChange(value);
+								onToggle(); // close dropdown after selection
+							}}
+						/>
+					</>
+				)}
+			/>
+		</div>
 	);
 }

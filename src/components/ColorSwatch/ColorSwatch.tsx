@@ -14,7 +14,7 @@ export function ColorSwatch({ colorTheme, backgroundColor }: ColorSwatchProps) {
 
 	if(!backgroundColor) {
 		return (
-			<figure className="comet-color-swatch">
+			<figure className="comet-color-swatch" data-testid="comet-color-swatch" aria-label={`Colour preview: ${colorTheme}`}>
 				<div className="comet-color-swatch__preview" data-background={colorTheme}>
 				</div>
 				<figcaption className="comet-color-swatch__caption">
@@ -26,7 +26,7 @@ export function ColorSwatch({ colorTheme, backgroundColor }: ColorSwatchProps) {
 
 	if(!colorTheme) {
 		return (
-			<figure className="comet-color-swatch">
+			<figure className="comet-color-swatch" data-testid="comet-color-swatch" aria-label={`Colour preview: ${backgroundColor}`}>
 				<div className="comet-color-swatch__preview" data-background={backgroundColor}>
 				</div>
 				<figcaption className="comet-color-swatch__caption">
@@ -37,7 +37,7 @@ export function ColorSwatch({ colorTheme, backgroundColor }: ColorSwatchProps) {
 	}
 
 	return (
-		<figure className="comet-color-swatch">
+		<figure className="comet-color-swatch" data-testid="comet-color-swatch" aria-label={`Colour preview: ${colorTheme} on ${backgroundColor}`}>
 			<div className="comet-color-swatch__preview" data-background={backgroundColor} data-color-theme={colorTheme}>
 				The quick brown fox jumps over the lazy dog
 			</div>

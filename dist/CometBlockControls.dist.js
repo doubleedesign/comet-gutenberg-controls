@@ -1,23 +1,20 @@
 import { LayoutControls } from './LayoutControls/LayoutControls.dist.js';
 import { ColorControls } from './ColorControls/ColorControls.dist.js';
-import { BackgroundOpacity } from './BackgroundOpacity/BackgroundOpacity.dist.js';
-import { BackgroundType } from './BackgroundType/BackgroundType.dist.js';
 import { HtmlTag } from './HtmlTag/HtmlTag.dist.js';
+import { GalleryControls } from './GalleryControls/GalleryControls.dist.js';
+import { BannerControls } from './BannerControls/BannerControls.dist.js';
 
-const { InspectorAdvancedControls, InspectorControls } = wp.blockEditor;const { PanelBody } = wp.components;/**
- * Render BlockEdit component with controls for custom attributes
- * @param BlockEdit The original BlockEdit component
- * @param {Object} props The block edit props
+const React = React;const { InspectorAdvancedControls, InspectorControls } = wp.blockEditor;/**
+ * Render the WordPress BlockEdit component with controls for custom attributes
  */
 function CometBlockControls({ BlockEdit, ...props }) {
     return (React.createElement(React.Fragment, null,
         React.createElement("div", { className: "comet-plugin-blocks-custom-controls" },
             React.createElement(InspectorControls, null,
                 React.createElement(LayoutControls, { ...props }),
-                Object.keys(props?.attributes).some(attr => ['colorTheme', 'backgroundColor', 'backgroundOpacity', 'backgroundType'].includes(attr)) && (React.createElement(PanelBody, { title: "Colours", initialOpen: true, className: `comet-color-controls comet-color-controls--${props.name.split('/')[1]}` },
-                    React.createElement(ColorControls, { ...props }),
-                    React.createElement(BackgroundOpacity, { ...props }),
-                    React.createElement(BackgroundType, { ...props })))),
+                React.createElement(ColorControls, { ...props }),
+                React.createElement(BannerControls, { ...props }),
+                React.createElement(GalleryControls, { ...props })),
             React.createElement(InspectorAdvancedControls, null,
                 React.createElement(HtmlTag, { ...props }))),
         React.createElement(BlockEdit, { ...props })));

@@ -15,11 +15,9 @@ const meta: Meta<StoryArgs> = {
 	decorators: [withMockBlockContext],
 	args: {
 		...COMMON_STORY_ARGS,
-		colorTheme: 'primary',
-		backgroundColor: 'light',
-		sectionBackground: 'dark',
-		backgroundOpacity: 50,
-		backgroundType: 'content',
+		colorTheme: 'white',
+		backgroundColor: 'primary',
+		sectionBackground: 'light-dark'
 	},
 	argTypes: {
 		...COLOR_CONTROL_ARGTYPES,

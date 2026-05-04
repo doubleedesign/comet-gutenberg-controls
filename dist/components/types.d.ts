@@ -1,6 +1,6 @@
 export type EditorControlProps = {
     /** The block name as per the WordPress block.json definition; no required/used by all control components */
-    name?: string;
+    name: string;
     /** The current block attributes as provided by the WordPress block editor;
      * 	should generally be overridden with a more specific definition for each control */
     attributes: Record<string, any>;

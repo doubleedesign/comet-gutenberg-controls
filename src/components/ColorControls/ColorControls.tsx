@@ -1,11 +1,12 @@
 /* global wp */
 import React from 'react';
-import { useState, useRef } from '@wordpress/element';
+import { useState, useRef, useMemo, useCallback } from '@wordpress/element';
 import { EditorControlProps } from '../types';
 import { PanelBody } from '@wordpress/components';
 import { ColourPalette, ThemeColor, ThemeGradient } from '../../types';
 import { ColorPaletteDropdown } from './ColorPaletteDropdown/ColorPaletteDropdown';
 import { ColorPairPaletteDropdown } from './ColorPairPaletteDropdown/ColorPairPaletteDropdown';
+import { useValidatedPalette } from '../../hooks/use-validated-palette';
 
 export type ColorControlsProps = EditorControlProps & {
 	attributes: {
@@ -31,176 +32,78 @@ export const ColorControls = (props: ColorControlsProps) => {
 };
 
 function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsProps) {
-
-	let palette: ColourPalette = Object.entries(comet?.palette)
-		?.filter(([key, value]) => !['black', 'white'].includes(key))
-		?.map(([key, value]) => ({ slug: key, name: key, color: value as string }))
-		?? wp.data.select('core/block-editor').getSettings().colors;
-
-	// Most blocks shouldn't have access to the status/message type colours, only brand colours, whereas others are the opposite
-	if (['comet/callout'].includes(name)) {
-		palette = palette.filter(color => ['error', 'success', 'info', 'warning'].includes(color.slug));
-	}
-	else if (['comet/separator'].includes(name)) {
-		palette = palette.filter(color => !['error', 'success', 'info', 'warning', 'light'].includes(color.slug));
-	}
-	else if (['comet/copy', 'comet/copy-image'].includes(name)) {
-		palette = palette.filter(color => !['error', 'success', 'info', 'warning', 'light', 'accent'].includes(color.slug));
-	}
-	else {
-		palette = palette.filter(color => !['error', 'success', 'info', 'warning'].includes(color.slug));
-	}
-
-	if (!palette || palette.length === 0) {
-		// eslint-disable-next-line max-len
-		console.error('No colour palette found in component library configuration. You can use theme.json or the comet_canvas_theme_colours filter to add colours. Developers: See set_colours() in ThemeStyle.php in the plugin source for more implementation details.');
-
+	const palette = useValidatedPalette({ blockName: name });
+	if(!palette) {
 		return null;
 	}
 
 	const componentDefault = comet?.defaults[name.replace('comet/', '')] ?? {};
-	const startValues = {
+	const values = useMemo(() => ({
 		colorTheme: attributes?.colorTheme ?? componentDefault?.colorTheme ?? null,
 		backgroundColor: attributes?.backgroundColor ?? componentDefault?.backgroundColor ?? null,
 		sectionBackground: attributes?.sectionBackground ?? componentDefault?.sectionBackground ?? null,
-	};
+	}), [attributes, componentDefault]);
 
 	// Use refs to keep track of the presence of attribute support without the fields disappearing when the colour field is cleared
-	const hasColorThemeSupport = useRef(!!startValues.colorTheme);
-	const hasBackgroundColorSupport = useRef(!!startValues.backgroundColor);
-	const hasSectionBackgroundSupport = useRef(!!startValues?.sectionBackground);
-
+	const hasColorThemeSupport = useRef(!!values.colorTheme);
+	const hasBackgroundColorSupport = useRef(!!values.backgroundColor);
+	const hasSectionBackgroundSupport = useRef(!!values?.sectionBackground);
 	if (!hasColorThemeSupport.current && !hasBackgroundColorSupport.current && !hasSectionBackgroundSupport.current) {
 		return null;
 	}
 
-	const [foregroundColor, setForegroundColor] = useState(startValues.colorTheme);
-	const [backgroundColors, setBackgroundColors] = useState(
-		(startValues.sectionBackground && startValues.sectionBackground !== 'inherit')
-			? [startValues.sectionBackground, startValues.backgroundColor]
-			: [startValues.backgroundColor]
-	);
+	const handleChange = useCallback((newValues) => {
+		setAttributes(newValues);
+	}, [setAttributes]);
 
-	const getValueByColorName = (colorName?: string) => {
-		if(!colorName) return undefined;
+	// TODO: This component needs a bunch more work in terms of handling valid combinations of background/section background,
+	//  including changing the available values when the selection changes
 
-		const color = palette.find((c) => c.slug === colorName);
-
-		return color ? color.color : colorName;
-	};
-
-	const handleThemeChange = (name: string) => {
-		setForegroundColor(name);
-		setAttributes({ colorTheme: name ?? '' });
-	};
-
-	const handleBackgroundChange = (value) => {
-		setBackgroundColors(value);
-		setAttributes({ backgroundColors: value ?? [] });
-	};
-
-	// If background colour is not supported, provide single colour theme option
+	// If background colour is not supported, provide single colour theme option only
 	// Note: sectionBackground should not be available without backgroundColor being available as well, but that isn't enforced/validated anywhere
 	if (!hasBackgroundColorSupport.current) {
 		return (
 			<div className="comet-color-controls__item">
 				<ColorPaletteDropdown
 					label="Theme"
-					hexValue={getValueByColorName(attributes?.colorTheme) ?? ''}
+					value={values.colorTheme}
 					palette={palette}
-					onChange={handleThemeChange}
+					onChange={handleChange}
 				/>
 			</div>
 		);
 	}
 
-	// If section background is supported
-	// if(hasSectionBackgroundSupport.current) {
-	// 	return (
-	// 		<ColorTripletSelector
-	// 			value={{
-	// 				foreground: foregroundColor,
-	// 				backgrounds: backgroundColors
-	// 			}}
-	// 			blockName={name.split('/')[1]}
-	// 			onChange={(newValues) => {
-	// 				handleThemeChange(newValues.foreground);
-	// 				handleBackgroundChange(newValues.backgrounds);
-	// 			}}
-	// 		/>
-	// 	);
-	// }
-
-	// If both colour theme and background colour are available but not section background, provide colour pair selection
 	return (
-		<div className="comet-color-controls__item">
-			<ColorPairPaletteDropdown
-				value={{
-					foreground: foregroundColor,
-					background: backgroundColors[0],
-				}}
-				blockName={name.split('/')[1]}
-				onChange={(newValue) => {
-					handleThemeChange(newValue.foreground);
-					handleBackgroundChange(newValue.background);
-				}}
-			/>
-		</div>
+		<>
+			<div className="comet-color-controls__item">
+				<ColorPairPaletteDropdown
+					value={{
+						foreground: values.colorTheme,
+						background: values.backgroundColor
+					}}
+					blockName={name.split('/')[1]}
+					onChange={(newValue) => {
+						handleChange({
+							colorTheme: newValue.foreground,
+							backgroundColor: newValue.background
+						});
+					}}
+				/>
+			</div>
+			{hasSectionBackgroundSupport.current && (
+				<div className="comet-color-controls__item">
+					<ColorPaletteDropdown
+						label="Section background"
+						value={values.sectionBackground}
+						palette={palette}
+						clearable={true}
+						onChange={(newValue) => {
+							handleChange({ sectionBackground: newValue });
+						}}
+					/>
+				</div>
+			)}
+		</>
 	);
-};
-
-
-// function ColorTripletSelector({ blockName, value, onChange }) {
-// 	const triggerRef = useRef();
-// 	const sectionBackground = value.backgrounds[0] !== 'transparent' ? value.backgrounds[0] : '';
-// 	const sectionPalette =  Object.keys(comet?.sectionBackgrounds ?? []).map((option) => ({
-// 		name: option,
-// 		slug: option,
-// 		gradient: option
-// 	}));
-//
-// 	sectionPalette.unshift({ name: 'From theme', slug: '', gradient: '' });
-// 	sectionPalette.unshift({ name: 'Transparent', slug: '', gradient: '' });
-//
-// 	const handleChange = (values) => {
-// 		onChange(values);
-// 	};
-//
-// 	return (
-// 		<>
-// 			<div className="comet-color-controls__item">
-// 				<ColorPairPaletteDropdown blockName={blockName} value={value} onChange={({ foreground, background }) => {
-// 					handleChange({ foreground, backgrounds: [sectionBackground, background] });
-// 				}} />
-// 			</div>
-// 			<div className="comet-color-controls__item">
-// 				<Dropdown
-// 					renderToggle={({ onToggle, isOpen }) => (
-// 						<Button onClick={onToggle}
-// 							aria-expanded={isOpen}
-// 							ref={triggerRef}
-// 							__next40pxDefaultSize
-// 						>
-// 							<ColorIndicator colorValue="" />
-// 							Section background
-// 						</Button>
-// 					)}
-// 					renderContent={({ isOpen, onToggle }) => (
-// 						<GradientPicker
-// 							label="Section background"
-// 							value={sectionBackground}
-// 							gradients={sectionPalette}
-// 							disableCustomGradients={true}
-// 							className={`comet-color-controls comet-color-controls--${blockName}`}
-// 							onChange={(value) => {
-// 								handleChange({ backgrounds: [value] });
-// 								onToggle(); // close dropdown after selection
-// 							}}
-// 							clearable={true}
-// 						/>
-// 					)}
-// 				/>
-// 			</div>
-// 		</>
-// 	);
-// }
+}

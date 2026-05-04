@@ -175,6 +175,12 @@
   display: flex;
   margin-block-end: 0.5rem;
 }
+.comet-color-controls__item:has(+ .comet-color-controls__item) {
+  margin-block-end: 0;
+}
+.comet-color-controls__item > div {
+  display: contents;
+}
 .comet-color-controls__item .components-dropdown {
   flex-grow: 1;
 }

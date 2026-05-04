@@ -222,6 +222,14 @@
 		display: flex;
 		margin-block-end: 0.5rem;
 
+		&:has(+ &) {
+			margin-block-end: 0;
+		}
+
+		> div {
+			display: contents;
+		}
+
 		.components-dropdown {
 			flex-grow: 1;
 
