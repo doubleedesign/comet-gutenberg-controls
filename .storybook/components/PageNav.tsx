@@ -76,14 +76,26 @@ export function PageNav() {
         <nav className="page-nav">
             {prev ? (
                 <button onClick={() => navigate(prev.id)} className="page-nav__prev">
-                    <span className="page-nav__label">← Previous</span>
-                    <span className="page-nav__title">{prev.title.split('/').at(-1)}</span>
+                    <span className="page-nav__label page-nav__label--prev">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+						{/** <!--!Font Awesome Pro v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2026 Fonticons, Inc.--> */}
+							<path d="M4.7 244.7c-6.2 6.2-6.2 16.4 0 22.6l176 176c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 272 496 272c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 240 203.3 91.3c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-176 176z"/>
+						</svg>
+						Previous
+					</span>
+                    <span className="page-nav__title page-nav__title--prev">{prev.title.split('/').at(-1)}</span>
                 </button>
             ) : null}
             {next ? (
                 <button onClick={() => navigate(next.id)} className="page-nav__next">
-                    <span className="page-nav__label">Next →</span>
-                    <span className="page-nav__title">{next.title.split('/').at(-1)}</span>
+                    <span className="page-nav__label page-nav__label--next">
+						Next
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+						{ /** <!--!Font Awesome Pro v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2026 Fonticons, Inc.--> */}
+							<path d="M507.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-176-176c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L457.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l441.4 0-148.7 148.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l176-176z"/>
+						</svg>
+					</span>
+                    <span className="page-nav__title page-nav__title--next">{next.title.split('/').at(-1)}</span>
                 </button>
             ) : null}
         </nav>

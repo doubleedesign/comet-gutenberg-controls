@@ -13,20 +13,12 @@
 		display: inline-flex;
 		flex-direction: column;
 		background: transparent;
+		padding-inline: var(--spacing-sm);
 
 		&:hover, &:focus, &:active {
 			color: var(--color-primary);
 			border-color: var(--color-primary);
 		}
-	}
-
-	&__label {
-		font: var(--font-captions);
-		font-size: 0.8rem;
-	}
-
-	&__title {
-		font: var(--font-labels);
 	}
 
 	&__prev {
@@ -36,5 +28,31 @@
 	&__next {
 		align-items: flex-end;
 		margin-inline-start: auto;
+	}
+
+
+	&__label {
+		font: var(--font-captions);
+		font-size: 0.8rem;
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-xs);
+
+		svg {
+			width: 1rem;
+		}
+	}
+
+	&__title {
+		font: var(--font-labels);
+
+
+		&--prev {
+			padding-inline-start: 1.25rem;
+		}
+
+		&--next {
+			padding-inline-end: 1.25rem;
+		}
 	}
 }
