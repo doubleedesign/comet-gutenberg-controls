@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dropdown, Button, ColorIndicator, ColorPalette } from '@wordpress/components';
 import { useRef, useState } from '@wordpress/element';
+import { ColorSwatch } from '../../ColorSwatch/ColorSwatch';
 
 export type ColorPaletteDropdownProps = {
 	label: string;
@@ -10,7 +11,7 @@ export type ColorPaletteDropdownProps = {
 };
 
 export function ColorPaletteDropdown({ label = 'Colour', hexValue, palette, onChange }: ColorPaletteDropdownProps) {
-	const [hex, setHex] = useState(hexValue);
+	const [hex, setHex] = useState(hexValue); // FIXME: Using CSS vars instead of hex values
 	const triggerRef = useRef();
 
 	const getNameByColorValue = (colorValue) => {
@@ -32,16 +33,18 @@ export function ColorPaletteDropdown({ label = 'Colour', hexValue, palette, onCh
 				</Button>
 			)}
 			renderContent={({ onToggle, ...props }) => (
-				<ColorPalette
-					value={hex}
-					colors={palette}
-					disableCustomColors={true}
-					onChange={(color) => {
-						setHex(color ?? '');
-						onChange(getNameByColorValue(color));
-						onToggle(); // close dropdown after selection
-					}}
-				/>
+				<>
+					<ColorSwatch backgroundColor={getNameByColorValue(hex)} />
+					<ColorPalette
+						value={hex}
+						colors={palette}
+						disableCustomColors={true}
+						onChange={(color) => {
+							setHex(color ?? '');
+							onChange(getNameByColorValue(color));
+							onToggle(); // close dropdown after selection
+						}}
+					/></>
 			)}
 		/>
 	);

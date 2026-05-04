@@ -2,6 +2,7 @@ import React from 'react';
 import { useMemo, useRef, useState } from '@wordpress/element';
 import { Dropdown, Button, ColorIndicator, GradientPicker } from '@wordpress/components';
 import { ColorPair } from '../../../types';
+import { ColorSwatch } from '../../ColorSwatch/ColorSwatch';
 
 export type ColorPairPaletteDropdownProps = {
 	blockName: string;
@@ -57,6 +58,7 @@ export function ColorPairPaletteDropdown({ blockName, label = 'Theme', value, on
 			)}
 			renderContent={({ isOpen, onToggle }) => (
 				<>
+					<ColorSwatch colorTheme={foreground} backgroundColor={background} />
 					<GradientPicker
 						value={gradientPreview}
 						gradients={palette}

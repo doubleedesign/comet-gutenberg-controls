@@ -176,6 +176,38 @@
 	}
 }
 
+.comet-color-swatch {
+	border: 1px solid #DDD;
+	border-radius: 0.25rem;
+	margin-block-start: 0.25rem;
+	margin-block-end: 0.75rem;
+	min-width: 260px;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+
+	&__preview {
+		min-height: 4rem;
+		font-family: var(--font-family-system);
+		line-height: 1.2;
+		padding: 0.75rem;
+		box-sizing: border-box;
+		font-size: 0.9rem;
+		border-top-left-radius: 0.25rem;
+		border-top-right-radius: 0.25rem;
+	}
+
+	&__caption {
+		text-align: left;
+		padding-inline: 0.75rem;
+		box-sizing: border-box;
+		margin: 0;
+		padding-block-end: 0.75rem;
+		font-family: var(--font-family-system);
+		font-size: 0.8rem;
+	}
+}
+
 .comet-color-controls {
 	display: flex;
 	flex-direction: column;
@@ -211,4 +243,16 @@
 
 .block-editor-inspector-popover-header__heading {
 	font-family: inherit;
+}
+
+@each $colorName in (primary, secondary, accent, light, dark, info, success, warning, error) {
+	[data-background="#{$colorName}"] {
+		--background-color: var(--color-#{$colorName});
+		background: var(--color-#{$colorName});
+	}
+
+	[data-color-theme="#{$colorName}"] {
+		--theme-color: var(--color-#{$colorName});
+		color: var(--color-#{$colorName});
+	}
 }
