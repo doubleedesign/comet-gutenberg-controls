@@ -9,7 +9,13 @@ const ASPECT_RATIOS = [
     { name: 'CINEMATIC', value: '21:9' },
     { name: 'CINEMASCOPE', value: '2.35:1' },
 ];
+const CONTAINER_SIZES = [
+    { label: 'Full-width', value: 'full' },
+    { label: 'Wide', value: 'wide' },
+    { label: 'Contained', value: 'contained' },
+    { label: 'Narrow', value: 'narrow' },
+];
 const BLOCKS_WITH_TINYMCE = ['comet/copy', 'comet/copy-image', 'comet/accordion'];
 
-export { ASPECT_RATIOS, BLOCKS_WITH_TINYMCE };
+export { ASPECT_RATIOS, BLOCKS_WITH_TINYMCE, CONTAINER_SIZES };
 //# sourceMappingURL=constants.dist.js.map

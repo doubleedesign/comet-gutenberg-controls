@@ -1,10 +1,10 @@
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip.dist.js';
 
-const { ToggleControl } = wp.components;const GalleryControls = ({ name, attributes, setAttributes }) => {
+const React = React;const { PanelBody, ToggleControl } = wp.components;const GalleryControls = ({ name, attributes, setAttributes }) => {
     if (name !== 'comet/gallery') {
         return null;
     }
-    return (React.createElement(React.Fragment, null,
+    return (React.createElement(PanelBody, { title: "Gallery options", initialOpen: true },
         React.createElement(ToggleControl, { checked: attributes.lightbox, label: React.createElement(React.Fragment, null,
                 React.createElement("span", null, "Enable lightbox"),
                 React.createElement(FieldTooltip, { tooltip: 'When a visitor clicks on an image, open a larger version in an overlay' })), onChange: (value) => setAttributes({ lightbox: value }) }),
