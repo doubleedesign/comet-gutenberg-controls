@@ -1,7 +1,9 @@
-import { describe, test, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import React from 'react';
 import '@testing-library/jest-dom/vitest';
-import { TemplateName } from './TemplateName'; 
+import { render, screen } from '@testing-library/react';
+import { mockCometConfig } from '../../mocks/mock-comet-config';
+import { TemplateName } from './TemplateName';
+
 
 const mockSetAttributes = vi.fn();
 const defaultProps = {
@@ -11,11 +13,20 @@ const defaultProps = {
 };
 
 describe('TemplateName', () => {
-	test('should mount', () => {
+	beforeEach(() => {
+		mockCometConfig();
+	});
+
+	afterEach(() => {
+		// @ts-expect-error TS2551: Property comet does not exist on type Window & typeof globalThis.
+		delete window.comet;
+	});
+
+	it('should render', () => {
 		render(<TemplateName {...defaultProps} />);
 
-		const TemplateName = screen.getByRole('label', { name: /TemplateName/i });
+		const instance = screen.getByRole('label', { name: /TemplateName/i });
 
-		expect(TemplateName).toBeVisible();
+		expect(instance).toBeVisible();
 	});
 });
