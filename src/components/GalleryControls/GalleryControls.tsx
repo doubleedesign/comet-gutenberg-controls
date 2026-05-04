@@ -1,5 +1,14 @@
+import React from 'react';
 import { FieldTooltip } from '../FieldTooltip/FieldTooltip';
-import { ToggleControl } from '@wordpress/components';
+import { PanelBody, ToggleControl } from '@wordpress/components';
+import { EditorControlProps } from '../types';
+
+export type GalleryControlsProps = EditorControlProps & {
+	attributes: {
+		lightbox: boolean,
+		captions: boolean
+	}
+};
 
 export const GalleryControls = ({ name, attributes, setAttributes }) => {
 	if (name !== 'comet/gallery') {
@@ -7,7 +16,7 @@ export const GalleryControls = ({ name, attributes, setAttributes }) => {
 	}
 
 	return (
-		<>
+		<PanelBody title="Gallery options" initialOpen={true}>
 			<ToggleControl
 				checked={attributes.lightbox}
 				label={
@@ -25,6 +34,6 @@ export const GalleryControls = ({ name, attributes, setAttributes }) => {
 				label="Show image captions if available"
 				onChange={(value) => setAttributes({ captions: value })}
 			/>
-		</>
+		</PanelBody>
 	);
 };

@@ -12,6 +12,7 @@ import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
 import php from 'react-syntax-highlighter/dist/esm/languages/prism/php';
 import powershell from 'react-syntax-highlighter/dist/esm/languages/prism/powershell';
 import {DocsContainer} from "@storybook/addon-docs/blocks";
+import {withMockWpDataStore} from "../src/mocks/with-mock-wp-data-store.tsx";
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 SyntaxHighlighter.registerLanguage('php', php);
@@ -47,19 +48,21 @@ const preview = {
             ),
         },
         options: {
-            storySort: {
-                order: [
-                    'Docs',
-                    'Components',
-                    'Internals',
-                    '*'
-                ],
+            storySort: (a, b) => {
+                const order = ['Docs', 'Control Groups', 'Block-Specific Control Groups', 'Controls', 'Internals'];
+                const aGroup = order.findIndex(g => a.title.startsWith(g));
+                const bGroup = order.findIndex(g => b.title.startsWith(g));
+                const aIdx = aGroup === -1 ? order.length : aGroup;
+                const bIdx = bGroup === -1 ? order.length : bGroup;
+
+                return aIdx - bIdx;
             },
         },
     },
     decorators: [
         withMaxWidth('280px'),
         withCometConfig,
+        withMockWpDataStore
     ],
 };
 

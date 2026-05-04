@@ -7,6 +7,7 @@ export const FieldTooltip = ({ tooltip }) => {
 	}
 
 	return (
+		// @ts-expect-error TS2322: Type Element is not assignable to type string
 		<Tooltip text={<span style={{ display: 'block', maxWidth: '200px' }}>{tooltip}</span>}>
 			<Button
 				size="small"

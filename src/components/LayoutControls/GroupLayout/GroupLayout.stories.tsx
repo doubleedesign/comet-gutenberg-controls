@@ -1,7 +1,7 @@
 import React from 'react';
 import { GroupLayout, GroupLayoutProps } from './GroupLayout';
-import { EDITOR_CONTROL_PROPS_ARGTYPES } from '../../mocks/common-story-args';
-import { withMockBlockContext } from '../../mocks/with-mock-block-context';
+import { EDITOR_CONTROL_PROPS_ARGTYPES } from '../../../mocks/common-story-args';
+import { withMockBlockContext } from '../../../mocks/with-mock-block-context';
 import type { StoryObj, Meta } from '@storybook/react';
 import { ComponentType } from '@wordpress/element';
 

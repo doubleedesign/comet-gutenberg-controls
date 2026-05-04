@@ -1,8 +1,8 @@
 import React from 'react';
-import { FieldTooltip } from '../FieldTooltip/FieldTooltip';
+import { FieldTooltip } from '../../FieldTooltip/FieldTooltip';
 import { SelectControl } from '@wordpress/components';
-import { EditorControlProps } from '../types';
-import { type AspectRatio as AspectRatioOption } from '../../types';
+import { EditorControlProps } from '../../types';
+import { type AspectRatio as AspectRatioOption } from '../../../types';
 
 export type AspectRatioProps = EditorControlProps & {
 	attributes: {
@@ -31,7 +31,7 @@ export const AspectRatio = ({ name, attributes, setAttributes }: AspectRatioProp
 		<SelectControl
 			label={label}
 			size={'__unstable-large'}
-			value={attributes.aspectRatio}
+			value={attributes.aspectRatio?.value}
 			options={options}
 			onChange={(newRatio) => setAttributes({ aspectRatio: newRatio })}
 		/>

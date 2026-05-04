@@ -11,10 +11,10 @@
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/src/components/ColorControls/ColorControls.dist.js" />
-      <root url="file://$PROJECT_DIR$/src/components/ContainerSize/ContainerSize.dist.js" />
       <root url="file://$PROJECT_DIR$/src/components/CustomControlsWrapper/CustomControlsWrapper.dist.js" />
       <root url="file://$PROJECT_DIR$/src/components/HtmlTag/HtmlTag.dist.js" />
       <root url="file://$PROJECT_DIR$/src/components/HtmlTag/HtmlTag.stories.dist.js" />
+      <root url="file://$PROJECT_DIR$/src/components/LayoutControls/ContainerSize/ContainerSize.dist.js" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

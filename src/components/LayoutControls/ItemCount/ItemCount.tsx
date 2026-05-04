@@ -1,5 +1,5 @@
 import { __experimentalNumberControl } from '@wordpress/components';
-import { FieldTooltip } from '../FieldTooltip/FieldTooltip';
+import { FieldTooltip } from '../../FieldTooltip/FieldTooltip';
 
 export const ItemCount = ({ attributes, setAttributes }) => {
 	if (!attributes?.itemCount) {

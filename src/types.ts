@@ -3,9 +3,10 @@
  * - using wp_localize_script in WordPress plugins
  * - using a decorator in this library's Storybook
  */
-interface Config {
+export interface Config {
 	defaults?: Record<string, any>;
 	globalBackground?: ThemeColor;
+	// Colour palette in the format provided by Comet Components config
 	palette?: Record<ThemeColor, string>;
 	colourPairs?: ColorPair[];
 	colourPairOverrides?: Record<string, ColorPair[]>;
@@ -36,6 +37,15 @@ export type ColorPair = {
 	foreground: ThemeColor;
 	background: ThemeColor;
 };
+
+// Colour palette in the format required by the block controls
+export type ColourPalette = ColourPaletteItem[];
+
+export type ColourPaletteItem = {
+	name: string;
+	slug: string;
+	color: string;
+}
 
 // Note: If you're looking for where colours and gradients are set, it's theme.json.
 // Another note: Only the slugs are passed through to the PHP render functions,

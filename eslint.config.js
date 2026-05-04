@@ -70,7 +70,7 @@ const baseRules = {
     '@stylistic/object-curly-newline': ['error', {
         ObjectExpression: { multiline: true, minProperties: 4 }, // object literals
         ObjectPattern: 'never', // destructuring
-        ImportDeclaration: { multiline: true, minProperties: 4 },
+        ImportDeclaration: { multiline: true, minProperties: 8 },
         ExportDeclaration: { multiline: true },
     }]
 };
@@ -115,7 +115,7 @@ export default [
             '@stylistic/object-curly-newline': ['error', {
                 ObjectExpression: { multiline: true, minProperties: 4 }, // object literals
                 ObjectPattern: 'never', // destructuring
-                ImportDeclaration: { multiline: true, minProperties: 4 },
+                ImportDeclaration: { multiline: true, minProperties: 8 },
                 ExportDeclaration: { multiline: true },
             }]
         }

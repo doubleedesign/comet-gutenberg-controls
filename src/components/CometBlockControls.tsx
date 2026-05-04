@@ -1,30 +1,28 @@
+import React from 'react';
 import { InspectorAdvancedControls, InspectorControls } from '@wordpress/block-editor';
 import { LayoutControls } from './LayoutControls/LayoutControls';
-import { PanelBody } from '@wordpress/components';
 import { ColorControls } from './ColorControls/ColorControls';
-import { BackgroundOpacity } from './BackgroundOpacity/BackgroundOpacity';
-import { BackgroundType } from './BackgroundType/BackgroundType';
 import { HtmlTag } from './HtmlTag/HtmlTag';
+import { EditorControlProps } from './types';
+import { GalleryControls } from './GalleryControls/GalleryControls';
+import { BannerControls } from './BannerControls/BannerControls';
+
+export type CometBlockControlsProps = EditorControlProps & {
+	BlockEdit: React.ComponentType<any>;
+};
 
 /**
- * Render BlockEdit component with controls for custom attributes
- * @param BlockEdit The original BlockEdit component
- * @param {Object} props The block edit props
+ * Render the WordPress BlockEdit component with controls for custom attributes
  */
-export function CometBlockControls({ BlockEdit, ...props }) {
+export function CometBlockControls({ BlockEdit, ...props }: CometBlockControlsProps) {
 	return (
 		<>
 			<div className="comet-plugin-blocks-custom-controls">
 				<InspectorControls>
 					<LayoutControls {...props} />
-					{Object.keys(props?.attributes).some(attr => ['colorTheme', 'backgroundColor', 'backgroundOpacity', 'backgroundType'].includes(attr)) && (
-						<PanelBody title="Colours" initialOpen={true}
-							className={`comet-color-controls comet-color-controls--${props.name.split('/')[1]}`}>
-							<ColorControls {...props} />
-							<BackgroundOpacity {...props}/>
-							<BackgroundType {...props} />
-						</PanelBody>
-					)} 
+					<ColorControls {...props} />
+					<BannerControls {...props} />
+					<GalleryControls {...props} />
 				</InspectorControls>
 				<InspectorAdvancedControls>
 					<HtmlTag {...props} />

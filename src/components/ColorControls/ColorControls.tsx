@@ -1,19 +1,40 @@
 /* global wp */
-import {
-	PanelBody, Dropdown, Button, ColorIndicator, ColorPalette, GradientPicker 
-} from '@wordpress/components';
-import {
-	useEffect, useMemo, useRef, useState 
-} from '@wordpress/element';
+import React from 'react';
+import { useState, useRef } from '@wordpress/element';
+import { EditorControlProps } from '../types';
+import { PanelBody } from '@wordpress/components';
+import { ColourPalette, ThemeColor, ThemeGradient } from '../../types';
+import { ColorPaletteDropdown } from './ColorPaletteDropdown/ColorPaletteDropdown';
+import { ColorPairPaletteDropdown } from './ColorPairPaletteDropdown/ColorPairPaletteDropdown';
 
-export const ColorControls = ({ name, attributes, setAttributes }) => {
-	if (!Object.keys(attributes).some(attr => ['colorTheme', 'backgroundColor', 'sectionBackground'].includes(attr))) {
+export type ColorControlsProps = EditorControlProps & {
+	attributes: {
+		colorTheme?: ThemeColor;
+		backgroundColor?: ThemeColor;
+		sectionBackground?: ThemeColor | ThemeGradient;
+	}
+};
+
+export const ColorControls = (props: ColorControlsProps) => {
+	if(!Object.keys(props?.attributes).some(attr => ['colorTheme', 'backgroundColor', 'sectionBackground'].includes(attr))) {
 		return null;
 	}
 
-	let palette = Object.entries(comet?.palette)
+	return (
+		<PanelBody title="Colours"
+			initialOpen={true}
+			className={`comet-color-controls comet-color-controls--${props?.name?.split('/')[1]}`}
+		>
+			<ColorControlsInner {...props} />
+		</PanelBody>
+	);
+};
+
+function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsProps) {
+
+	let palette: ColourPalette = Object.entries(comet?.palette)
 		?.filter(([key, value]) => !['black', 'white'].includes(key))
-		?.map(([key, value]) => ({ slug: key, name: key, color: value }))
+		?.map(([key, value]) => ({ slug: key, name: key, color: value as string }))
 		?? wp.data.select('core/block-editor').getSettings().colors;
 
 	// Most blocks shouldn't have access to the status/message type colours, only brand colours, whereas others are the opposite
@@ -60,13 +81,15 @@ export const ColorControls = ({ name, attributes, setAttributes }) => {
 			: [startValues.backgroundColor]
 	);
 
-	const getValueByColorName = (colorName) => {
+	const getValueByColorName = (colorName?: string) => {
+		if(!colorName) return undefined;
+
 		const color = palette.find((c) => c.slug === colorName);
 
 		return color ? color.color : colorName;
 	};
 
-	const handleThemeChange = (name) => {
+	const handleThemeChange = (name: string) => {
 		setForegroundColor(name);
 		setAttributes({ colorTheme: name ?? '' });
 	};
@@ -92,21 +115,21 @@ export const ColorControls = ({ name, attributes, setAttributes }) => {
 	}
 
 	// If section background is supported
-	if(hasSectionBackgroundSupport.current) {
-		return (
-			<ColorTripletSelector
-				value={{
-					foreground: foregroundColor,
-					backgrounds: backgroundColors
-				}}
-				blockName={name.split('/')[1]}
-				onChange={(newValues) => {
-					handleThemeChange(newValues.foreground);
-					handleBackgroundChange(newValues.backgrounds);
-				}}
-			/>
-		);
-	}
+	// if(hasSectionBackgroundSupport.current) {
+	// 	return (
+	// 		<ColorTripletSelector
+	// 			value={{
+	// 				foreground: foregroundColor,
+	// 				backgrounds: backgroundColors
+	// 			}}
+	// 			blockName={name.split('/')[1]}
+	// 			onChange={(newValues) => {
+	// 				handleThemeChange(newValues.foreground);
+	// 				handleBackgroundChange(newValues.backgrounds);
+	// 			}}
+	// 		/>
+	// 	);
+	// }
 
 	// If both colour theme and background colour are available but not section background, provide colour pair selection
 	return (
@@ -126,155 +149,58 @@ export const ColorControls = ({ name, attributes, setAttributes }) => {
 	);
 };
 
-function ColorPaletteDropdown({ label, hexValue, palette, onChange }) {
-	const [hex, setHex] = useState(hexValue);
-	const triggerRef = useRef();
 
-	const getNameByColorValue = (colorValue) => {
-		const color = palette.find((c) => c.color === colorValue);
-
-		return color ? color.slug : colorValue;
-	};
-
-	return (
-		<Dropdown
-			renderToggle={({ onToggle, isOpen }) => (
-				<Button onClick={onToggle}
-					aria-expanded={isOpen}
-					ref={triggerRef}
-					__next40pxDefaultSize
-				>
-					<ColorIndicator colorValue={hex}/>
-					{label}
-				</Button>
-			)}
-			renderContent={({ onToggle }) => (
-				<ColorPalette
-					label={label}
-					value={hex}
-					colors={palette}
-					onChange={(color) => {
-						setHex(color ?? '');
-						onChange(getNameByColorValue(color));
-						onToggle(); // close dropdown after selection
-					}}
-				/>
-			)}
-		/>
-	);
-}
-
-function ColorPairPaletteDropdown({ blockName, label = 'Theme', value, onChange }) {
-	const [foreground, setForeground] = useState(value?.foreground ?? '');
-	const [background, setBackground] = useState(value?.background !== 'transparent' ? value?.background : (comet?.globalBackground ?? 'white'));
-	const triggerRef = useRef();
-	const pairs = comet?.colourPairOverrides[blockName] ?? comet?.colourPairs ?? [];
-
-	const palette = pairs.map((pair) => ({
-		name: `${pair.foreground} on ${pair.background}`,
-		slug: `${pair.foreground}-${pair.background}`,
-		gradient: `linear-gradient(135deg, var(--color-${pair.foreground}) 0%, var(--color-${pair.foreground}) 50%, var(--color-${pair.background}) 50%, var(--color-${pair.background}) 100%)`,
-	}));
-
-	const gradientPreview = useMemo(() => {
-		return `linear-gradient(135deg, var(--color-${foreground}) 0%, var(--color-${foreground}) 50%, var(--color-${background}) 50%, var(--color-${background}) 100%)`;
-	}, [foreground, background]);
-
-	const handleChange = (newValue) => {
-		// New value is the gradient string; find the matching palette object
-		const matchedPair = palette.find((pair) => pair.gradient === newValue);
-
-		if (matchedPair) {
-			const [newForeground, newBackground] = matchedPair.slug.split('-');
-			setForeground(newForeground);
-			setBackground(newBackground);
-			onChange({
-				foreground: newForeground,
-				background: newBackground,
-			});
-		}
-	};
-
-	return (
-		<Dropdown
-			renderToggle={({ onToggle, isOpen }) => (
-				<Button onClick={onToggle}
-					aria-expanded={isOpen}
-					ref={triggerRef}
-					__next40pxDefaultSize
-				>
-					<ColorIndicator colorValue={gradientPreview}/>
-					{label}
-				</Button>
-			)}
-			renderContent={({ isOpen, onToggle }) => (
-				<GradientPicker
-					label={label}
-					value={gradientPreview}
-					gradients={palette}
-					disableCustomGradients={true}
-					className={`comet-color-controls comet-color-controls--${blockName}`}
-					onChange={(value) => {
-						handleChange(value);
-						onToggle(); // close dropdown after selection
-					}}
-				/>
-			)}
-		/>
-	);
-}
-
-function ColorTripletSelector({ blockName, value, onChange }) {
-	const triggerRef = useRef();
-	const sectionBackground = value.backgrounds[0] !== 'transparent' ? value.backgrounds[0] : '';
-	const sectionPalette =  Object.keys(comet?.sectionBackgrounds ?? []).map((option) => ({
-		name: option,
-		slug: option,
-		gradient: option
-	}));
-
-	sectionPalette.unshift({ name: 'From theme', slug: '', gradient: '' });
-	sectionPalette.unshift({ name: 'Transparent', slug: '', gradient: '' });
-
-	const handleChange = (values) => {
-		onChange(values);
-	};
-
-	return (
-		<>
-			<div className="comet-color-controls__item">
-				<ColorPairPaletteDropdown blockName={blockName} value={value} onChange={({ foreground, background }) => {
-					handleChange({ foreground, backgrounds: [sectionBackground, background] });
-				}} />
-			</div>
-			<div className="comet-color-controls__item">
-				<Dropdown
-					renderToggle={({ onToggle, isOpen }) => (
-						<Button onClick={onToggle}
-							aria-expanded={isOpen}
-							ref={triggerRef}
-							__next40pxDefaultSize
-						>
-							<ColorIndicator colorValue="" />
-							Section background
-						</Button>
-					)}
-					renderContent={({ isOpen, onToggle }) => (
-						<GradientPicker
-							label="Section background"
-							value={sectionBackground}
-							gradients={sectionPalette}
-							disableCustomGradients={true}
-							className={`comet-color-controls comet-color-controls--${blockName}`}
-							onChange={(value) => {
-								handleChange({ backgrounds: [value] });
-								onToggle(); // close dropdown after selection
-							}}
-							clearable={true}
-						/>
-					)}
-				/>
-			</div>
-		</>
-	);
-}
+// function ColorTripletSelector({ blockName, value, onChange }) {
+// 	const triggerRef = useRef();
+// 	const sectionBackground = value.backgrounds[0] !== 'transparent' ? value.backgrounds[0] : '';
+// 	const sectionPalette =  Object.keys(comet?.sectionBackgrounds ?? []).map((option) => ({
+// 		name: option,
+// 		slug: option,
+// 		gradient: option
+// 	}));
+//
+// 	sectionPalette.unshift({ name: 'From theme', slug: '', gradient: '' });
+// 	sectionPalette.unshift({ name: 'Transparent', slug: '', gradient: '' });
+//
+// 	const handleChange = (values) => {
+// 		onChange(values);
+// 	};
+//
+// 	return (
+// 		<>
+// 			<div className="comet-color-controls__item">
+// 				<ColorPairPaletteDropdown blockName={blockName} value={value} onChange={({ foreground, background }) => {
+// 					handleChange({ foreground, backgrounds: [sectionBackground, background] });
+// 				}} />
+// 			</div>
+// 			<div className="comet-color-controls__item">
+// 				<Dropdown
+// 					renderToggle={({ onToggle, isOpen }) => (
+// 						<Button onClick={onToggle}
+// 							aria-expanded={isOpen}
+// 							ref={triggerRef}
+// 							__next40pxDefaultSize
+// 						>
+// 							<ColorIndicator colorValue="" />
+// 							Section background
+// 						</Button>
+// 					)}
+// 					renderContent={({ isOpen, onToggle }) => (
+// 						<GradientPicker
+// 							label="Section background"
+// 							value={sectionBackground}
+// 							gradients={sectionPalette}
+// 							disableCustomGradients={true}
+// 							className={`comet-color-controls comet-color-controls--${blockName}`}
+// 							onChange={(value) => {
+// 								handleChange({ backgrounds: [value] });
+// 								onToggle(); // close dropdown after selection
+// 							}}
+// 							clearable={true}
+// 						/>
+// 					)}
+// 				/>
+// 			</div>
+// 		</>
+// 	);
+// }

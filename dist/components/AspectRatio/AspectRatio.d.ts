@@ -1,4 +1,3 @@
-import React from 'react';
 import { EditorControlProps } from '../types';
 import { type AspectRatio as AspectRatioOption } from '../../types';
 export type AspectRatioProps = EditorControlProps & {
@@ -6,4 +5,4 @@ export type AspectRatioProps = EditorControlProps & {
         aspectRatio?: AspectRatioOption;
     };
 };
-export declare const AspectRatio: ({ name, attributes, setAttributes }: AspectRatioProps) => React.JSX.Element | null;
+export declare const AspectRatio: ({ name, attributes, setAttributes }: AspectRatioProps) => JSX.Element | null;

@@ -1,6 +1,14 @@
+import React from 'react';
 import { SelectControl } from '@wordpress/components';
+import { EditorControlProps } from '../../types';
 
-export const BackgroundType = ({ attributes, setAttributes }) => {
+export type BackgroundTypeProps = EditorControlProps & {
+	attributes: {
+		backgroundType?: 'content' | 'overlay'
+	}
+};
+
+export const BackgroundType = ({ attributes, setAttributes }: BackgroundTypeProps) => {
 	if (!attributes?.backgroundType) {
 		return null;
 	}

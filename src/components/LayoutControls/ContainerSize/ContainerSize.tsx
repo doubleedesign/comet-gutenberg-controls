@@ -1,6 +1,8 @@
+import React from 'react';
 import { useMemo, useEffect, useState } from '@wordpress/element';
 import { PanelBody, SelectControl } from '@wordpress/components';
-import { FieldTooltip } from '../FieldTooltip/FieldTooltip';
+import { FieldTooltip } from '../../FieldTooltip/FieldTooltip';
+import { CONTAINER_SIZES } from '../../constants';
 
 // TODO: Handle supporting innerSize where appropriate (it's not really built into the Core components unless we nest a container)
 export const ContainerSize = ({ attributes, setAttributes }) => {
@@ -17,13 +19,6 @@ export const ContainerSize = ({ attributes, setAttributes }) => {
 
 const ContainerOnly = ({ attributes, setAttributes }) => {
 
-	const options = [
-		{ label: 'Full-width', value: 'fullwidth' },
-		{ label: 'Wide', value: 'wide' },
-		{ label: 'Contained', value: 'contained' },
-		{ label: 'Narrow', value: 'narrow' },
-	];
-
 	return (
 		<SelectControl
 			label={
@@ -36,7 +31,7 @@ const ContainerOnly = ({ attributes, setAttributes }) => {
 			}
 			size={'__unstable-large'}
 			value={attributes.size}
-			options={options}
+			options={CONTAINER_SIZES}
 			onChange={(newSize) => setAttributes({ size: newSize })}
 		/>
 	);
@@ -44,12 +39,7 @@ const ContainerOnly = ({ attributes, setAttributes }) => {
 
 const ContainerAndInner = ({ attributes, setAttributes }) => {
 
-	const options = [
-		{ label: 'Full-width', value: 'fullwidth' },
-		{ label: 'Wide', value: 'wide' },
-		{ label: 'Contained', value: 'contained' },
-		{ label: 'Narrow', value: 'narrow' },
-	];
+	const options = CONTAINER_SIZES;
 
 	const innerOptions = [
 		{ label: 'Auto (do not override)', value: 'fullwidth' }, // needs to have the same values or we have a bad time with the compatibility logic

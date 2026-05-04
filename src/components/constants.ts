@@ -10,4 +10,11 @@ export const ASPECT_RATIOS = [
 	{ name: 'CINEMASCOPE',      value: '2.35:1' },
 ];
 
+export const CONTAINER_SIZES = [
+	{ label: 'Full-width', value: 'full' },
+	{ label: 'Wide', value: 'wide' },
+	{ label: 'Contained', value: 'contained' },
+	{ label: 'Narrow', value: 'narrow' },
+];
+
 export const BLOCKS_WITH_TINYMCE = ['comet/copy', 'comet/copy-image', 'comet/accordion'];

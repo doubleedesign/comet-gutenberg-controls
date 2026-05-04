@@ -1,3 +1,7 @@
+:root {
+  --font-family-system: -apple-system, "system-ui", "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
 .block-editor-block-card__title {
   font-family: inherit;
 }
@@ -21,6 +25,10 @@
   border-color: var(--wp-components-color-gray-700, #757575);
 }
 
+.components-button svg {
+  height: unset;
+}
+
 .edit-post-meta-boxes-area__container {
   padding-inline: 0;
 }
@@ -33,6 +41,9 @@
 }
 .components-panel__body.is-opened + .comet-custom-layout-controls {
   display: block;
+}
+.components-panel__body-toggle {
+  font-family: var(--font-family-system);
 }
 
 .components-base-control__label,
@@ -92,6 +103,33 @@
 .comet-toggle-group button svg {
   width: 1.5rem;
   height: auto;
+}
+
+.components-dropdown {
+  width: 100%;
+}
+.components-dropdown button {
+  width: 100%;
+  font-family: var(--font-family-system);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+.components-dropdown button:hover, .components-dropdown button:focus, .components-dropdown button[aria-expanded=true] {
+  background: var(--color-light, #EFEFEF);
+  text-decoration-color: currentColor;
+}
+
+.components-color-palette__custom-color-text-wrapper {
+  font-family: var(--font-family-system);
+}
+
+.components-circular-option-picker__swatches {
+  width: 100%;
+  flex-direction: row !important;
+}
+.components-circular-option-picker__clear {
+  font-family: var(--font-family-system);
 }
 
 .comet-color-controls {

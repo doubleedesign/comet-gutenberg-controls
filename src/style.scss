@@ -1,3 +1,7 @@
+:root {
+	--font-family-system: -apple-system, "system-ui", "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
 .block-editor-block-card {
 	&__title {
 		font-family: inherit;
@@ -29,6 +33,12 @@
 	}
 }
 
+.components-button {
+	svg {
+		height: unset;
+	}
+}
+
 .edit-post-meta-boxes-area__container {
 	padding-inline: 0;
 }
@@ -47,6 +57,10 @@
 		+ .comet-custom-layout-controls {
 			display: block;
 		}
+	}
+
+	&-toggle {
+		font-family: var(--font-family-system);
 	}
 }
 
@@ -126,6 +140,39 @@
 			width: 1.5rem;
 			height: auto;
 		}
+	}
+}
+
+.components-dropdown {
+	width: 100%;
+
+	button {
+		width: 100%;
+		font-family: var(--font-family-system);
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		transition: all 0.2s ease-in-out;
+
+		&:hover, &:focus,
+		&[aria-expanded="true"] {
+			background: var(--color-light, #EFEFEF);
+			text-decoration-color: currentColor;
+		}
+	}
+}
+
+.components-color-palette__custom-color-text-wrapper {
+	font-family: var(--font-family-system);
+}
+
+.components-circular-option-picker {
+	&__swatches {
+		width: 100%;
+		flex-direction: row !important;
+	}
+
+	&__clear {
+		font-family: var(--font-family-system);
 	}
 }
 

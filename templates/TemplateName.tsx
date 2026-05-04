@@ -1,12 +1,12 @@
 import React from 'react';
 import { EditorControlProps } from '../types';
 
-type TemplateNameProps = EditorControlProps & {
+export type TemplateNameProps = EditorControlProps & {
 	attributes: {
 	}
 };
 
-export const TemplateName = ({ name, attributes, setAttributes }: TemplateNameProps) => {
+export function TemplateName({ name, attributes, setAttributes }: TemplateNameProps) {
 	if (!attributes?.templateName) {
 		return null;
 	}
@@ -14,4 +14,4 @@ export const TemplateName = ({ name, attributes, setAttributes }: TemplateNamePr
 	return (
 		<></>
 	);
-};
+}

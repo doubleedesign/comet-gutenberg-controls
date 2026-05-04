@@ -1,8 +1,7 @@
-import React from 'react';
 import { HtmlTag, HtmlTagProps } from './HtmlTag';
 import { EDITOR_CONTROL_PROPS_ARGTYPES } from '../../mocks/common-story-args';
 import { withMockBlockContext } from '../../mocks/with-mock-block-context';
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 import { ComponentType } from '@wordpress/element';
 
 // This type allows us to treat the story "args" as the component's "attributes" prop

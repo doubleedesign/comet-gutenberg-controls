@@ -1,21 +1,25 @@
 /* global wp */
+import React from 'react';
 import { PanelBody } from '@wordpress/components';
-import { ContainerSize } from '../ContainerSize/ContainerSize';
-import { GroupLayout } from '../GroupLayout/GroupLayout';
-import { VerticalAlignment } from '../VerticalAlignment/VerticalAlignment';
-import { HorizontalAlignment } from '../HorizontalAlignment/HorizontalAlignment';
-import { LayoutOrientation } from '../LayoutOrientation/LayoutOrientation';
-import { ContentMaxWidth } from '../ContentMaxWidth/ContentMaxWidth';
-import { MaxPerRow } from '../MaxPerRow/MaxPerRow';
-import { ItemCount } from '../ItemCount/ItemCount';
-import { NegativeMargins } from '../NegativeMargins/NegativeMargins';
-import { AspectRatio } from '../AspectRatio/AspectRatio';
+import { ContainerSize } from './ContainerSize/ContainerSize';
+import { GroupLayout } from './GroupLayout/GroupLayout';
+import { VerticalAlignment } from './VerticalAlignment/VerticalAlignment';
+import { HorizontalAlignment } from './HorizontalAlignment/HorizontalAlignment';
+import { LayoutOrientation } from './LayoutOrientation/LayoutOrientation';
+import { ContentMaxWidth } from './ContentMaxWidth/ContentMaxWidth';
+import { MaxPerRow } from './MaxPerRow/MaxPerRow';
+import { ItemCount } from './ItemCount/ItemCount';
+import { NegativeMargins } from './NegativeMargins/NegativeMargins';
+import { AspectRatio } from './AspectRatio/AspectRatio';
 import { GalleryControls } from '../GalleryControls/GalleryControls';
-import { LayoutOrder } from '../LayoutOrder/LayoutOrder';
+import { LayoutOrder } from './LayoutOrder/LayoutOrder';
+import { EditorControlProps } from '../types';
 
-export const LayoutControls = (props) => {
+export type LayoutControlsProps = EditorControlProps;
+
+export const LayoutControls = (props: LayoutControlsProps) => {
 	// If the block does not have any layout attributes, do not render the controls
-	const componentDefault = Object.keys(comet?.defaults[props.name.replace('comet/', '')] ?? {}) ?? [];
+	const componentDefault = Object.keys(comet?.defaults[props?.name?.replace('comet/', '')] ?? {}) ?? [];
 	const currentAttributes = Object.keys(props.attributes) ?? [];
 	if (componentDefault.length === 0 && currentAttributes.length === 0) {
 		return null;
@@ -46,7 +50,6 @@ export const LayoutControls = (props) => {
 			<LayoutOrder {...props} />
 			<HorizontalAlignment {...props} />
 			<VerticalAlignment {...props} />
-			<GalleryControls {...props} />
 		</PanelBody>
 	);
 };

@@ -1,5 +1,5 @@
 import { PanelRow, BaseControl, __experimentalUnitControl } from '@wordpress/components';
-import { FieldTooltip } from '../FieldTooltip/FieldTooltip';
+import { FieldTooltip } from '../../FieldTooltip/FieldTooltip';
 
 export const NegativeMargins = ({ name, attributes, setAttributes }) => {
 	// Checking against potentially empty attribute values causes problems here so we have to check actual block types :(
