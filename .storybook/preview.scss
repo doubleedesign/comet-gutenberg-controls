@@ -56,3 +56,32 @@
 		}
 	}
 }
+
+$colorNames: ('primary', 'secondary', 'accent', 'light', 'dark', 'white', 'info', 'warning', 'success', 'error');
+@each $colorName in $colorNames {
+	[data-background="#{$colorName}"] {
+		--background-color: var(--color-#{$colorName});
+		--theme-color: contrast-color(var(--color-#{$colorName}));
+		background: var(--background-color);
+		color: var(--theme-color);
+	}
+
+	@each $colorName2 in $colorNames {
+		@if $colorName != $colorName2 {
+			[data-background="#{$colorName}-#{$colorName2}"] {
+				--background-color: var(--gradient-#{$colorName}-#{$colorName2});
+				background: var(--background-color);
+			}
+		}
+	}
+}
+
+// Separate loop for color theme to ensure it takes precedence in the cascade
+// (e.g., so data-background="white" isn't further down in the CSS than data-color-theme="primary",
+// causing an element with both attributes to end up with the wrong text color)
+@each $colorName in $colorNames {
+	[data-color-theme="#{$colorName}"] {
+		--theme-color: var(--color-#{$colorName});
+		color: var(--theme-color);
+	}
+}
