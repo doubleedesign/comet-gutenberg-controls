@@ -200,14 +200,44 @@
   font-family: inherit;
 }
 
+[data-color-theme=primary] {
+  --theme-color: var(--color-primary);
+  background: var(--background-color);
+}
+
 [data-background=primary] {
   --background-color: var(--color-primary);
   background: var(--color-primary);
 }
 
-[data-color-theme=primary] {
-  --theme-color: var(--color-primary);
-  color: var(--color-primary);
+[data-background=primary-secondary] {
+  --background-color: var(--gradient-primary-secondary);
+  background: var(--background-color);
+}
+
+[data-background=primary-accent] {
+  --background-color: var(--gradient-primary-accent);
+  background: var(--background-color);
+}
+
+[data-background=primary-light] {
+  --background-color: var(--gradient-primary-light);
+  background: var(--background-color);
+}
+
+[data-background=primary-dark] {
+  --background-color: var(--gradient-primary-dark);
+  background: var(--background-color);
+}
+
+[data-background=primary-white] {
+  --background-color: var(--gradient-primary-white);
+  background: var(--background-color);
+}
+
+[data-color-theme=secondary] {
+  --theme-color: var(--color-secondary);
+  background: var(--background-color);
 }
 
 [data-background=secondary] {
@@ -215,9 +245,34 @@
   background: var(--color-secondary);
 }
 
-[data-color-theme=secondary] {
-  --theme-color: var(--color-secondary);
-  color: var(--color-secondary);
+[data-background=secondary-primary] {
+  --background-color: var(--gradient-secondary-primary);
+  background: var(--background-color);
+}
+
+[data-background=secondary-accent] {
+  --background-color: var(--gradient-secondary-accent);
+  background: var(--background-color);
+}
+
+[data-background=secondary-light] {
+  --background-color: var(--gradient-secondary-light);
+  background: var(--background-color);
+}
+
+[data-background=secondary-dark] {
+  --background-color: var(--gradient-secondary-dark);
+  background: var(--background-color);
+}
+
+[data-background=secondary-white] {
+  --background-color: var(--gradient-secondary-white);
+  background: var(--background-color);
+}
+
+[data-color-theme=accent] {
+  --theme-color: var(--color-accent);
+  background: var(--background-color);
 }
 
 [data-background=accent] {
@@ -225,9 +280,34 @@
   background: var(--color-accent);
 }
 
-[data-color-theme=accent] {
-  --theme-color: var(--color-accent);
-  color: var(--color-accent);
+[data-background=accent-primary] {
+  --background-color: var(--gradient-accent-primary);
+  background: var(--background-color);
+}
+
+[data-background=accent-secondary] {
+  --background-color: var(--gradient-accent-secondary);
+  background: var(--background-color);
+}
+
+[data-background=accent-light] {
+  --background-color: var(--gradient-accent-light);
+  background: var(--background-color);
+}
+
+[data-background=accent-dark] {
+  --background-color: var(--gradient-accent-dark);
+  background: var(--background-color);
+}
+
+[data-background=accent-white] {
+  --background-color: var(--gradient-accent-white);
+  background: var(--background-color);
+}
+
+[data-color-theme=light] {
+  --theme-color: var(--color-light);
+  background: var(--background-color);
 }
 
 [data-background=light] {
@@ -235,9 +315,34 @@
   background: var(--color-light);
 }
 
-[data-color-theme=light] {
-  --theme-color: var(--color-light);
-  color: var(--color-light);
+[data-background=light-primary] {
+  --background-color: var(--gradient-light-primary);
+  background: var(--background-color);
+}
+
+[data-background=light-secondary] {
+  --background-color: var(--gradient-light-secondary);
+  background: var(--background-color);
+}
+
+[data-background=light-accent] {
+  --background-color: var(--gradient-light-accent);
+  background: var(--background-color);
+}
+
+[data-background=light-dark] {
+  --background-color: var(--gradient-light-dark);
+  background: var(--background-color);
+}
+
+[data-background=light-white] {
+  --background-color: var(--gradient-light-white);
+  background: var(--background-color);
+}
+
+[data-color-theme=dark] {
+  --theme-color: var(--color-dark);
+  background: var(--background-color);
 }
 
 [data-background=dark] {
@@ -245,49 +350,64 @@
   background: var(--color-dark);
 }
 
-[data-color-theme=dark] {
-  --theme-color: var(--color-dark);
-  color: var(--color-dark);
+[data-background=dark-primary] {
+  --background-color: var(--gradient-dark-primary);
+  background: var(--background-color);
 }
 
-[data-background=info] {
-  --background-color: var(--color-info);
-  background: var(--color-info);
+[data-background=dark-secondary] {
+  --background-color: var(--gradient-dark-secondary);
+  background: var(--background-color);
 }
 
-[data-color-theme=info] {
-  --theme-color: var(--color-info);
-  color: var(--color-info);
+[data-background=dark-accent] {
+  --background-color: var(--gradient-dark-accent);
+  background: var(--background-color);
 }
 
-[data-background=success] {
-  --background-color: var(--color-success);
-  background: var(--color-success);
+[data-background=dark-light] {
+  --background-color: var(--gradient-dark-light);
+  background: var(--background-color);
 }
 
-[data-color-theme=success] {
-  --theme-color: var(--color-success);
-  color: var(--color-success);
+[data-background=dark-white] {
+  --background-color: var(--gradient-dark-white);
+  background: var(--background-color);
 }
 
-[data-background=warning] {
-  --background-color: var(--color-warning);
-  background: var(--color-warning);
+[data-color-theme=white] {
+  --theme-color: var(--color-white);
+  background: var(--background-color);
 }
 
-[data-color-theme=warning] {
-  --theme-color: var(--color-warning);
-  color: var(--color-warning);
+[data-background=white] {
+  --background-color: var(--color-white);
+  background: var(--color-white);
 }
 
-[data-background=error] {
-  --background-color: var(--color-error);
-  background: var(--color-error);
+[data-background=white-primary] {
+  --background-color: var(--gradient-white-primary);
+  background: var(--background-color);
 }
 
-[data-color-theme=error] {
-  --theme-color: var(--color-error);
-  color: var(--color-error);
+[data-background=white-secondary] {
+  --background-color: var(--gradient-white-secondary);
+  background: var(--background-color);
+}
+
+[data-background=white-accent] {
+  --background-color: var(--gradient-white-accent);
+  background: var(--background-color);
+}
+
+[data-background=white-light] {
+  --background-color: var(--gradient-white-light);
+  background: var(--background-color);
+}
+
+[data-background=white-dark] {
+  --background-color: var(--gradient-white-dark);
+  background: var(--background-color);
 }
 
 /*# sourceMappingURL=style.css.map */
