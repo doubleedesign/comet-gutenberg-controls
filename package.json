@@ -36,6 +36,7 @@
 		"@testing-library/user-event": "^14.6.1",
 		"@types/react": "^18.3.28",
 		"@types/tinymce": "^4.6.9",
+		"@types/wordpress__element": "^2.14.1",
 		"@typescript-eslint/eslint-plugin": "^8.59.1",
 		"@typescript-eslint/parser": "^8.59.0",
 		"@vitejs/plugin-react": "^6.0.1",
