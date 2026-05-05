@@ -196,6 +196,9 @@
 .comet-color-controls__item .components-dropdown button[aria-expanded=true] {
   border-color: var(--wp-components-color-primary, #007cba);
 }
+.comet-color-controls__item .components-dropdown button .component-color-indicator {
+  order: -1;
+}
 
 .block-editor-inspector-popover-header__heading {
   font-family: inherit;

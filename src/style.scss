@@ -245,6 +245,10 @@
 				&[aria-expanded="true"] {
 					border-color: var(--wp-components-color-primary, #007cba);
 				}
+
+				.component-color-indicator {
+					order: -1;
+				}
 			}
 		}
 	}

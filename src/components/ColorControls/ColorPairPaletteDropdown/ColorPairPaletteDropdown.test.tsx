@@ -1,5 +1,3 @@
-import React from 'react';
-import '@testing-library/jest-dom/vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { mockCometConfig } from '../../../mocks/mock-comet-config';
 import { ColorPairPaletteDropdown } from './ColorPairPaletteDropdown';
@@ -48,14 +46,14 @@ describe('ColorPairPaletteDropdown', () => {
 		render(<ColorPairPaletteDropdown {...defaultProps} />);
 
 		const indicator = screen.getByTestId('comet-color-pair-indicator');
-		expect(indicator).toHaveAccessibleName('Selected value: primary on light');
+		expect(indicator).toHaveAccessibleName('Selected colours: primary on light');
 	});
 
 	it('defaults to the first palette value if the provided value is not in the colour pairs in the global config', () => {
 		render(<ColorPairPaletteDropdown {...defaultProps} value={{ foreground: 'warning', background: 'primary' }} />);
 
 		const indicator = screen.getByTestId('comet-color-pair-indicator');
-		expect(indicator).toHaveAccessibleName('Selected value: primary on white'); // see mockCometConfig for the values
+		expect(indicator).toHaveAccessibleName('Selected colours: primary on white'); // see mockCometConfig for the values
 	});
 
 	it('calls the onChange function if an invalid pair is automatically swapped to the first valid one', () => {
@@ -94,7 +92,7 @@ describe('ColorPairPaletteDropdown', () => {
 		});
 
 		const indicator = screen.getByTestId('comet-color-pair-indicator');
-		expect(indicator).toHaveAccessibleName('Selected value: accent on dark');
+		expect(indicator).toHaveAccessibleName('Selected colours: accent on dark');
 	});
 
 	it('shows the new value in the preview if it is opened again after a selection', async () => {

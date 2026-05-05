@@ -10,7 +10,7 @@ export type ColorPairPaletteDropdownProps = {
 	onChange: (value: { foreground: string; background: string }) => void;
 };
 
-export function ColorPairPaletteDropdown({ blockName, label = 'Theme', value, onChange }) {
+export function ColorPairPaletteDropdown({ blockName, label = 'Content theme', value, onChange }) {
 	const [foreground, setForeground] = useState(value?.foreground ?? '');
 	const [background, setBackground] = useState(value?.background !== 'transparent' ? value?.background : (comet?.globalBackground ?? 'white'));
 	const triggerRef = useRef();
@@ -70,12 +70,12 @@ export function ColorPairPaletteDropdown({ blockName, label = 'Theme', value, on
 						ref={triggerRef}
 						__next40pxDefaultSize
 					>
+						{label}
 						<ColorIndicator
 							colorValue={gradientPreview}
 							data-testid="comet-color-pair-indicator"
-							aria-label={`Selected value: ${foreground} on ${background}`}
+							aria-label={`Selected colours: ${foreground} on ${background}`}
 						/>
-						{label}
 					</Button>
 				)}
 				renderContent={({ isOpen, onToggle }) => (
