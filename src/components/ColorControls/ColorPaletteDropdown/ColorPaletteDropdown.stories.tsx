@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from '@wordpress/element';
 import { ColorPaletteDropdown, ColorPaletteDropdownProps } from './ColorPaletteDropdown';
 import type { StoryObj, Meta } from '@storybook/react-webpack5';
-import { MOCK_PALETTE } from '../../../mocks/common-defaults';
+import { MOCK_PALETTE, MOCK_GRADIENTS } from '../../../mocks/common-defaults';
 import { action } from 'storybook/actions';
 
 type Story = StoryObj<ColorPaletteDropdownProps>;
@@ -15,6 +15,7 @@ const meta: Meta<ColorPaletteDropdownProps> = {
 		value: MOCK_PALETTE.find(c => c.slug === 'primary')?.slug || '',
 		palette: MOCK_PALETTE,
 		onChange: (value) => action('onChange')(value),
+		clearable: false,
 	},
 	argTypes: {
 		label: {
@@ -52,5 +53,21 @@ const meta: Meta<ColorPaletteDropdownProps> = {
 export default meta;
 
 export const Basic: Story = {
-	name: 'ColorPaletteDropdown'
+	name: 'Basic'
+};
+
+export const Gradients: Story = {
+	name: 'Gradients',
+	args: {
+		palette: MOCK_GRADIENTS,
+		clearable: true
+	}
+};
+
+export const Both: Story = {
+	name: 'Both',
+	args: {
+		palette: [...MOCK_PALETTE, ...MOCK_GRADIENTS],
+		clearable: true
+	}
 };

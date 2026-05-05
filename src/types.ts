@@ -44,7 +44,9 @@ export type ColourPalette = ColourPaletteItem[];
 export type ColourPaletteItem = {
 	name: string;
 	slug: string;
-	color: string;
+	// Note: Should only have color OR gradient
+	color?: string;
+	gradient?: string;
 }
 
 export type ThemeGradient = string;

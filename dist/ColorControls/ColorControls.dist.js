@@ -1,6 +1,7 @@
 import { ColorPaletteDropdown } from './ColorPaletteDropdown/ColorPaletteDropdown.dist.js';
 import { ColorPairPaletteDropdown } from './ColorPairPaletteDropdown/ColorPairPaletteDropdown.dist.js';
 import { useValidatedPalette } from '../hooks/use-validated-palette.dist.js';
+import { ColorComboPreview } from './ColorComboPreview/ColorComboPreview.dist.js';
 
 /* global wp */
 const { useRef, useMemo, useCallback } = wp.element;const { PanelBody } = wp.components;const ColorControls = (props) => {
@@ -49,6 +50,7 @@ function ColorControlsInner({ name, attributes, setAttributes }) {
             wp.element.createElement(ColorPaletteDropdown, { label: "Theme", value: values.colorTheme, palette: palette, onChange: handleChange })));
     }
     return (wp.element.createElement(wp.element.Fragment, null,
+        wp.element.createElement(ColorComboPreview, { colorTheme: attributes?.colorTheme, backgroundColor: attributes?.backgroundColor, sectionBackground: attributes?.sectionBackground }),
         wp.element.createElement("div", { className: "comet-color-controls__item" },
             wp.element.createElement(ColorPairPaletteDropdown, { value: {
                     foreground: values.colorTheme,

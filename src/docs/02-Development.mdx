@@ -41,7 +41,7 @@ npx generate-react-cli component MyNewControl
 ### Important notes
 - Most React hooks and types, such as `useMemo`, `useCallback`, `useEffect`, and `type ComponentType` should be imported from `@wordpress/element`, not React itself.
 - Inner components such as selectboxes should be imported from `@wordpress/components` where a suitable component is available.
-- If a small amount of custom CSS is necessary, put it in `style.scss`. (Because most styling should come from WordPress, I have opted not to have per-component styling by default in this library.) If developing a highly custom component that needs a lot of its own CSS, it can have its own file, but generally all the styling is bundled together.
+- If a small amount of custom CSS is necessary, ensure you either put it in `style.scss` or in a component-specific stylesheet that gets imported into `style.scss` using  `@use`.
 
 ## Compiling
 

@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState, useEffect } from '@wordpress/element';
 import { Dropdown, Button, ColorIndicator, GradientPicker } from '@wordpress/components';
 import { ColorPair } from '../../../types';
-import { ColorSwatch } from '../../ColorSwatch/ColorSwatch';
+import { ColorSwatch } from '../ColorSwatch/ColorSwatch';
 
 export type ColorPairPaletteDropdownProps = {
 	blockName: string;
@@ -79,19 +79,21 @@ export function ColorPairPaletteDropdown({ blockName, label = 'Content theme', v
 					</Button>
 				)}
 				renderContent={({ isOpen, onToggle }) => (
-					<>
+					<div className="comet-color-selector-content">
 						<ColorSwatch colorTheme={foreground} backgroundColor={background} />
-						<GradientPicker
-							value={gradientPreview}
-							gradients={palette}
-							disableCustomGradients={true}
-							className={`comet-color-controls comet-color-controls--${blockName}`}
-							onChange={(value) => {
-								handleChange(value);
-								onToggle(); // close dropdown after selection
-							}}
-						/>
-					</>
+						<div className="comet-color-selector-content__pickers">
+							<GradientPicker
+								value={gradientPreview}
+								gradients={palette}
+								disableCustomGradients={true}
+								className={`comet-color-controls comet-color-controls--${blockName}`}
+								onChange={(value) => {
+									handleChange(value);
+									onToggle(); // close dropdown after selection
+								}}
+							/>
+						</div>
+					</div>
 				)}
 			/>
 		</div>

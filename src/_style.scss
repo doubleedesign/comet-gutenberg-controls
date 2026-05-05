@@ -1,3 +1,8 @@
+@use "./components/ColorControls/_color-controls.scss";
+@use "./components/ColorControls/ColorComboPreview/_color-combo-preview.scss";
+@use "./components/ColorControls/ColorSwatch/_color-swatch.scss";
+@use "./components/ColorControls/ColorPaletteDropdown/_color-palette-dropdown.scss";
+
 :root {
 	--font-family-system: -apple-system, "system-ui", "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
@@ -165,117 +170,7 @@
 	font-family: var(--font-family-system);
 }
 
-.components-circular-option-picker {
-	&__swatches {
-		width: 100%;
-		flex-direction: row !important;
-	}
-
-	&__clear {
-		font-family: var(--font-family-system);
-	}
-}
-
-.comet-color-swatch {
-	border: 1px solid #DDD;
-	border-radius: 0.25rem;
-	margin-block-start: 0.25rem;
-	margin-block-end: 0.75rem;
-	min-width: 260px;
-	display: flex;
-	flex-direction: column;
-	gap: 0.75rem;
-
-	&__preview {
-		min-height: 4rem;
-		font-family: var(--font-family-system);
-		line-height: 1.2;
-		padding: 0.75rem;
-		box-sizing: border-box;
-		font-size: 0.9rem;
-		border-top-left-radius: 0.25rem;
-		border-top-right-radius: 0.25rem;
-		border-bottom: 1px solid #DDD;
-	}
-
-	&__caption {
-		text-align: left;
-		padding-inline: 0.75rem;
-		box-sizing: border-box;
-		margin: 0;
-		padding-block-end: 0.75rem;
-		font-family: var(--font-family-system);
-		font-size: 0.8rem;
-	}
-}
-
-.comet-color-controls {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-
-	.components-base-control {
-		margin-block: 0;
-	}
-
-	&__item {
-		width: 100%;
-		display: flex;
-		margin-block-end: 0.5rem;
-
-		&:has(+ &) {
-			margin-block-end: 0;
-		}
-
-		> div {
-			display: contents;
-		}
-
-		.components-dropdown {
-			flex-grow: 1;
-
-			button {
-				width: 100%;
-				border: 1px solid #e0e0e0;
-				display: flex;
-				gap: 0.5rem;
-				justify-content: flex-start;
-				align-items: center;
-
-				&[aria-expanded="true"] {
-					border-color: var(--wp-components-color-primary, #007cba);
-				}
-
-				.component-color-indicator {
-					order: -1;
-				}
-			}
-		}
-	}
-}
-
 .block-editor-inspector-popover-header__heading {
 	font-family: inherit;
 }
 
-$colorNames: ('primary', 'secondary', 'accent', 'light', 'dark', 'white');
-@each $colorName in $colorNames {
-	[data-color-theme="#{$colorName}"] {
-		--theme-color: var(--color-#{$colorName});
-		background: var(--background-color);
-	}
-
-	[data-background="#{$colorName}"] {
-		--background-color: var(--color-#{$colorName});
-		background: var(--color-#{$colorName});
-	}
-
-	@each $colorName2 in $colorNames {
-		@if $colorName != $colorName2 {
-			[data-background="#{$colorName}-#{$colorName2}"] {
-				--background-color: var(--gradient-#{$colorName}-#{$colorName2});
-				background: var(--background-color);
-			}
-		}
-	}
-}

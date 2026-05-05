@@ -1,0 +1,16 @@
+.comet-color-combo-preview {
+	padding: 1rem;
+	border: 1px solid #DDD;
+	border-radius: 0.25rem;
+
+	&__content {
+		padding: 0.5rem;
+
+		p {
+			margin: 0;
+			font-family: var(--font-family-system);
+			font-size: 0.9rem;
+			line-height: 1.2;
+		}
+	}
+}

@@ -6,6 +6,7 @@ import { ThemeColor, ThemeGradient } from '../../types';
 import { ColorPaletteDropdown } from './ColorPaletteDropdown/ColorPaletteDropdown';
 import { ColorPairPaletteDropdown } from './ColorPairPaletteDropdown/ColorPairPaletteDropdown';
 import { useValidatedPalette } from '../../hooks/use-validated-palette';
+import { ColorComboPreview } from './ColorComboPreview/ColorComboPreview';
 
 export type ColorControlsProps = EditorControlProps & {
 	attributes: {
@@ -85,6 +86,11 @@ function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsPr
 
 	return (
 		<>
+			<ColorComboPreview
+				colorTheme={attributes?.colorTheme as ThemeColor}
+				backgroundColor={attributes?.backgroundColor as ThemeColor}
+				sectionBackground={attributes?.sectionBackground}
+			/>
 			<div className="comet-color-controls__item">
 				<ColorPairPaletteDropdown
 					value={{

@@ -2,7 +2,7 @@ import React from 'react';
 import { ColorSwatch, ColorSwatchProps } from './ColorSwatch';
 import type { StoryObj, Meta } from '@storybook/react-webpack5';
 import { ComponentType } from '@wordpress/element';
-import { COLOR_CONTROL_ARGTYPES } from '../../mocks/common-story-args';
+import { COLOR_CONTROL_ARGTYPES } from '../../../mocks/common-story-args';
 
 type Story = StoryObj<ColorSwatchProps>;
 

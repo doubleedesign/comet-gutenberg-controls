@@ -22,6 +22,11 @@ const meta: Meta<StoryArgs> = {
 		...COLOR_CONTROL_ARGTYPES,
 		...EDITOR_CONTROL_PROPS_ARGTYPES,
 	},
+	parameters: {
+		controls: {
+			exclude: ['attributes', ...Object.keys(COLOR_CONTROL_ARGTYPES)]
+		}
+	}
 };
 export default meta;
 

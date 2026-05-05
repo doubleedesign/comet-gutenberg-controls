@@ -1,4 +1,4 @@
-import {MOCK_PALETTE} from "./common-defaults";
+import {MOCK_GRADIENTS, MOCK_PALETTE} from "./common-defaults";
 import {ArgTypes} from "storybook/internal/csf";
 
 export const COMMON_STORY_ARGS = {
@@ -50,7 +50,7 @@ export const COLOR_CONTROL_ARGTYPES: Partial<ArgTypes> = {
 	sectionBackground: {
 		description: 'The section background colour to apply, should match a valid ThemeColor or ThemeGradient',
 		control: { type: 'select' },
-		options: [undefined, ...MOCK_PALETTE.map(item => item.slug)],
+		options: [undefined, ...[...MOCK_GRADIENTS, ...MOCK_PALETTE].map(item => item.slug)],
 		table: {
 			type: { summary: 'ThemeColor | ThemeGradient' },
 		},

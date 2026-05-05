@@ -1,4 +1,4 @@
-import { ColorSwatch } from '../../ColorSwatch/ColorSwatch.dist.js';
+import { ColorSwatch } from '../ColorSwatch/ColorSwatch.dist.js';
 
 const { useMemo, useRef, useState, useEffect } = wp.element;const { Dropdown, Button, ColorIndicator, GradientPicker } = wp.components;function ColorPairPaletteDropdown({ blockName, label = 'Content theme', value, onChange }) {
     const [foreground, setForeground] = useState(value?.foreground ?? '');
@@ -46,13 +46,14 @@ const { useMemo, useRef, useState, useEffect } = wp.element;const { Dropdown, Bu
     };
     return (wp.element.createElement("div", { "data-testid": "comet-color-pair-selector" },
         wp.element.createElement(Dropdown, { renderToggle: ({ onToggle, isOpen }) => (wp.element.createElement(Button, { onClick: onToggle, "aria-expanded": isOpen, ref: triggerRef, __next40pxDefaultSize: true },
-                wp.element.createElement(ColorIndicator, { colorValue: gradientPreview, "data-testid": "comet-color-pair-indicator", "aria-label": `Selected value: ${foreground} on ${background}` }),
-                label)), renderContent: ({ isOpen, onToggle }) => (wp.element.createElement(wp.element.Fragment, null,
+                label,
+                wp.element.createElement(ColorIndicator, { colorValue: gradientPreview, "data-testid": "comet-color-pair-indicator", "aria-label": `Selected colours: ${foreground} on ${background}` }))), renderContent: ({ isOpen, onToggle }) => (wp.element.createElement("div", { className: "comet-color-selector-content" },
                 wp.element.createElement(ColorSwatch, { colorTheme: foreground, backgroundColor: background }),
-                wp.element.createElement(GradientPicker, { value: gradientPreview, gradients: palette, disableCustomGradients: true, className: `comet-color-controls comet-color-controls--${blockName}`, onChange: (value) => {
-                        handleChange(value);
-                        onToggle(); // close dropdown after selection
-                    } }))) })));
+                wp.element.createElement("div", { className: "comet-color-selector-content__pickers" },
+                    wp.element.createElement(GradientPicker, { value: gradientPreview, gradients: palette, disableCustomGradients: true, className: `comet-color-controls comet-color-controls--${blockName}`, onChange: (value) => {
+                            handleChange(value);
+                            onToggle(); // close dropdown after selection
+                        } })))) })));
 }
 
 export { ColorPairPaletteDropdown };

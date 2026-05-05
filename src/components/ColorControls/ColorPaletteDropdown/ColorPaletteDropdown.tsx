@@ -1,12 +1,12 @@
-import { Dropdown, Button, ColorIndicator, ColorPalette } from '@wordpress/components';
-import { useRef, useCallback, useEffect } from '@wordpress/element';
-import { ColorSwatch } from '../../ColorSwatch/ColorSwatch';
-import { ThemeColor } from '../../../types';
+import { Dropdown, Button, ColorIndicator, ColorPalette, GradientPicker } from '@wordpress/components';
+import { useRef, useCallback, useEffect, useMemo } from '@wordpress/element';
+import { ColorSwatch } from '../ColorSwatch/ColorSwatch';
+import { ColourPaletteItem, ThemeColor } from '../../../types';
 
 export type ColorPaletteDropdownProps = {
 	label: string;
 	value: string;
-	palette: Array<{ slug: string; name: string; color: string }>;
+	palette: Array<ColourPaletteItem>;
 	onChange: (value: string) => void;
 	clearable?: boolean;
 };
@@ -22,7 +22,7 @@ export function ColorPaletteDropdown({ label = 'Colour', value, palette, onChang
 			return;
 		}
 		
-		const name = newValue.replace('var(--color-', '').replace(')', '');
+		const name = newValue.replace('var(--color-', '').replace(')', '').replace('var(--gradient-', '');
 		onChange(name);
 	}, [onChange]);
 
@@ -42,6 +42,18 @@ export function ColorPaletteDropdown({ label = 'Colour', value, palette, onChang
 		}
 	}, [value, palette]);
 
+	const singleColours = useMemo(() => {
+		return palette.filter(color => !color.slug.includes('-'));
+	}, [palette]);
+
+	const gradients = useMemo(() => {
+		return palette.filter(color => color.slug.includes('-')).map(item => ({
+			name: item.name,
+			slug: item.slug,
+			gradient: `var(--gradient-${item.slug})`,
+		}));
+	}, [palette]);
+
 	return (
 		<div data-testid="comet-single-color-selector">
 			<Dropdown
@@ -51,28 +63,53 @@ export function ColorPaletteDropdown({ label = 'Colour', value, palette, onChang
 						ref={triggerRef}
 						__next40pxDefaultSize
 					>
-						<ColorIndicator
-							colorValue={value ? `var(--color-${value})` : undefined}
-							data-testid="comet-color-indicator"
-							aria-label={value ? `Selected colour: ${value}` : 'No colour selected'}
-						/>
 						{label}
+						{value && value.includes('-') ?
+								(
+									<ColorIndicator
+										colorValue={`var(--gradient-${value})`}
+										data-testid="comet-color-indicator"
+										aria-label={`Selected colours: ${value.replace('-', ' and ')}`} />
+								) : (
+									<ColorIndicator
+										colorValue={value ? `var(--color-${value})` : undefined}
+										data-testid="comet-color-indicator"
+										aria-label={value ? `Selected colour: ${value}` : 'No colour selected'}
+									/>
+								)}
+
 					</Button>
 				)}
 				renderContent={({ onToggle, ...props }) => (
-					<>
+					<div className="comet-color-selector-content">
 						{value !== undefined && <ColorSwatch backgroundColor={value as ThemeColor} />}
-						<ColorPalette
-							clearable={clearable}
-							value={`var(--color-${value})`}
-							colors={palette}
-							disableCustomColors={true}
-							onChange={(newValue) => {
-								handleChange(newValue);
-								onToggle(); // close dropdown after selection
-							}}
-						/>
-					</>
+						<div className="comet-color-selector-content__pickers">
+							{gradients.length > 0 && (
+								<GradientPicker
+									clearable={clearable}
+									value={value ? `var(--gradient-${value})` : undefined}
+									gradients={gradients}
+									disableCustomGradients={true}
+									onChange={(value) => {
+										handleChange(value);
+										onToggle(); // close dropdown after selection
+									}}
+								/>
+							)}
+							{ /* This needs to be here even when there's only gradients, so that the Clear button is kept */ }
+							<ColorPalette
+								clearable={clearable}
+								value={`var(--color-${value})`}
+								// @ts-ignore
+								colors={singleColours}
+								disableCustomColors={true}
+								onChange={(newValue) => {
+									handleChange(newValue);
+									onToggle(); // close dropdown after selection
+								}}
+							/>
+						</div>
+					</div>
 				)}
 			/>
 		</div>
