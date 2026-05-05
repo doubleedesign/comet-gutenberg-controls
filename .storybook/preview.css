@@ -151,7 +151,6 @@
   [data-typography-mode=docs] {
     font: var(--font-body);
     line-height: var(--line-height-base);
-    font-size-adjust: ex-height 0.53;
   }
   @container style(--letter-spacing: body) {
     letter-spacing: var(--letter-spacing-body);
@@ -258,7 +257,7 @@
     font-family: var(--font-family-code);
     font-size-adjust: ex-height 0.45;
     display: inline-block;
-    padding-inline: var(--spacing-xs);
+    padding-inline: var(--spacing-xxs);
     line-height: 1.1;
     letter-spacing: 0;
   }
@@ -351,44 +350,29 @@
 }
 @layer doublee-tokens {
   :root {
-    --font-family-body: 'Berkeley Old Style', 'Californian FB', Georgia, serif;
-    --font-family-headings: 'Copernicus New Cond', sans-serif;
-    --font-family-accent: 'Neue Montreal', 'Neue Helvetica', Helvetica, Arial, sans-serif;
-    --font-family-labels: 'Neue Montreal', 'Neue Helvetica', Helvetica, Arial, sans-serif;
-    --font-family-code: 'Fira Code', Consolas, system-ui-monospace, monospace;
+    --font-family-body: "Berkeley Old Style", "Californian FB", Georgia, serif;
+    --font-family-headings: "Copernicus New Cond", sans-serif;
+    --font-family-accent: "Neue Montreal", "Neue Helvetica", Helvetica, Arial, sans-serif;
+    --font-family-labels: "Neue Montreal", "Neue Helvetica", Helvetica, Arial, sans-serif;
+    --font-family-code: "Fira Code", Consolas, system-ui-monospace, monospace;
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
+    --typescale: 1.2;
     --line-height-base: 1.6;
     --line-height-headings: 1.2;
     --letter-spacing-body: -0.01em;
     --letter-spacing-tight: -0.02em;
-    --typescale: 1.2;
-    --spacing-step-size: 3;
-  }
-  @media (min-width: 768px) {
-    :root {
-      --typescale: 1.25;
-    }
-  }
-  :root {
     --font-size-base: 1rem;
-  }
-  @media (min-width: 1024px) {
-    :root {
-      --font-size-base: calc(17 / 16 * 100%);
-    }
-  }
-  :root {
     --font-size-sm: 0.9rem;
     --font-size-body: 1rem;
-    --font-size-md: calc(1rem * pow(var(--typescale), 1));
-    --font-size-lg: calc(1rem * pow(var(--typescale), 2));
-    --font-size-xl: calc(1rem * pow(var(--typescale), 3));
-    --font-size-xxl: calc(1rem * pow(var(--typescale), 4));
-    --font-size-display: calc(1rem * pow(var(--typescale), 6));
+    --font-size-md: calc(1rem * var(--typescale));
+    --font-size-lg: calc(calc(1rem * var(--typescale)) * var(--typescale));
+    --font-size-xl: calc(calc(calc(1rem * var(--typescale)) * var(--typescale)) * var(--typescale));
+    --font-size-xxl: calc(calc(calc(calc(1rem * var(--typescale)) * var(--typescale)) * var(--typescale)) * var(--typescale));
+    --font-size-display: calc(calc(calc(calc(calc(calc(1rem * var(--typescale)) * var(--typescale)) * var(--typescale)) * var(--typescale)) * var(--typescale)) * var(--typescale));
     --font-sm: var(--font-weight-normal) var(--font-size-sm) var(--font-family-labels);
     --font-body: var(--font-weight-normal) var(--font-size-body) var(--font-family-body);
     --font-md: var(--font-weight-medium) var(--font-size-md)/var(--line-height-headings) var(--font-family-accent);
@@ -398,12 +382,13 @@
     --font-display: var(--font-weight-semibold) var(--font-size-display)/var(--line-height-headings) var(--font-family-headings);
     --font-labels: var(--font-weight-medium) var(--font-size-sm) var(--font-family-labels);
     --font-captions: var(--font-weight-normal) var(--font-size-sm) var(--font-family-labels);
-    --spacing-xs: calc(1rem / pow(var(--typescale), 2 * var(--spacing-step-size)));
-    --spacing-sm: calc(1rem / pow(var(--typescale), 1 * var(--spacing-step-size)));
+    --spacing-xxs: calc(calc(calc(calc(calc(calc(1rem / var(--typescale)) / var(--typescale)) / var(--typescale)) / var(--typescale)) / var(--typescale)) / var(--typescale));
+    --spacing-xs: calc(calc(calc(calc(1rem / var(--typescale)) / var(--typescale)) / var(--typescale)) / var(--typescale));
+    --spacing-sm: calc(calc(1rem / var(--typescale)) / var(--typescale));
     --spacing-md: 1rem;
-    --spacing-lg: calc(1rem * pow(var(--typescale), 1 * var(--spacing-step-size)));
-    --spacing-xl: calc(1rem * pow(var(--typescale), 2 * var(--spacing-step-size)));
-    --spacing-xxl: calc(1rem * pow(var(--typescale), 3 * var(--spacing-step-size)));
+    --spacing-lg: calc(calc(1rem * var(--typescale)) * var(--typescale));
+    --spacing-xl: calc(calc(calc(calc(1rem * var(--typescale)) * var(--typescale)) * var(--typescale)) * var(--typescale));
+    --spacing-xxl: calc(calc(calc(calc(calc(calc(1rem * var(--typescale)) * var(--typescale)) * var(--typescale)) * var(--typescale)) * var(--typescale)) * var(--typescale));
     --border-radius-sm: var(--spacing-xs);
     --border-radius-md: var(--spacing-sm);
     --border-radius-round: 100px;
@@ -419,40 +404,21 @@
     --color-white: #ffffff;
     --color-body-text: #181825;
     --color-body-text-muted: oklch(from color-mix(in srgb, var(--color-body-text) 85%, gray 15%) calc(l + 0.35) calc(c * 0.8) calc(h));
-    --gradient-primary-secondary: linear-gradient(to bottom, var(--color-primary) 50%, var(--color-secondary) 50%);
-    --gradient-primary-accent: linear-gradient(to bottom, var(--color-primary) 50%, var(--color-accent) 50%);
-    --gradient-primary-light: linear-gradient(to bottom, var(--color-primary) 50%, var(--color-light) 50%);
-    --gradient-primary-dark: linear-gradient(to bottom, var(--color-primary) 50%, var(--color-dark) 50%);
-    --gradient-primary-white: linear-gradient(to bottom, var(--color-primary) 50%, var(--color-white) 50%);
-    --gradient-secondary-primary: linear-gradient(to bottom, var(--color-secondary) 50%, var(--color-primary) 50%);
-    --gradient-secondary-accent: linear-gradient(to bottom, var(--color-secondary) 50%, var(--color-accent) 50%);
-    --gradient-secondary-light: linear-gradient(to bottom, var(--color-secondary) 50%, var(--color-light) 50%);
-    --gradient-secondary-dark: linear-gradient(to bottom, var(--color-secondary) 50%, var(--color-dark) 50%);
-    --gradient-secondary-white: linear-gradient(to bottom, var(--color-secondary) 50%, var(--color-white) 50%);
-    --gradient-accent-primary: linear-gradient(to bottom, var(--color-accent) 50%, var(--color-primary) 50%);
-    --gradient-accent-secondary: linear-gradient(to bottom, var(--color-accent) 50%, var(--color-secondary) 50%);
-    --gradient-accent-light: linear-gradient(to bottom, var(--color-accent) 50%, var(--color-light) 50%);
-    --gradient-accent-dark: linear-gradient(to bottom, var(--color-accent) 50%, var(--color-dark) 50%);
-    --gradient-accent-white: linear-gradient(to bottom, var(--color-accent) 50%, var(--color-white) 50%);
-    --gradient-light-primary: linear-gradient(to bottom, var(--color-light) 50%, var(--color-primary) 50%);
-    --gradient-light-secondary: linear-gradient(to bottom, var(--color-light) 50%, var(--color-secondary) 50%);
-    --gradient-light-accent: linear-gradient(to bottom, var(--color-light) 50%, var(--color-accent) 50%);
-    --gradient-light-dark: linear-gradient(to bottom, var(--color-light) 50%, var(--color-dark) 50%);
-    --gradient-light-white: linear-gradient(to bottom, var(--color-light) 50%, var(--color-white) 50%);
-    --gradient-dark-primary: linear-gradient(to bottom, var(--color-dark) 50%, var(--color-primary) 50%);
-    --gradient-dark-secondary: linear-gradient(to bottom, var(--color-dark) 50%, var(--color-secondary) 50%);
-    --gradient-dark-accent: linear-gradient(to bottom, var(--color-dark) 50%, var(--color-accent) 50%);
-    --gradient-dark-light: linear-gradient(to bottom, var(--color-dark) 50%, var(--color-light) 50%);
-    --gradient-dark-white: linear-gradient(to bottom, var(--color-dark) 50%, var(--color-white) 50%);
-    --gradient-white-primary: linear-gradient(to bottom, var(--color-white) 50%, var(--color-primary) 50%);
-    --gradient-white-secondary: linear-gradient(to bottom, var(--color-white) 50%, var(--color-secondary) 50%);
-    --gradient-white-accent: linear-gradient(to bottom, var(--color-white) 50%, var(--color-accent) 50%);
-    --gradient-white-light: linear-gradient(to bottom, var(--color-white) 50%, var(--color-light) 50%);
-    --gradient-white-dark: linear-gradient(to bottom, var(--color-white) 50%, var(--color-dark) 50%);
+  }
+  @media (min-width: 768px) {
+    :root {
+      --typescale: 1.25;
+    }
+  }
+  @media (min-width: 1024px) {
+    :root {
+      --font-size-base: calc(17 / 16 * 100%);
+    }
   }
   [data-typography-mode=docs] {
-    --font-family-headings: 'Neue Montreal', 'Neue Helvetica', Helvetica, Arial, sans-serif;
-    --font-family-body: 'Neue Montreal', 'Neue Helvetica', Helvetica, Arial, sans-serif;
+    --font-family-headings: "Neue Montreal", "Neue Helvetica", Helvetica, Arial, sans-serif;
+    --font-family-body: "Neue Montreal", "Neue Helvetica", Helvetica, Arial, sans-serif;
+    --line-height-base: 1.4;
     --font-body: var(--font-weight-normal) var(--font-size-body) var(--font-family-body);
     --font-md: var(--font-weight-medium) var(--font-size-body) var(--font-family-accent);
     --font-lg: var(--font-weight-semibold) var(--font-size-md) var(--font-family-headings);
@@ -464,15 +430,16 @@
   background: #181825;
   color: white;
   tab-size: 2;
+  /** Based on Catpuccin Mocha - https://prismjs.catppuccin.com/mocha.css */
+  /* https://prismjs.com/tokens.html */
+  /* Diff */
+  /* Other */
 }
 .prismjs * {
   font-family: "Fira Code", monospace;
   font-weight: var(--font-weight-light, 300);
   font-size: var(--font-size-body);
   line-height: 1.4;
-}
-.prismjs {
-  /** Based on Catpuccin Mocha - https://prismjs.catppuccin.com/mocha.css */
 }
 .prismjs code[class*=language-],
 .prismjs pre[class*=language-] {
@@ -481,9 +448,6 @@
 .prismjs :not(pre) > code[class*=language-],
 .prismjs pre[class*=language-] {
   background: #181825;
-}
-.prismjs {
-  /* https://prismjs.com/tokens.html */
 }
 .prismjs .token.keyword {
   color: #cba6f7;
@@ -565,17 +529,11 @@
 .prismjs .token.selector {
   color: #89b4fa;
 }
-.prismjs {
-  /* Diff */
-}
 .prismjs .token.deleted {
   color: #f38ba8;
 }
 .prismjs .token.inserted {
   color: #a6e3a1;
-}
-.prismjs {
-  /* Other */
 }
 .prismjs .token.important,
 .prismjs .token.bold {
@@ -596,6 +554,10 @@
   background: #181825;
   color: white;
   tab-size: 2;
+  /** Based on Catpuccin Mocha - https://prismjs.catppuccin.com/mocha.css */
+  /* https://prismjs.com/tokens.html */
+  /* Diff */
+  /* Other */
 }
 .docblock-source .prismjs *,
 .docs-story + div .prismjs *,
@@ -604,11 +566,6 @@
   font-weight: var(--font-weight-light, 300);
   font-size: var(--font-size-body);
   line-height: 1.4;
-}
-.docblock-source .prismjs,
-.docs-story + div .prismjs,
-[id*="tabpanel-storybook/html/panel"] .prismjs {
-  /** Based on Catpuccin Mocha - https://prismjs.catppuccin.com/mocha.css */
 }
 .docblock-source .prismjs code[class*=language-],
 .docblock-source .prismjs pre[class*=language-],
@@ -625,11 +582,6 @@
 [id*="tabpanel-storybook/html/panel"] .prismjs :not(pre) > code[class*=language-],
 [id*="tabpanel-storybook/html/panel"] .prismjs pre[class*=language-] {
   background: #181825;
-}
-.docblock-source .prismjs,
-.docs-story + div .prismjs,
-[id*="tabpanel-storybook/html/panel"] .prismjs {
-  /* https://prismjs.com/tokens.html */
 }
 .docblock-source .prismjs .token.keyword,
 .docs-story + div .prismjs .token.keyword,
@@ -771,11 +723,6 @@
 [id*="tabpanel-storybook/html/panel"] .prismjs .token.selector {
   color: #89b4fa;
 }
-.docblock-source .prismjs,
-.docs-story + div .prismjs,
-[id*="tabpanel-storybook/html/panel"] .prismjs {
-  /* Diff */
-}
 .docblock-source .prismjs .token.deleted,
 .docs-story + div .prismjs .token.deleted,
 [id*="tabpanel-storybook/html/panel"] .prismjs .token.deleted {
@@ -785,11 +732,6 @@
 .docs-story + div .prismjs .token.inserted,
 [id*="tabpanel-storybook/html/panel"] .prismjs .token.inserted {
   color: #a6e3a1;
-}
-.docblock-source .prismjs,
-.docs-story + div .prismjs,
-[id*="tabpanel-storybook/html/panel"] .prismjs {
-  /* Other */
 }
 .docblock-source .prismjs .token.important,
 .docblock-source .prismjs .token.bold,

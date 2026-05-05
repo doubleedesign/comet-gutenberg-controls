@@ -1,11 +1,17 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { PageNav } from "../../.storybook/components/PageNav.tsx";
 
-<Meta title="Docs/Usage" />
+<Meta title="Docs/Installation" />
 
-# Usage
+# Installation
 
-The below is an overview of how this package is implemented in the Comet Components plugin for the WordPress block editor. This could be adapted for other use cases.
+This package is intended for use within the [Comet Components plugin](https://packagist.org/packages/doubleedesign/comet-canvas-blocks) for the WordPress block editor, so generally you'll want to just go ahead and install that.
+
+---
+
+### Plugin implementation overview
+
+Below is an overview of how this package is implemented in that plugin, as a high-level guide for how you might implement it in other plugins or themes, or to help with troubleshooting the Comet plugin on a site.
 
 Add to the dependencies in `package.json`:
 
