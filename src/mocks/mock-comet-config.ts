@@ -1,6 +1,6 @@
 import {Config, ThemeColor} from '../types';
 import {ASPECT_RATIOS} from "../components/constants";
-import {MOCK_PALETTE} from "./common-defaults";
+import { MOCK_PALETTE, MOCK_GRADIENTS } from "./common-defaults";
 
 export function mockCometConfig(overrides?: Partial<Config>): Config {
 	const mockConfig: Config = {
@@ -19,9 +19,10 @@ export function mockCometConfig(overrides?: Partial<Config>): Config {
 			{ foreground: 'accent', background: 'dark' },
 		],
 		colourPairOverrides: {},
-		sectionBackgrounds: {
-
-		},
+		sectionBackgrounds: MOCK_GRADIENTS.reduce((acc, gradient) => {
+			acc[gradient.slug] = gradient.gradient;
+			return acc;
+		}, {} as Record<string, string>),
 		// Component-level defaults
 		defaults: {},
 		ajaxUrl: 'https://example.com/wp-admin/admin-ajax.php',
@@ -32,7 +33,6 @@ export function mockCometConfig(overrides?: Partial<Config>): Config {
 		}
 	}
 
-	// @ts-expect-error TS2551: Property comet does not exist on type Window & typeof globalThis.
 	window.comet = mockConfig;
 
 	return mockConfig;

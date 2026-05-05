@@ -1,5 +1,3 @@
-import React from 'react';
-import '@testing-library/jest-dom/vitest';
 import { render, screen } from '@testing-library/react';
 import { ColorControls } from './ColorControls';
 import { ThemeColor, ThemeGradient } from '../../types';
@@ -42,7 +40,7 @@ describe('ColorControls', () => {
 			}}
 		/>);
 
-		expect(screen.getByRole('button', { name: /Colour/i })).toBeVisible();
+		expect(screen.getByRole('button', { name: /Theme/i })).toBeVisible();
 		expect(screen.getByTestId('comet-single-color-selector')).toBeVisible();
 		expect(screen.queryByTestId('comet-color-pair-selector')).not.toBeInTheDocument();
 		expect(screen.queryByTestId('comet-section-background-selector')).not.toBeInTheDocument();

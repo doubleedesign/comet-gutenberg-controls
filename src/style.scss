@@ -195,6 +195,7 @@
 		font-size: 0.9rem;
 		border-top-left-radius: 0.25rem;
 		border-top-right-radius: 0.25rem;
+		border-bottom: 1px solid #DDD;
 	}
 
 	&__caption {
@@ -253,14 +254,24 @@
 	font-family: inherit;
 }
 
-@each $colorName in (primary, secondary, accent, light, dark, info, success, warning, error) {
+$colorNames: ('primary', 'secondary', 'accent', 'light', 'dark', 'white');
+@each $colorName in $colorNames {
+	[data-color-theme="#{$colorName}"] {
+		--theme-color: var(--color-#{$colorName});
+		background: var(--background-color);
+	}
+
 	[data-background="#{$colorName}"] {
 		--background-color: var(--color-#{$colorName});
 		background: var(--color-#{$colorName});
 	}
 
-	[data-color-theme="#{$colorName}"] {
-		--theme-color: var(--color-#{$colorName});
-		color: var(--color-#{$colorName});
+	@each $colorName2 in $colorNames {
+		@if $colorName != $colorName2 {
+			[data-background="#{$colorName}-#{$colorName2}"] {
+				--background-color: var(--gradient-#{$colorName}-#{$colorName2});
+				background: var(--background-color);
+			}
+		}
 	}
 }

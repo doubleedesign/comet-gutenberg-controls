@@ -151,6 +151,7 @@
   font-size: 0.9rem;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
+  border-bottom: 1px solid #DDD;
 }
 .comet-color-swatch__caption {
   text-align: left;

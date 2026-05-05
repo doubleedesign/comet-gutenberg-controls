@@ -419,6 +419,36 @@
     --color-white: #ffffff;
     --color-body-text: #181825;
     --color-body-text-muted: oklch(from color-mix(in srgb, var(--color-body-text) 85%, gray 15%) calc(l + 0.35) calc(c * 0.8) calc(h));
+    --gradient-primary-secondary: linear-gradient(to bottom, var(--color-primary) 50%, var(--color-secondary) 50%);
+    --gradient-primary-accent: linear-gradient(to bottom, var(--color-primary) 50%, var(--color-accent) 50%);
+    --gradient-primary-light: linear-gradient(to bottom, var(--color-primary) 50%, var(--color-light) 50%);
+    --gradient-primary-dark: linear-gradient(to bottom, var(--color-primary) 50%, var(--color-dark) 50%);
+    --gradient-primary-white: linear-gradient(to bottom, var(--color-primary) 50%, var(--color-white) 50%);
+    --gradient-secondary-primary: linear-gradient(to bottom, var(--color-secondary) 50%, var(--color-primary) 50%);
+    --gradient-secondary-accent: linear-gradient(to bottom, var(--color-secondary) 50%, var(--color-accent) 50%);
+    --gradient-secondary-light: linear-gradient(to bottom, var(--color-secondary) 50%, var(--color-light) 50%);
+    --gradient-secondary-dark: linear-gradient(to bottom, var(--color-secondary) 50%, var(--color-dark) 50%);
+    --gradient-secondary-white: linear-gradient(to bottom, var(--color-secondary) 50%, var(--color-white) 50%);
+    --gradient-accent-primary: linear-gradient(to bottom, var(--color-accent) 50%, var(--color-primary) 50%);
+    --gradient-accent-secondary: linear-gradient(to bottom, var(--color-accent) 50%, var(--color-secondary) 50%);
+    --gradient-accent-light: linear-gradient(to bottom, var(--color-accent) 50%, var(--color-light) 50%);
+    --gradient-accent-dark: linear-gradient(to bottom, var(--color-accent) 50%, var(--color-dark) 50%);
+    --gradient-accent-white: linear-gradient(to bottom, var(--color-accent) 50%, var(--color-white) 50%);
+    --gradient-light-primary: linear-gradient(to bottom, var(--color-light) 50%, var(--color-primary) 50%);
+    --gradient-light-secondary: linear-gradient(to bottom, var(--color-light) 50%, var(--color-secondary) 50%);
+    --gradient-light-accent: linear-gradient(to bottom, var(--color-light) 50%, var(--color-accent) 50%);
+    --gradient-light-dark: linear-gradient(to bottom, var(--color-light) 50%, var(--color-dark) 50%);
+    --gradient-light-white: linear-gradient(to bottom, var(--color-light) 50%, var(--color-white) 50%);
+    --gradient-dark-primary: linear-gradient(to bottom, var(--color-dark) 50%, var(--color-primary) 50%);
+    --gradient-dark-secondary: linear-gradient(to bottom, var(--color-dark) 50%, var(--color-secondary) 50%);
+    --gradient-dark-accent: linear-gradient(to bottom, var(--color-dark) 50%, var(--color-accent) 50%);
+    --gradient-dark-light: linear-gradient(to bottom, var(--color-dark) 50%, var(--color-light) 50%);
+    --gradient-dark-white: linear-gradient(to bottom, var(--color-dark) 50%, var(--color-white) 50%);
+    --gradient-white-primary: linear-gradient(to bottom, var(--color-white) 50%, var(--color-primary) 50%);
+    --gradient-white-secondary: linear-gradient(to bottom, var(--color-white) 50%, var(--color-secondary) 50%);
+    --gradient-white-accent: linear-gradient(to bottom, var(--color-white) 50%, var(--color-accent) 50%);
+    --gradient-white-light: linear-gradient(to bottom, var(--color-white) 50%, var(--color-light) 50%);
+    --gradient-white-dark: linear-gradient(to bottom, var(--color-white) 50%, var(--color-dark) 50%);
   }
   [data-typography-mode=docs] {
     --font-family-headings: 'Neue Montreal', 'Neue Helvetica', Helvetica, Arial, sans-serif;

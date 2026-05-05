@@ -1,4 +1,3 @@
-import React from 'react';
 import { ColorControls, ColorControlsProps } from './ColorControls';
 import { COLOR_CONTROL_ARGTYPES, COMMON_STORY_ARGS, EDITOR_CONTROL_PROPS_ARGTYPES } from '../../mocks/common-story-args';
 import { withMockBlockContext } from '../../mocks/with-mock-block-context';
