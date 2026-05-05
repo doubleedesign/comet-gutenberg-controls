@@ -36,7 +36,7 @@ export default [
             wordpressGlobals(),
             resolve({ extensions: ['.ts', '.tsx'], browser: true }),
             typescript({
-                tsconfig: './tsconfig.json',
+                tsconfig: './tsconfig.app.json',
             }),
         ],
         external: [

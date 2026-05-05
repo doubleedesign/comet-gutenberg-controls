@@ -1,4 +1,4 @@
-import React from 'react';
+import wp from '@wordpress/element';
 import { mockCometConfig } from "./mock-comet-config";
 
 export const withCometConfig = (Story, context) => {

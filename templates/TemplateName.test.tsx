@@ -1,9 +1,6 @@
-import React from 'react';
-import '@testing-library/jest-dom/vitest';
 import { render, screen } from '@testing-library/react';
 import { mockCometConfig } from '../../mocks/mock-comet-config';
 import { TemplateName } from './TemplateName';
-
 
 const mockSetAttributes = vi.fn();
 const defaultProps = {

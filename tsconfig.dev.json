@@ -1,0 +1,15 @@
+{
+	"extends": "./tsconfig.json",
+	"complilerOptions": {
+		"rootDir": ".",
+		"types": ["vitest/globals"]
+	},
+	"include": [
+		"src/**/*",
+		"vitest.config.ts",
+		"vitest.setup.ts"
+	],
+	"exclude": [
+		"templates/*.tsx"
+	]
+}

@@ -1,7 +1,5 @@
 {
 	"compilerOptions": {
-		"rootDir": "src",
-		"outDir": "dist",
 		"target": "ESNext",
 		"module": "ESNext",
 		"moduleResolution": "bundler",
@@ -12,22 +10,11 @@
 		"skipLibCheck": true,
 		"esModuleInterop": true,
 		"noImplicitAny": false,
-		"declaration": true,
-		"types": ["vitest/globals"]
+		"declaration": true
 	},
-	"include": [
-		"src/**/*",
-		"vitest.config.ts",
-		"vitest.setup.ts"
-	],
 	"exclude": [
-		"src/**/*.stories.tsx",
-		"src/**/*.test.tsx",
-		"src/**/*.spec.tsx",
-		"src/**/*.mdx",
-		"src/mocks/*.tsx",
-		"src/mocks/*.ts",
-		"src/docs/*.tsx",
-		"src/docs/*.ts"
+		"node_modules",
+		"dist",
+		"templates"
 	]
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { EditorControlProps } from '../types';
 
 export type TemplateNameProps = EditorControlProps & {
