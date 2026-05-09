@@ -1,7 +1,10 @@
 /* global wp */
 const { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption } = wp.components;const LayoutOrientation = ({ attributes, setAttributes }) => {
-    // TODO: Use component defaults from comet JS object (which are set using the PHP global Config object). They should take precedence over block.json
     if (!attributes?.orientation) {
+        return null;
+    }
+    // We generally do not expect a component to support both "group layout" (grid or list) and orientation
+    if (attributes?.layout) {
         return null;
     }
     const ToggleGroupControl = __experimentalToggleGroupControl;

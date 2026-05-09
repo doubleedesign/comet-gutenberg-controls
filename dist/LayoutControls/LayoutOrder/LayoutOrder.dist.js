@@ -3,6 +3,15 @@ const { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption
     if (!attributes?.order) {
         return null;
     }
+    // We generally do not expect a component to support both "group layout" (grid or list) and order.
+    // Order is for pretty specific use cases like "Copy + image"
+    if (attributes?.layout) {
+        return null;
+    }
+    // Similarly it doesn't make sense to offer L-R and R-L options of the layout is not horizontal
+    if (attributes?.orientation && attributes.orientation !== 'horizontal') {
+        return null;
+    }
     const ToggleGroupControl = __experimentalToggleGroupControl;
     const ToggleGroupControlOption = __experimentalToggleGroupControlOption;
     return (wp.element.createElement(ToggleGroupControl, { className: "comet-toggle-group", __next40pxDefaultSize: true, isBlock: true, label: "Order", onChange: (value) => setAttributes({ order: value }), value: attributes.order },

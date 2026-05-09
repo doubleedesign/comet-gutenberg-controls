@@ -6,9 +6,12 @@ const { __experimentalNumberControl } = wp.components;const MaxPerRow = ({ name,
     if (!attributes?.maxPerRow) {
         return null;
     }
+    if (!attributes?.layout || attributes.layout !== 'grid') {
+        return null;
+    }
     const NumberControl = __experimentalNumberControl;
     return (wp.element.createElement(NumberControl, { __next40pxDefaultSize: true, label: wp.element.createElement(wp.element.Fragment, null,
-            "Max items per row",
+            "Max per row",
             wp.element.createElement(FieldTooltip, { tooltip: 'The preferred number of items per row in containers wide enough to accommodate them; items may be stacked to a smaller number on smaller viewports' })), value: attributes.maxPerRow, min: 2, max: 6, onChange: (newMax) => {
             try {
                 newMax = newMax ? parseInt(newMax) : attributes.maxPerRow;

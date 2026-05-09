@@ -43,8 +43,10 @@ export const LayoutControls = (props: LayoutControlsProps) => {
 			<NegativeMargins {...props} />
 			{/* @ts-expect-error Property layout is missing in type Record<string, any> but required in type { layout: "list" | "grid"; } */}
 			<GroupLayout {...props} />
-			<ItemCount {...props} />
-			<MaxPerRow {...props} />
+			<div className="comet-control-pair">
+				<ItemCount {...props} />
+				<MaxPerRow {...props} />
+			</div>
 			<LayoutOrientation {...props} />
 			<LayoutOrder {...props} />
 			<HorizontalAlignment {...props} />

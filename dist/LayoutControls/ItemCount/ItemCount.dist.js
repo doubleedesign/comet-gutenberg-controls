@@ -4,6 +4,9 @@ const { __experimentalNumberControl } = wp.components;const ItemCount = ({ attri
     if (!attributes?.itemCount) {
         return null;
     }
+    if (!attributes?.layout) {
+        return null;
+    }
     const NumberControl = __experimentalNumberControl;
     return (wp.element.createElement(NumberControl, { __next40pxDefaultSize: true, label: wp.element.createElement(wp.element.Fragment, null,
             "Item count",

@@ -5,6 +5,9 @@ export const ItemCount = ({ attributes, setAttributes }) => {
 	if (!attributes?.itemCount) {
 		return null;
 	}
+	if (!attributes?.layout) {
+		return null;
+	}
 
 	const NumberControl = __experimentalNumberControl;
 

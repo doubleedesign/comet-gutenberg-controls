@@ -7,6 +7,9 @@ export const MaxPerRow = ({ name, attributes, setAttributes }) => {
 	if (!attributes?.maxPerRow) {
 		return null;
 	}
+	if (!attributes?.layout || attributes.layout !== 'grid') {
+		return null;
+	}
 
 	const NumberControl = __experimentalNumberControl;
 
@@ -15,7 +18,7 @@ export const MaxPerRow = ({ name, attributes, setAttributes }) => {
 			__next40pxDefaultSize
 			label={
 				<>
-					Max items per row
+					Max per row
 					<FieldTooltip
 						tooltip={'The preferred number of items per row in containers wide enough to accommodate them; items may be stacked to a smaller number on smaller viewports'}
 					/>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { TemplateName, TemplateNameProps } from './TemplateName';
 import { COMMON_STORY_ARGS, EDITOR_CONTROL_PROPS_ARGTYPES } from '../../mocks/common-story-args';
 import { withMockBlockContext } from '../../mocks/with-mock-block-context';

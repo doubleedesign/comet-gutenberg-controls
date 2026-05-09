@@ -4,6 +4,10 @@ const { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption
     if (!attributes?.vAlign) {
         return null;
     }
+    // We generally do not expect a component to support both "group layout" (grid or list) and vertical alignment
+    if (attributes?.layout) {
+        return null;
+    }
     const ToggleGroupControl = __experimentalToggleGroupControl;
     const ToggleGroupControlOption = __experimentalToggleGroupControlOption;
     return (wp.element.createElement(ToggleGroupControl, { className: "comet-toggle-group", __next40pxDefaultSize: true, isBlock: true, label: "Vertical alignment", onChange: (value) => setAttributes({ vAlign: value }), value: attributes.vAlign },
