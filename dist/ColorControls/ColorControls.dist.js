@@ -42,12 +42,20 @@ function ColorControlsInner({ name, attributes, setAttributes }) {
     }, [setAttributes]);
     // TODO: This component needs a bunch more work in terms of handling valid combinations of background/section background,
     //  including changing the available values when the selection changes,
-    // and certain blocks being allowed certain backgrounds and others not
+    //  and certain blocks being allowed certain backgrounds and others not
     // If background colour is not supported, provide single colour theme option only
     // Note: sectionBackground should not be available without backgroundColor being available as well, but that isn't enforced/validated anywhere
     if (!hasBackgroundColorSupport.current) {
         return (wp.element.createElement("div", { className: "comet-color-controls__item" },
-            wp.element.createElement(ColorPaletteDropdown, { label: "Theme", value: values.colorTheme, palette: palette, onChange: handleChange })));
+            wp.element.createElement(ColorPaletteDropdown, { label: "Colour theme", value: values.colorTheme, palette: palette, onChange: handleChange })));
+    }
+    // If background colour is supported but colorTheme is not, provide single background colour option only
+    // TODO: Are there any cases where there would be backgroundColor and sectionBackground but not colorTheme?
+    if (!hasColorThemeSupport.current && hasBackgroundColorSupport.current) {
+        return (wp.element.createElement(wp.element.Fragment, null,
+            wp.element.createElement(ColorComboPreview, { backgroundColor: attributes?.backgroundColor }),
+            wp.element.createElement("div", { className: "comet-color-controls__item" },
+                wp.element.createElement(ColorPaletteDropdown, { label: "Background colour", value: values.backgroundColor, palette: palette, onChange: (newValue) => handleChange({ backgroundColor: newValue }) }))));
     }
     return (wp.element.createElement(wp.element.Fragment, null,
         wp.element.createElement(ColorComboPreview, { colorTheme: attributes?.colorTheme, backgroundColor: attributes?.backgroundColor, sectionBackground: attributes?.sectionBackground }),

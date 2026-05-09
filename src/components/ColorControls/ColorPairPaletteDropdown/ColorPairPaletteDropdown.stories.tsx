@@ -10,7 +10,6 @@ const meta: Meta<ColorPairPaletteDropdownProps> = {
 	decorators: [],
 	args: {
 		blockName: 'comet/demo-block',
-		label: 'Content theme',
 		value: {
 			foreground: 'primary',
 			background: 'secondary',

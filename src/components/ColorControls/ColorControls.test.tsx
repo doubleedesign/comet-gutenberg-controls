@@ -46,7 +46,23 @@ describe('ColorControls', () => {
 		expect(screen.queryByTestId('comet-section-background-selector')).not.toBeInTheDocument();
 	});
 
-	it('should render the colour pair selector if there is a background attribute set', () => {
+	it('should render the single background colour selector if there is no colorTheme attribute set', () => {
+		render(<ColorControls
+			{...defaultProps}
+			attributes={{
+				colorTheme: undefined,
+				backgroundColor: 'primary',
+				sectionBackground: undefined
+			}}
+		/>);
+
+		expect(screen.getByRole('button', { name: /Background colour/i })).toBeVisible();
+		expect(screen.getByTestId('comet-single-color-selector')).toBeVisible();
+		expect(screen.queryByTestId('comet-color-pair-selector')).not.toBeInTheDocument();
+		expect(screen.queryByTestId('comet-section-background-selector')).not.toBeInTheDocument();
+	});
+
+	it('should render the colour pair selector if there is both colourTheme and background attribute set', () => {
 		render(<ColorControls
 			{...defaultProps}
 			attributes={{
@@ -56,7 +72,7 @@ describe('ColorControls', () => {
 			}}
 		/>);
 
-		expect(screen.getByRole('button', { name: /Theme/i })).toBeVisible();
+		expect(screen.getByRole('button', { name: /Content colours/i })).toBeVisible();
 		expect(screen.getByTestId('comet-color-pair-selector')).toBeVisible();
 		expect(screen.queryByTestId('comet-single-color-selector')).not.toBeInTheDocument();
 		expect(screen.queryByTestId('comet-section-background-selector')).not.toBeInTheDocument();

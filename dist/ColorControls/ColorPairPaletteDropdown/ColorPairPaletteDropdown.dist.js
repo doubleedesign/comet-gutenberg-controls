@@ -1,6 +1,6 @@
 import { ColorSwatch } from '../ColorSwatch/ColorSwatch.dist.js';
 
-const { useMemo, useRef, useState, useEffect } = wp.element;const { Dropdown, Button, ColorIndicator, GradientPicker } = wp.components;function ColorPairPaletteDropdown({ blockName, label = 'Content theme', value, onChange }) {
+const { useMemo, useRef, useState, useEffect } = wp.element;const { Dropdown, Button, ColorIndicator, GradientPicker } = wp.components;function ColorPairPaletteDropdown({ blockName, label = 'Content colours', value, onChange }) {
     const [foreground, setForeground] = useState(value?.foreground ?? '');
     const [background, setBackground] = useState(value?.background !== 'transparent' ? value?.background : (comet?.globalBackground ?? 'white'));
     const triggerRef = useRef();

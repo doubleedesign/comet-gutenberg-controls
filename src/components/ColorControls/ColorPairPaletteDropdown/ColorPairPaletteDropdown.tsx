@@ -10,7 +10,7 @@ export type ColorPairPaletteDropdownProps = {
 	onChange: (value: { foreground: string; background: string }) => void;
 };
 
-export function ColorPairPaletteDropdown({ blockName, label = 'Content theme', value, onChange }) {
+export function ColorPairPaletteDropdown({ blockName, label = 'Content colours', value, onChange }) {
 	const [foreground, setForeground] = useState(value?.foreground ?? '');
 	const [background, setBackground] = useState(value?.background !== 'transparent' ? value?.background : (comet?.globalBackground ?? 'white'));
 	const triggerRef = useRef();

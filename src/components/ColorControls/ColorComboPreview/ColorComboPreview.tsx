@@ -1,7 +1,7 @@
 import { ThemeColor, ThemeGradient } from '../../../types';
 
 export type ColorComboPreviewProps = {
-	colorTheme: ThemeColor;
+	colorTheme?: ThemeColor;
 	backgroundColor: ThemeColor;
 	sectionBackground?: ThemeColor | ThemeGradient;
 };

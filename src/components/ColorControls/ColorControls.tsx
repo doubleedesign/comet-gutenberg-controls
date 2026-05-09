@@ -67,7 +67,7 @@ function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsPr
 
 	// TODO: This component needs a bunch more work in terms of handling valid combinations of background/section background,
 	//  including changing the available values when the selection changes,
-	// and certain blocks being allowed certain backgrounds and others not
+	//  and certain blocks being allowed certain backgrounds and others not
 
 	// If background colour is not supported, provide single colour theme option only
 	// Note: sectionBackground should not be available without backgroundColor being available as well, but that isn't enforced/validated anywhere
@@ -75,12 +75,32 @@ function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsPr
 		return (
 			<div className="comet-color-controls__item">
 				<ColorPaletteDropdown
-					label="Theme"
+					label="Colour theme"
 					value={values.colorTheme}
 					palette={palette}
 					onChange={handleChange}
 				/>
 			</div>
+		);
+	}
+
+	// If background colour is supported but colorTheme is not, provide single background colour option only
+	// TODO: Are there any cases where there would be backgroundColor and sectionBackground but not colorTheme?
+	if (!hasColorThemeSupport.current && hasBackgroundColorSupport.current) {
+		return (
+			<>
+				<ColorComboPreview
+					backgroundColor={attributes?.backgroundColor as ThemeColor}
+				/>
+				<div className="comet-color-controls__item">
+					<ColorPaletteDropdown
+						label="Background colour"
+						value={values.backgroundColor}
+						palette={palette}
+						onChange={(newValue) => handleChange({ backgroundColor: newValue })}
+					/>
+				</div>
+			</>
 		);
 	}
 

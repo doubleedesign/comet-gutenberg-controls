@@ -30,6 +30,33 @@ const meta: Meta<StoryArgs> = {
 };
 export default meta;
 
-export const Basic: Story = {
-	name: 'ColorControls'
+export const All: Story = {
+	name: 'All colour attributes'
+};
+
+export const ColorThemeOnly: Story = {
+	name: 'Color theme only',
+	args: {
+		colorTheme: 'primary',
+		backgroundColor: undefined,
+		sectionBackground: undefined,
+	}
+};
+
+export const SingleBackgroundOnly: Story = {
+	name: 'Single background only',
+	args: {
+		colorTheme: undefined,
+		backgroundColor: 'primary',
+		sectionBackground: undefined,
+	}
+};
+
+export const ColorThemeAndSingleBackground: Story = {
+	name: 'Color theme + single background',
+	args: {
+		colorTheme: 'primary',
+		backgroundColor: 'white',
+		sectionBackground: undefined,
+	}
 };
