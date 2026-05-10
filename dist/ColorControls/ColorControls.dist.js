@@ -47,7 +47,7 @@ function ColorControlsInner({ name, attributes, setAttributes }) {
     // Note: sectionBackground should not be available without backgroundColor being available as well, but that isn't enforced/validated anywhere
     if (!hasBackgroundColorSupport.current) {
         return (wp.element.createElement("div", { className: "comet-color-controls__item" },
-            wp.element.createElement(ColorPaletteDropdown, { label: "Colour theme", value: values.colorTheme, palette: palette, onChange: handleChange })));
+            wp.element.createElement(ColorPaletteDropdown, { label: "Colour theme", value: values.colorTheme, palette: palette, onChange: (newValue) => handleChange({ colorTheme: newValue }) })));
     }
     // If background colour is supported but colorTheme is not, provide single background colour option only
     // TODO: Are there any cases where there would be backgroundColor and sectionBackground but not colorTheme?

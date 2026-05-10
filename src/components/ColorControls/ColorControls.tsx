@@ -78,7 +78,7 @@ function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsPr
 					label="Colour theme"
 					value={values.colorTheme}
 					palette={palette}
-					onChange={handleChange}
+					onChange={(newValue) => handleChange({ colorTheme: newValue })}
 				/>
 			</div>
 		);
