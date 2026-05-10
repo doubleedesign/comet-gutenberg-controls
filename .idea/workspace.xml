@@ -6,7 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="4efc53ce-fc9f-48a4-bbf2-7a288629ae08" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/docs/05-Usage.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/src/docs/05-Usage.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/BannerControls/BannerControls.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/BannerControls/BannerControls.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorComboPreview/ColorComboPreview.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorComboPreview/ColorComboPreview.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorSwatch/ColorSwatch.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorSwatch/ColorSwatch.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/MaxPerRow/MaxPerRow.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/MaxPerRow/MaxPerRow.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/MaxPerRow/MaxPerRow.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/MaxPerRow/MaxPerRow.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LayoutControls/LayoutControls.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/LayoutControls.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LayoutControls/MaxPerRow/MaxPerRow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/MaxPerRow/MaxPerRow.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,6 +168,9 @@
       <workItem from="1777966167258" duration="1837000" />
       <workItem from="1777970147310" duration="1206000" />
       <workItem from="1777985621378" duration="2263000" />
+      <workItem from="1778331046299" duration="819000" />
+      <workItem from="1778375047640" duration="541000" />
+      <workItem from="1778387275970" duration="534000" />
     </task>
     <servers />
   </component>

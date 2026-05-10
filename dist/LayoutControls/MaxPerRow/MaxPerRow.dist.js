@@ -6,7 +6,7 @@ const { __experimentalNumberControl } = wp.components;const MaxPerRow = ({ name,
     if (!attributes?.maxPerRow) {
         return null;
     }
-    if (!attributes?.layout || attributes.layout !== 'grid') {
+    if (name !== 'comet/gallery' && (attributes?.layout !== 'grid')) {
         return null;
     }
     const NumberControl = __experimentalNumberControl;

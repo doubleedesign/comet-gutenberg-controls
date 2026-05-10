@@ -24,11 +24,12 @@ export const LayoutControls = (props: LayoutControlsProps) => {
 	}
 	const layoutAttributes = [
 		'size',
-		'groupLayout',
+		'layout',
 		'orientation',
 		'hAlign',
 		'vAlign',
-		'backgroundType'
+		'backgroundType',
+		'maxPerRow'
 	];
 	const hasLayoutAttributes = [...componentDefault, ...currentAttributes].some((attr) => layoutAttributes.includes(attr));
 	if (!hasLayoutAttributes) {

@@ -7,7 +7,7 @@ export const MaxPerRow = ({ name, attributes, setAttributes }) => {
 	if (!attributes?.maxPerRow) {
 		return null;
 	}
-	if (!attributes?.layout || attributes.layout !== 'grid') {
+	if (name !== 'comet/gallery' && (attributes?.layout !== 'grid')) {
 		return null;
 	}
 
