@@ -8,6 +8,7 @@ export interface Config {
 	globalBackground?: ThemeColor;
 	// Colour palette in the format provided by Comet Components config
 	palette?: Record<ThemeColor, string>;
+	filteredPalette?: Record<ThemeColor, string>;
 	colourPairs?: ColorPair[];
 	colourPairOverrides?: Record<string, ColorPair[]>;
 	gradients?: ThemeGradient[];

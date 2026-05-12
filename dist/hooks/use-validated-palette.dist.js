@@ -1,29 +1,29 @@
-function useValidatedPalette({ blockName }) {
-    if (!comet.palette)
-        return [];
-    let palette = Object.entries(comet?.palette)
-        ?.filter(([key, value]) => !['black', 'white'].includes(key))
-        ?.map(([key, value]) => ({ slug: key, name: key, color: value }))
-        ?? wp.data.select('core/block-editor').getSettings().colors;
-    // Most blocks shouldn't have access to the status/message type colours, only brand colours, whereas others are the opposite
-    if (['comet/callout'].includes(blockName)) {
-        palette = palette.filter(color => ['error', 'success', 'info', 'warning'].includes(color.slug));
-    }
-    else if (['comet/separator'].includes(blockName)) {
-        palette = palette.filter(color => !['error', 'success', 'info', 'warning', 'light'].includes(color.slug));
-    }
-    else if (['comet/copy', 'comet/copy-image'].includes(blockName)) {
-        palette = palette.filter(color => !['error', 'success', 'info', 'warning', 'light', 'accent'].includes(color.slug));
-    }
-    else {
-        palette = palette.filter(color => !['error', 'success', 'info', 'warning'].includes(color.slug));
-    }
-    if (!palette || palette.length === 0) {
-        // eslint-disable-next-line max-len
-        console.error('No colour palette found in component library configuration. You can use the comet_canvas_theme_colours PHP filter to add colours. Developers: See set_colours() in ThemeStyle.php in the plugin source for more implementation details.');
+function useValidatedPalette({ blockName, palette }) {
+    const paletteToUse = palette || comet?.palette;
+    if (!paletteToUse) {
+        console.error(`No palette provided or available for useValidatedPalette for block ${blockName}`);
         return null;
     }
-    return palette;
+    let result = Object.entries(paletteToUse || {})
+        ?.filter(([key, value]) => !['black', 'white'].includes(key))
+        ?.map(([key, value]) => ({ slug: key, name: key, color: value }));
+    // Most blocks shouldn't have access to the status/message type colours, only brand colours, whereas others are the opposite
+    if (['comet/callout'].includes(blockName)) {
+        result = result.filter(color => ['error', 'success', 'info', 'warning'].includes(color.slug));
+    }
+    else if (['comet/separator'].includes(blockName)) {
+        result = result.filter(color => !['error', 'success', 'info', 'warning', 'light'].includes(color.slug));
+    }
+    else if (['comet/copy', 'comet/copy-image'].includes(blockName)) {
+        result = result.filter(color => !['error', 'success', 'info', 'warning', 'light', 'accent'].includes(color.slug));
+    }
+    else {
+        result = result.filter(color => !['error', 'success', 'info', 'warning'].includes(color.slug));
+    }
+    if (!result || result.length === 0) {
+        return null;
+    }
+    return result;
 }
 
 export { useValidatedPalette };

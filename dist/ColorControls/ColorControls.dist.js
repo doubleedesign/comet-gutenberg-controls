@@ -12,9 +12,10 @@ const { useRef, useMemo, useCallback } = wp.element;const { PanelBody } = wp.com
         wp.element.createElement(ColorControlsInner, { ...props })));
 };
 function ColorControlsInner({ name, attributes, setAttributes }) {
-    const palette = useValidatedPalette({ blockName: name });
-    if (!palette) {
-        return null;
+    const singleColourPalette = useValidatedPalette({ blockName: name, palette: comet?.filteredPalette ?? comet?.palette });
+    const singleBackgroundPalette = useValidatedPalette({ blockName: name, palette: comet?.palette });
+    if (!singleColourPalette && !singleBackgroundPalette) {
+        return;
     }
     const sectionBackgrounds = comet?.sectionBackgrounds ? Object.entries(comet.sectionBackgrounds)
         .map(([key, value]) => {
@@ -40,22 +41,19 @@ function ColorControlsInner({ name, attributes, setAttributes }) {
     const handleChange = useCallback((newValues) => {
         setAttributes(newValues);
     }, [setAttributes]);
-    // TODO: This component needs a bunch more work in terms of handling valid combinations of background/section background,
-    //  including changing the available values when the selection changes,
-    //  and certain blocks being allowed certain backgrounds and others not
     // If background colour is not supported, provide single colour theme option only
     // Note: sectionBackground should not be available without backgroundColor being available as well, but that isn't enforced/validated anywhere
-    if (!hasBackgroundColorSupport.current) {
+    if (!hasBackgroundColorSupport.current && singleColourPalette) {
         return (wp.element.createElement("div", { className: "comet-color-controls__item" },
-            wp.element.createElement(ColorPaletteDropdown, { label: "Colour theme", value: values.colorTheme, palette: palette, onChange: (newValue) => handleChange({ colorTheme: newValue }) })));
+            wp.element.createElement(ColorPaletteDropdown, { label: "Colour theme", value: values.colorTheme, palette: singleColourPalette, onChange: (newValue) => handleChange({ colorTheme: newValue }) })));
     }
     // If background colour is supported but colorTheme is not, provide single background colour option only
     // TODO: Are there any cases where there would be backgroundColor and sectionBackground but not colorTheme?
-    if (!hasColorThemeSupport.current && hasBackgroundColorSupport.current) {
+    if (!hasColorThemeSupport.current && hasBackgroundColorSupport.current && singleBackgroundPalette) {
         return (wp.element.createElement(wp.element.Fragment, null,
             wp.element.createElement(ColorComboPreview, { backgroundColor: attributes?.backgroundColor }),
             wp.element.createElement("div", { className: "comet-color-controls__item" },
-                wp.element.createElement(ColorPaletteDropdown, { label: "Background colour", value: values.backgroundColor, palette: palette, onChange: (newValue) => handleChange({ backgroundColor: newValue }) }))));
+                wp.element.createElement(ColorPaletteDropdown, { label: "Background colour", value: values.backgroundColor, palette: singleBackgroundPalette, onChange: (newValue) => handleChange({ backgroundColor: newValue }) }))));
     }
     return (wp.element.createElement(wp.element.Fragment, null,
         wp.element.createElement(ColorComboPreview, { colorTheme: attributes?.colorTheme, backgroundColor: attributes?.backgroundColor, sectionBackground: attributes?.sectionBackground }),
