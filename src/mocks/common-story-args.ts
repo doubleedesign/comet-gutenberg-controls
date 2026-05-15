@@ -1,5 +1,6 @@
 import {MOCK_GRADIENTS, MOCK_PALETTE} from "./common-defaults";
 import {ArgTypes} from "storybook/internal/csf";
+import {ASPECT_RATIOS, CONTAINER_SIZES} from "../components/constants";
 
 export const COMMON_STORY_ARGS = {
 	name: 'comet/demo-block',
@@ -26,7 +27,10 @@ export const EDITOR_CONTROL_PROPS_ARGTYPES: Partial<ArgTypes> = {
             category: 'Default block props',
             type: { summary: 'function' },
         },
-    }
+    },
+	context: {
+		control: { disable: true }
+	}
 }
 
 
@@ -54,5 +58,38 @@ export const COLOR_CONTROL_ARGTYPES: Partial<ArgTypes> = {
 		table: {
 			type: { summary: 'ThemeColor | ThemeGradient' },
 		},
+	},
+}
+
+export const CONTAINER_SIZE_CONTROL_ARTYPES: Partial<ArgTypes> = {
+	size: {
+		description: 'The container size to apply to the content',
+		control: { type: 'select' },
+		options: Object.values(CONTAINER_SIZES).map(item => item.value),
+		table: {
+			type: { summary: 'string' },
+			defaultValue: { summary: 'contained' },
+		}
+	},
+}
+
+export const ALIGNMENT_CONTROL_ARTYPES: Partial<ArgTypes> = {
+	hAlign: {
+		description: 'The horizontal alignment to apply to the content if it does not fill the full width of the container',
+		control: { type: 'select' },
+		options: ['start', 'center', 'end'],
+		table: {
+			type: { summary: 'string' },
+			defaultValue: { summary: 'start' },
+		}
+	},
+	vAlign: {
+		description: 'The vertical alignment to apply to the content if it does not fill the full height of its container, if applicable',
+		control: { type: 'select' },
+		options: ['start', 'center', 'end'],
+		table: {
+			type: { summary: 'string' },
+			defaultValue: { summary: 'start' },
+		}
 	},
 }

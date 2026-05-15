@@ -4,17 +4,14 @@ export const withMockWpDataStore = (Story, context) => {
 			select: (store) => {
 				if (store === 'core/blocks') {
 					return {
-						getBlockType: () => ({
-							// This would get the attributes object from block.json
-							attributes: {}
-						}),
+						// This gets the block definition including what's in block.json
+						// TODO: Could be good to load the actual Comet Components block.jsons and test controls for some specific blocks
+						getBlockType: (blockName) => ({}),
 					}
 				}
 				if (store === 'core/block-editor') {
 					return {
-						getSettings: () => ({
-							colors: []
-						})
+						getBlockCount: (clientId: string) => context?.args?.blockCount ?? 0
 					}
 				}
 			}

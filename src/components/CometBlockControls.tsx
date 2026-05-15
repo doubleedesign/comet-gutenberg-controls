@@ -5,6 +5,7 @@ import { HtmlTag } from './HtmlTag/HtmlTag';
 import { EditorControlProps } from './types';
 import { GalleryControls } from './GalleryControls/GalleryControls';
 import { BannerControls } from './BannerControls/BannerControls';
+import { ColumnLayoutControls } from './ColumnLayoutControls/ColumnLayoutControls';
 
 export type CometBlockControlsProps = EditorControlProps & {
 	BlockEdit: ComponentType<any>;
@@ -19,6 +20,7 @@ export function CometBlockControls({ BlockEdit, ...props }: CometBlockControlsPr
 			<div className="comet-plugin-blocks-custom-controls">
 				<InspectorControls>
 					<LayoutControls {...props} />
+					<ColumnLayoutControls {...props} />
 					<ColorControls {...props} />
 					<BannerControls {...props} />
 					<GalleryControls {...props} />

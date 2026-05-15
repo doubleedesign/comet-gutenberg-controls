@@ -1,4 +1,6 @@
 export type EditorControlProps = {
+	/** The ID of the block instance, provided by the WordPress block editor */
+	clientId?: string;
 	/** The block name as per the WordPress block.json definition; no required/used by all control components */
 	name: string;
 	/** The current block attributes as provided by the WordPress block editor;

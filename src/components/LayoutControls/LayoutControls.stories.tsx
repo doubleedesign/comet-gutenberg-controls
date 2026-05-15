@@ -1,5 +1,9 @@
 import { LayoutControls, LayoutControlsProps } from './LayoutControls';
-import { EDITOR_CONTROL_PROPS_ARGTYPES } from '../../mocks/common-story-args';
+import {
+	ALIGNMENT_CONTROL_ARTYPES,
+	CONTAINER_SIZE_CONTROL_ARTYPES,
+	EDITOR_CONTROL_PROPS_ARGTYPES
+} from '../../mocks/common-story-args';
 import { withMockBlockContext } from '../../mocks/with-mock-block-context';
 import type { StoryObj, Meta } from '@storybook/react-webpack5';
 import { ComponentType } from '@wordpress/element';
@@ -26,15 +30,7 @@ const meta: Meta<StoryArgs> = {
 	},
 	argTypes: {
 		...EDITOR_CONTROL_PROPS_ARGTYPES,
-		size: {
-			description: 'The container size to apply to the content',
-			control: { type: 'select' },
-			options: Object.values(CONTAINER_SIZES).map(item => item.value),
-			table: {
-				type: { summary: 'string' },
-				defaultValue: { summary: 'contained' },
-			}
-		},
+		...CONTAINER_SIZE_CONTROL_ARTYPES,
 		aspectRatio: {
 			description: 'The aspect ratio to apply to images, where applicable',
 			control: { type: 'select' },
@@ -79,24 +75,7 @@ const meta: Meta<StoryArgs> = {
 				defaultValue: { summary: 'vertical' },
 			}
 		},
-		hAlign: {
-			description: 'The horizontal alignment to apply to the content if it does not fill the full width of the container',
-			control: { type: 'select' },
-			options: ['start', 'center', 'end'],
-			table: {
-				type: { summary: 'string' },
-				defaultValue: { summary: 'start' },
-			}
-		},
-		vAlign: {
-			description: 'The vertical alignment to apply to the content if it does not fill the full height of its container, if applicable',
-			control: { type: 'select' },
-			options: ['start', 'center', 'end'],
-			table: {
-				type: { summary: 'string' },
-				defaultValue: { summary: 'start' },
-			}
-		},
+		...ALIGNMENT_CONTROL_ARTYPES,
 		order: {
 			description: 'The order to apply to the content, if applicable; intended for blocks that have 2-column content layouts to faciliate easy swapping',
 			control: { type: 'select' },

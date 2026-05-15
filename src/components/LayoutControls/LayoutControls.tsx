@@ -16,6 +16,9 @@ import { EditorControlProps } from '../types';
 export type LayoutControlsProps = EditorControlProps;
 
 export const LayoutControls = (props: LayoutControlsProps) => {
+	// Columns has its own layout control group
+	if(props.name === 'comet/columns') return null;
+
 	// If the block does not have any layout attributes, do not render the controls
 	const componentDefault = Object.keys(comet?.defaults?.[props?.name?.replace('comet/', '')] ?? {}) ?? [];
 	const currentAttributes = Object.keys(props.attributes) ?? [];
