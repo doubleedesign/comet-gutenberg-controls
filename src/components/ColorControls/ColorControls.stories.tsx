@@ -5,7 +5,7 @@ import type { StoryObj, Meta } from '@storybook/react-webpack5';
 import { ComponentType } from '@wordpress/element';
 
 // This type allows us to treat the story "args" as the component's "attributes" prop
-type StoryArgs = Omit<ColorControlsProps, 'attributes'> & ColorControlsProps['attributes'];
+type StoryArgs = Omit<ColorControlsProps, 'attributes' | 'context'> & ColorControlsProps['attributes'];
 type Story = StoryObj<StoryArgs>;
 
 const meta: Meta<StoryArgs> = {
@@ -16,7 +16,9 @@ const meta: Meta<StoryArgs> = {
 		...COMMON_STORY_ARGS,
 		colorTheme: 'white',
 		backgroundColor: 'primary',
-		sectionBackground: 'light-dark'
+		context: {
+			isNested: false
+		}
 	},
 	argTypes: {
 		...COLOR_CONTROL_ARGTYPES,
@@ -24,14 +26,18 @@ const meta: Meta<StoryArgs> = {
 	},
 	parameters: {
 		controls: {
-			exclude: ['attributes', ...Object.keys(COLOR_CONTROL_ARGTYPES)]
+			exclude: ['attributes', 'context', ...Object.keys(COLOR_CONTROL_ARGTYPES)]
 		}
 	}
 };
 export default meta;
 
 export const All: Story = {
-	name: 'All colour attributes'
+	name: 'All colour attributes',
+	args: {
+		...meta.args,
+		sectionBackground: 'light-dark',
+	}
 };
 
 export const ColorThemeOnly: Story = {
@@ -39,7 +45,6 @@ export const ColorThemeOnly: Story = {
 	args: {
 		colorTheme: 'primary',
 		backgroundColor: undefined,
-		sectionBackground: undefined,
 	}
 };
 
@@ -48,7 +53,6 @@ export const SingleBackgroundOnly: Story = {
 	args: {
 		colorTheme: undefined,
 		backgroundColor: 'primary',
-		sectionBackground: undefined,
 	}
 };
 
@@ -57,6 +61,5 @@ export const ColorThemeAndSingleBackground: Story = {
 	args: {
 		colorTheme: 'primary',
 		backgroundColor: 'white',
-		sectionBackground: undefined,
-	}
+	},
 };

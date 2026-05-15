@@ -13,9 +13,10 @@ const { useRef, useMemo, useCallback } = wp.element;const { PanelBody } = wp.com
         wp.element.createElement(ColorControlsInner, { ...props })));
 };
 function ColorControlsInner({ name, context, attributes, setAttributes }) {
-    const palette = useValidatedPalette({ blockName: name });
-    if (!palette) {
-        return null;
+    const singleColourPalette = useValidatedPalette({ blockName: name, palette: comet?.filteredPalette ?? comet?.palette });
+    const singleBackgroundPalette = useValidatedPalette({ blockName: name, palette: comet?.palette });
+    if (!singleColourPalette && !singleBackgroundPalette) {
+        return;
     }
     const sectionBackgrounds = comet?.sectionBackgrounds ? Object.entries(comet.sectionBackgrounds)
         .map(([key, value]) => {
@@ -34,7 +35,7 @@ function ColorControlsInner({ name, context, attributes, setAttributes }) {
     // Use refs to keep track of the presence of attribute support without the fields disappearing when the colour field is cleared
     const hasColorThemeSupport = useRef(!!values.colorTheme);
     const hasBackgroundColorSupport = useRef(!!values.backgroundColor);
-    const hasSectionBackgroundSupport = useRef((!!values?.sectionBackground && sectionBackgrounds.length > 0));
+    const hasSectionBackgroundSupport = useRef(sectionBackgrounds.length > 0 && Object.keys(attributes).includes('sectionBackground'));
     if (!hasColorThemeSupport.current && !hasBackgroundColorSupport.current && !hasSectionBackgroundSupport.current) {
         return null;
     }
@@ -51,11 +52,11 @@ function ColorControlsInner({ name, context, attributes, setAttributes }) {
     // Otherwise, if background colour is not supported, provide single colour theme option only
     if (!hasBackgroundColorSupport.current) {
         return (wp.element.createElement("div", { className: "comet-color-controls__item" },
-            wp.element.createElement(ColourThemeSelector, { values: values, palette: palette, handleChange: handleChange })));
+            wp.element.createElement(ColourThemeSelector, { values: values, palette: singleBackgroundPalette, handleChange: handleChange })));
     }
     // If background colour is supported but colorTheme is not, provide single background colour option only
     if (!hasColorThemeSupport.current && hasBackgroundColorSupport.current) {
-        return (wp.element.createElement(BackgroundColourSelector, { attributes: attributes, values: values, palette: palette, handleChange: (newValue) => handleChange({ backgroundColor: newValue }) }));
+        return (wp.element.createElement(BackgroundColourSelector, { attributes: attributes, values: values, palette: singleBackgroundPalette, handleChange: (newValue) => handleChange({ backgroundColor: newValue }) }));
     }
     // If both colour theme and background colour are supported, provide the combined selector and preview,
     // along with section background if that is also supported

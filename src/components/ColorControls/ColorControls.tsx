@@ -33,9 +33,10 @@ export const ColorControls = (props: ColorControlsProps) => {
 };
 
 function ColorControlsInner({ name, context, attributes, setAttributes }: ColorControlsProps) {
-	const palette = useValidatedPalette({ blockName: name });
-	if(!palette) {
-		return null;
+	const singleColourPalette = useValidatedPalette({ blockName: name, palette: comet?.filteredPalette ?? comet?.palette });
+	const singleBackgroundPalette = useValidatedPalette({ blockName: name, palette: comet?.palette });
+	if(!singleColourPalette && !singleBackgroundPalette) {
+		return;
 	}
 
 	const sectionBackgrounds = comet?.sectionBackgrounds ? Object.entries(comet.sectionBackgrounds)
@@ -57,7 +58,7 @@ function ColorControlsInner({ name, context, attributes, setAttributes }: ColorC
 	// Use refs to keep track of the presence of attribute support without the fields disappearing when the colour field is cleared
 	const hasColorThemeSupport = useRef(!!values.colorTheme);
 	const hasBackgroundColorSupport = useRef(!!values.backgroundColor);
-	const hasSectionBackgroundSupport = useRef((!!values?.sectionBackground && sectionBackgrounds.length > 0));
+	const hasSectionBackgroundSupport = useRef(sectionBackgrounds.length > 0 && Object.keys(attributes).includes('sectionBackground'));
 	if (!hasColorThemeSupport.current && !hasBackgroundColorSupport.current && !hasSectionBackgroundSupport.current) {
 		return null;
 	}
@@ -85,7 +86,7 @@ function ColorControlsInner({ name, context, attributes, setAttributes }: ColorC
 	if (!hasBackgroundColorSupport.current) {
 		return (
 			<div className="comet-color-controls__item">
-				<ColourThemeSelector values={values} palette={palette} handleChange={handleChange} />
+				<ColourThemeSelector values={values} palette={singleBackgroundPalette} handleChange={handleChange} />
 			</div>
 		);
 	}
@@ -95,7 +96,7 @@ function ColorControlsInner({ name, context, attributes, setAttributes }: ColorC
 		return (
 			<BackgroundColourSelector
 				attributes={attributes}
-				values={values} palette={palette}
+				values={values} palette={singleBackgroundPalette}
 				handleChange={(newValue: string) => handleChange({ backgroundColor: newValue })}
 			/>
 		);
