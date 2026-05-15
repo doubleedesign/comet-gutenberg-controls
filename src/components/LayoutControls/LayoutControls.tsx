@@ -31,14 +31,24 @@ export const LayoutControls = (props: LayoutControlsProps) => {
 		'backgroundType',
 		'maxPerRow'
 	];
-	const hasLayoutAttributes = [...componentDefault, ...currentAttributes].some((attr) => layoutAttributes.includes(attr));
+	const isNested = props?.context?.isNested;
+	const hasLayoutAttributes = [...componentDefault, ...currentAttributes].filter(attr => {
+		if(isNested) {
+			return !['size'].includes(attr);
+		}
+
+		return true;
+	}).some(attr => {
+		return layoutAttributes.includes(attr);
+	});
+
 	if (!hasLayoutAttributes) {
 		return null;
 	}
 
 	return (
 		<PanelBody title="Layout" initialOpen={true}>
-			<ContainerSize {...props} />
+			{!isNested && <ContainerSize {...props} />}
 			<AspectRatio {...props} />
 			<ContentMaxWidth {...props}/>
 			<NegativeMargins {...props} />

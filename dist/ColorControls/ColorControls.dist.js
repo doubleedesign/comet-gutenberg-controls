@@ -2,6 +2,7 @@ import { ColorPaletteDropdown } from './ColorPaletteDropdown/ColorPaletteDropdow
 import { ColorPairPaletteDropdown } from './ColorPairPaletteDropdown/ColorPairPaletteDropdown.dist.js';
 import { useValidatedPalette } from '../hooks/use-validated-palette.dist.js';
 import { ColorComboPreview } from './ColorComboPreview/ColorComboPreview.dist.js';
+import { SECTION_BACKGROUND_LABEL, COLOUR_THEME_LABEL, BACKGROUND_COLOUR_LABEL } from './constants.dist.js';
 
 /* global wp */
 const { useRef, useMemo, useCallback } = wp.element;const { PanelBody } = wp.components;const ColorControls = (props) => {
@@ -11,7 +12,7 @@ const { useRef, useMemo, useCallback } = wp.element;const { PanelBody } = wp.com
     return (wp.element.createElement(PanelBody, { title: "Colours", initialOpen: true, className: `comet-color-controls comet-color-controls--${props?.name?.split('/')[1]}` },
         wp.element.createElement(ColorControlsInner, { ...props })));
 };
-function ColorControlsInner({ name, attributes, setAttributes }) {
+function ColorControlsInner({ name, context, attributes, setAttributes }) {
     const palette = useValidatedPalette({ blockName: name });
     if (!palette) {
         return null;
@@ -33,30 +34,31 @@ function ColorControlsInner({ name, attributes, setAttributes }) {
     // Use refs to keep track of the presence of attribute support without the fields disappearing when the colour field is cleared
     const hasColorThemeSupport = useRef(!!values.colorTheme);
     const hasBackgroundColorSupport = useRef(!!values.backgroundColor);
-    const hasSectionBackgroundSupport = useRef(!!values?.sectionBackground && sectionBackgrounds.length > 0);
+    const hasSectionBackgroundSupport = useRef((!!values?.sectionBackground && sectionBackgrounds.length > 0));
     if (!hasColorThemeSupport.current && !hasBackgroundColorSupport.current && !hasSectionBackgroundSupport.current) {
         return null;
     }
     const handleChange = useCallback((newValues) => {
         setAttributes(newValues);
     }, [setAttributes]);
-    // TODO: This component needs a bunch more work in terms of handling valid combinations of background/section background,
-    //  including changing the available values when the selection changes,
-    //  and certain blocks being allowed certain backgrounds and others not
-    // If background colour is not supported, provide single colour theme option only
-    // Note: sectionBackground should not be available without backgroundColor being available as well, but that isn't enforced/validated anywhere
+    // Handle only section background being supported (should only occur when the block can have inner blocks and is not nested)
+    if ((hasSectionBackgroundSupport.current && !hasColorThemeSupport.current && !hasBackgroundColorSupport.current) && !context?.isNested) {
+        return (wp.element.createElement("div", { className: "comet-color-controls__item" },
+            wp.element.createElement(SectionBackgroundSelector, { values: values, palette: sectionBackgrounds, handleChange: (newValue) => {
+                    handleChange({ sectionBackground: newValue });
+                } })));
+    }
+    // Otherwise, if background colour is not supported, provide single colour theme option only
     if (!hasBackgroundColorSupport.current) {
         return (wp.element.createElement("div", { className: "comet-color-controls__item" },
-            wp.element.createElement(ColorPaletteDropdown, { label: "Colour theme", value: values.colorTheme, palette: palette, onChange: handleChange })));
+            wp.element.createElement(ColourThemeSelector, { values: values, palette: palette, handleChange: handleChange })));
     }
     // If background colour is supported but colorTheme is not, provide single background colour option only
-    // TODO: Are there any cases where there would be backgroundColor and sectionBackground but not colorTheme?
     if (!hasColorThemeSupport.current && hasBackgroundColorSupport.current) {
-        return (wp.element.createElement(wp.element.Fragment, null,
-            wp.element.createElement(ColorComboPreview, { backgroundColor: attributes?.backgroundColor }),
-            wp.element.createElement("div", { className: "comet-color-controls__item" },
-                wp.element.createElement(ColorPaletteDropdown, { label: "Background colour", value: values.backgroundColor, palette: palette, onChange: (newValue) => handleChange({ backgroundColor: newValue }) }))));
+        return (wp.element.createElement(BackgroundColourSelector, { attributes: attributes, values: values, palette: palette, handleChange: (newValue) => handleChange({ backgroundColor: newValue }) }));
     }
+    // If both colour theme and background colour are supported, provide the combined selector and preview,
+    // along with section background if that is also supported
     return (wp.element.createElement(wp.element.Fragment, null,
         wp.element.createElement(ColorComboPreview, { colorTheme: attributes?.colorTheme, backgroundColor: attributes?.backgroundColor, sectionBackground: attributes?.sectionBackground }),
         wp.element.createElement("div", { className: "comet-color-controls__item" },
@@ -69,10 +71,22 @@ function ColorControlsInner({ name, attributes, setAttributes }) {
                         backgroundColor: newValue.background
                     });
                 } })),
-        hasSectionBackgroundSupport.current && (wp.element.createElement("div", { className: "comet-color-controls__item" },
-            wp.element.createElement(ColorPaletteDropdown, { label: "Section background", value: values.sectionBackground, palette: sectionBackgrounds, clearable: true, onChange: (newValue) => {
+        (hasSectionBackgroundSupport.current && !context?.isNested) && (wp.element.createElement("div", { className: "comet-color-controls__item" },
+            wp.element.createElement(SectionBackgroundSelector, { values: values, palette: sectionBackgrounds, handleChange: (newValue) => {
                     handleChange({ sectionBackground: newValue });
                 } })))));
+}
+function ColourThemeSelector({ values, palette, handleChange }) {
+    return (wp.element.createElement(ColorPaletteDropdown, { label: COLOUR_THEME_LABEL, value: values.colorTheme, palette: palette, onChange: handleChange }));
+}
+function BackgroundColourSelector({ attributes, values, palette, handleChange }) {
+    return (wp.element.createElement(wp.element.Fragment, null,
+        wp.element.createElement(ColorComboPreview, { backgroundColor: attributes?.backgroundColor }),
+        wp.element.createElement("div", { className: "comet-color-controls__item" },
+            wp.element.createElement(ColorPaletteDropdown, { label: BACKGROUND_COLOUR_LABEL, value: values.backgroundColor, palette: palette, onChange: handleChange }))));
+}
+function SectionBackgroundSelector({ values, palette, handleChange }) {
+    return (wp.element.createElement(ColorPaletteDropdown, { label: SECTION_BACKGROUND_LABEL, value: values.sectionBackground, palette: palette, clearable: true, onChange: handleChange }));
 }
 
 export { ColorControls };

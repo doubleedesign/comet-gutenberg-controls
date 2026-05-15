@@ -61,6 +61,7 @@ export function ColorPaletteDropdown({ label = 'Colour', value, palette, onChang
 					<Button onClick={onToggle}
 						aria-expanded={isOpen}
 						ref={triggerRef}
+						aria-label={label}
 						__next40pxDefaultSize
 					>
 						{label}

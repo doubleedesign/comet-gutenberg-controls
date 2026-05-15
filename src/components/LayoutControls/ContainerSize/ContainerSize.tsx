@@ -3,7 +3,6 @@ import { SelectControl } from '@wordpress/components';
 import { FieldTooltip } from '../../FieldTooltip/FieldTooltip';
 import { CONTAINER_SIZES } from '../../constants';
 
-// TODO: Handle supporting innerSize where appropriate (it's not really built into the Core components unless we nest a container)
 export const ContainerSize = ({ attributes, setAttributes }) => {
 	if (!attributes?.size && !attributes?.innerSize) {
 		return null;

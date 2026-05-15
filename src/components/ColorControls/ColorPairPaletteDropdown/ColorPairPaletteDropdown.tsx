@@ -2,6 +2,7 @@ import { useMemo, useRef, useState, useEffect } from '@wordpress/element';
 import { Dropdown, Button, ColorIndicator, GradientPicker } from '@wordpress/components';
 import { ColorPair } from '../../../types';
 import { ColorSwatch } from '../ColorSwatch/ColorSwatch';
+import { COLOUR_PAIR_LABEL } from '../constants';
 
 export type ColorPairPaletteDropdownProps = {
 	blockName: string;
@@ -10,7 +11,7 @@ export type ColorPairPaletteDropdownProps = {
 	onChange: (value: { foreground: string; background: string }) => void;
 };
 
-export function ColorPairPaletteDropdown({ blockName, label = 'Content colours', value, onChange }) {
+export function ColorPairPaletteDropdown({ blockName, label = COLOUR_PAIR_LABEL, value, onChange }) {
 	const [foreground, setForeground] = useState(value?.foreground ?? '');
 	const [background, setBackground] = useState(value?.background !== 'transparent' ? value?.background : (comet?.globalBackground ?? 'white'));
 	const triggerRef = useRef();
@@ -69,6 +70,7 @@ export function ColorPairPaletteDropdown({ blockName, label = 'Content colours',
 						aria-expanded={isOpen}
 						ref={triggerRef}
 						__next40pxDefaultSize
+						aria-label={label}
 					>
 						{label}
 						<ColorIndicator

@@ -1,5 +1,5 @@
 /* global wp */
-import { useRef, useMemo, useCallback } from '@wordpress/element';
+import { useRef, useMemo, useCallback, useEffect } from '@wordpress/element';
 import { EditorControlProps } from '../types';
 import { PanelBody } from '@wordpress/components';
 import { ThemeColor, ThemeGradient } from '../../types';
@@ -7,6 +7,7 @@ import { ColorPaletteDropdown } from './ColorPaletteDropdown/ColorPaletteDropdow
 import { ColorPairPaletteDropdown } from './ColorPairPaletteDropdown/ColorPairPaletteDropdown';
 import { useValidatedPalette } from '../../hooks/use-validated-palette';
 import { ColorComboPreview } from './ColorComboPreview/ColorComboPreview';
+import { BACKGROUND_COLOUR_LABEL, COLOUR_THEME_LABEL, COLOUR_PAIR_LABEL, SECTION_BACKGROUND_LABEL } from './constants';
 
 export type ColorControlsProps = EditorControlProps & {
 	attributes: {
@@ -31,7 +32,7 @@ export const ColorControls = (props: ColorControlsProps) => {
 	);
 };
 
-function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsProps) {
+function ColorControlsInner({ name, context, attributes, setAttributes }: ColorControlsProps) {
 	const palette = useValidatedPalette({ blockName: name });
 	if(!palette) {
 		return null;
@@ -56,7 +57,7 @@ function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsPr
 	// Use refs to keep track of the presence of attribute support without the fields disappearing when the colour field is cleared
 	const hasColorThemeSupport = useRef(!!values.colorTheme);
 	const hasBackgroundColorSupport = useRef(!!values.backgroundColor);
-	const hasSectionBackgroundSupport = useRef(!!values?.sectionBackground && sectionBackgrounds.length > 0);
+	const hasSectionBackgroundSupport = useRef((!!values?.sectionBackground && sectionBackgrounds.length > 0));
 	if (!hasColorThemeSupport.current && !hasBackgroundColorSupport.current && !hasSectionBackgroundSupport.current) {
 		return null;
 	}
@@ -65,45 +66,43 @@ function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsPr
 		setAttributes(newValues);
 	}, [setAttributes]);
 
-	// TODO: This component needs a bunch more work in terms of handling valid combinations of background/section background,
-	//  including changing the available values when the selection changes,
-	//  and certain blocks being allowed certain backgrounds and others not
-
-	// If background colour is not supported, provide single colour theme option only
-	// Note: sectionBackground should not be available without backgroundColor being available as well, but that isn't enforced/validated anywhere
-	if (!hasBackgroundColorSupport.current) {
+	// Handle only section background being supported (should only occur when the block can have inner blocks and is not nested)
+	if ((hasSectionBackgroundSupport.current && !hasColorThemeSupport.current && !hasBackgroundColorSupport.current) && !context?.isNested) {
 		return (
 			<div className="comet-color-controls__item">
-				<ColorPaletteDropdown
-					label="Colour theme"
-					value={values.colorTheme}
-					palette={palette}
-					onChange={handleChange}
+				<SectionBackgroundSelector
+					values={values}
+					palette={sectionBackgrounds}
+					handleChange={(newValue: string) => {
+						handleChange({ sectionBackground: newValue });
+					}}
 				/>
 			</div>
 		);
 	}
 
-	// If background colour is supported but colorTheme is not, provide single background colour option only
-	// TODO: Are there any cases where there would be backgroundColor and sectionBackground but not colorTheme?
-	if (!hasColorThemeSupport.current && hasBackgroundColorSupport.current) {
+	// Otherwise, if background colour is not supported, provide single colour theme option only
+	if (!hasBackgroundColorSupport.current) {
 		return (
-			<>
-				<ColorComboPreview
-					backgroundColor={attributes?.backgroundColor as ThemeColor}
-				/>
-				<div className="comet-color-controls__item">
-					<ColorPaletteDropdown
-						label="Background colour"
-						value={values.backgroundColor}
-						palette={palette}
-						onChange={(newValue) => handleChange({ backgroundColor: newValue })}
-					/>
-				</div>
-			</>
+			<div className="comet-color-controls__item">
+				<ColourThemeSelector values={values} palette={palette} handleChange={handleChange} />
+			</div>
 		);
 	}
 
+	// If background colour is supported but colorTheme is not, provide single background colour option only
+	if (!hasColorThemeSupport.current && hasBackgroundColorSupport.current) {
+		return (
+			<BackgroundColourSelector
+				attributes={attributes}
+				values={values} palette={palette}
+				handleChange={(newValue: string) => handleChange({ backgroundColor: newValue })}
+			/>
+		);
+	}
+
+	// If both colour theme and background colour are supported, provide the combined selector and preview,
+	// along with section background if that is also supported
 	return (
 		<>
 			<ColorComboPreview
@@ -126,19 +125,58 @@ function ColorControlsInner({ name, attributes, setAttributes }: ColorControlsPr
 					}}
 				/>
 			</div>
-			{hasSectionBackgroundSupport.current && (
+			{(hasSectionBackgroundSupport.current && !context?.isNested) && (
 				<div className="comet-color-controls__item">
-					<ColorPaletteDropdown
-						label="Section background"
-						value={values.sectionBackground}
+					<SectionBackgroundSelector
+						values={values}
 						palette={sectionBackgrounds}
-						clearable={true}
-						onChange={(newValue) => {
+						handleChange={(newValue: string) => {
 							handleChange({ sectionBackground: newValue });
 						}}
 					/>
 				</div>
 			)}
 		</>
+	);
+}
+
+function ColourThemeSelector({ values, palette, handleChange }) {
+	return (
+		<ColorPaletteDropdown
+			label={COLOUR_THEME_LABEL}
+			value={values.colorTheme}
+			palette={palette}
+			onChange={handleChange}
+		/>
+	);
+}
+
+function BackgroundColourSelector({ attributes, values, palette, handleChange }) {
+	return (
+		<>
+			<ColorComboPreview
+				backgroundColor={attributes?.backgroundColor as ThemeColor}
+			/>
+			<div className="comet-color-controls__item">
+				<ColorPaletteDropdown
+					label={BACKGROUND_COLOUR_LABEL}
+					value={values.backgroundColor}
+					palette={palette}
+					onChange={handleChange}
+				/>
+			</div>
+		</>
+	);
+}
+
+function SectionBackgroundSelector({ values, palette, handleChange }) {
+	return (
+		<ColorPaletteDropdown
+			label={SECTION_BACKGROUND_LABEL}
+			value={values.sectionBackground}
+			palette={palette}
+			clearable={true}
+			onChange={handleChange}
+		/>
 	);
 }

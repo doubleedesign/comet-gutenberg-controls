@@ -6,4 +6,10 @@ export type EditorControlProps = {
 	attributes: Record<string, any>;
 	/** The function to update block attributes that is provided by the WordPress block editor */
 	setAttributes: (attributes: Record<string, any>) => void;
+	/** Block context provided by the WordPress block editor,
+	 *  including custom values in block.json of parent blocks */
+	context?: {
+		isNested?: boolean;
+		[Key: string]: any;
+	}
 };

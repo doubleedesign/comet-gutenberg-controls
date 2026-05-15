@@ -1,6 +1,7 @@
 import { ColorSwatch } from '../ColorSwatch/ColorSwatch.dist.js';
+import { COLOUR_PAIR_LABEL } from '../constants.dist.js';
 
-const { useMemo, useRef, useState, useEffect } = wp.element;const { Dropdown, Button, ColorIndicator, GradientPicker } = wp.components;function ColorPairPaletteDropdown({ blockName, label = 'Content colours', value, onChange }) {
+const { useMemo, useRef, useState, useEffect } = wp.element;const { Dropdown, Button, ColorIndicator, GradientPicker } = wp.components;function ColorPairPaletteDropdown({ blockName, label = COLOUR_PAIR_LABEL, value, onChange }) {
     const [foreground, setForeground] = useState(value?.foreground ?? '');
     const [background, setBackground] = useState(value?.background !== 'transparent' ? value?.background : (comet?.globalBackground ?? 'white'));
     const triggerRef = useRef();
@@ -45,7 +46,7 @@ const { useMemo, useRef, useState, useEffect } = wp.element;const { Dropdown, Bu
         }
     };
     return (wp.element.createElement("div", { "data-testid": "comet-color-pair-selector" },
-        wp.element.createElement(Dropdown, { renderToggle: ({ onToggle, isOpen }) => (wp.element.createElement(Button, { onClick: onToggle, "aria-expanded": isOpen, ref: triggerRef, __next40pxDefaultSize: true },
+        wp.element.createElement(Dropdown, { renderToggle: ({ onToggle, isOpen }) => (wp.element.createElement(Button, { onClick: onToggle, "aria-expanded": isOpen, ref: triggerRef, __next40pxDefaultSize: true, "aria-label": label },
                 label,
                 wp.element.createElement(ColorIndicator, { colorValue: gradientPreview, "data-testid": "comet-color-pair-indicator", "aria-label": `Selected colours: ${foreground} on ${background}` }))), renderContent: ({ isOpen, onToggle }) => (wp.element.createElement("div", { className: "comet-color-selector-content" },
                 wp.element.createElement(ColorSwatch, { colorTheme: foreground, backgroundColor: background }),

@@ -27,12 +27,20 @@ const { PanelBody } = wp.components;const LayoutControls = (props) => {
         'backgroundType',
         'maxPerRow'
     ];
-    const hasLayoutAttributes = [...componentDefault, ...currentAttributes].some((attr) => layoutAttributes.includes(attr));
+    const isNested = props?.context?.isNested;
+    const hasLayoutAttributes = [...componentDefault, ...currentAttributes].filter(attr => {
+        if (isNested) {
+            return !['size'].includes(attr);
+        }
+        return true;
+    }).some(attr => {
+        return layoutAttributes.includes(attr);
+    });
     if (!hasLayoutAttributes) {
         return null;
     }
     return (wp.element.createElement(PanelBody, { title: "Layout", initialOpen: true },
-        wp.element.createElement(ContainerSize, { ...props }),
+        !isNested && wp.element.createElement(ContainerSize, { ...props }),
         wp.element.createElement(AspectRatio, { ...props }),
         wp.element.createElement(ContentMaxWidth, { ...props }),
         wp.element.createElement(NegativeMargins, { ...props }),

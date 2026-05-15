@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { ColorControls } from './ColorControls';
 import { ThemeColor, ThemeGradient } from '../../types';
 import { mockCometConfig } from '../../mocks/mock-comet-config';
+import { BACKGROUND_COLOUR_LABEL, COLOUR_PAIR_LABEL, COLOUR_THEME_LABEL, SECTION_BACKGROUND_LABEL } from './constants';
 
 const mockSetAttributes = vi.fn();
 const defaultProps = {
@@ -40,10 +41,9 @@ describe('ColorControls', () => {
 			}}
 		/>);
 
-		expect(screen.getByRole('button', { name: /Theme/i })).toBeVisible();
-		expect(screen.getByTestId('comet-single-color-selector')).toBeVisible();
-		expect(screen.queryByTestId('comet-color-pair-selector')).not.toBeInTheDocument();
-		expect(screen.queryByTestId('comet-section-background-selector')).not.toBeInTheDocument();
+		expect(screen.getByRole('button', { name: COLOUR_THEME_LABEL })).toBeVisible();
+		expect(screen.queryByRole('button', { name: BACKGROUND_COLOUR_LABEL })).not.toBeInTheDocument();
+		expect(screen.queryByRole('button', { name: SECTION_BACKGROUND_LABEL })).not.toBeInTheDocument();
 	});
 
 	it('should render the single background colour selector if there is no colorTheme attribute set', () => {
@@ -56,10 +56,8 @@ describe('ColorControls', () => {
 			}}
 		/>);
 
-		expect(screen.getByRole('button', { name: /Background colour/i })).toBeVisible();
-		expect(screen.getByTestId('comet-single-color-selector')).toBeVisible();
-		expect(screen.queryByTestId('comet-color-pair-selector')).not.toBeInTheDocument();
-		expect(screen.queryByTestId('comet-section-background-selector')).not.toBeInTheDocument();
+		expect(screen.getByRole('button', { name: BACKGROUND_COLOUR_LABEL })).toBeVisible();
+		expect(screen.queryByRole('button', { name: COLOUR_THEME_LABEL })).not.toBeInTheDocument();
 	});
 
 	it('should render the colour pair selector if there is both colourTheme and background attribute set', () => {
@@ -72,9 +70,55 @@ describe('ColorControls', () => {
 			}}
 		/>);
 
-		expect(screen.getByRole('button', { name: /Content colours/i })).toBeVisible();
-		expect(screen.getByTestId('comet-color-pair-selector')).toBeVisible();
-		expect(screen.queryByTestId('comet-single-color-selector')).not.toBeInTheDocument();
-		expect(screen.queryByTestId('comet-section-background-selector')).not.toBeInTheDocument();
+		expect(screen.getByRole('button', { name: COLOUR_PAIR_LABEL })).toBeVisible();
+		expect(screen.queryByRole('button', { name: COLOUR_THEME_LABEL })).not.toBeInTheDocument();
+		expect(screen.queryByRole('button', { name: BACKGROUND_COLOUR_LABEL })).not.toBeInTheDocument();
+	});
+
+	it('should render the section background selector if the attribute is supported and colorTheme and backgroundColor are not', () => {
+		render(<ColorControls
+			{...defaultProps}
+			attributes={{
+				colorTheme: undefined,
+				backgroundColor: undefined,
+				sectionBackground: 'light-dark'
+			}}
+		/>);
+
+		expect(screen.getByRole('button', { name: SECTION_BACKGROUND_LABEL })).toBeVisible();
+		expect(screen.queryByRole('button', { name: COLOUR_THEME_LABEL })).not.toBeInTheDocument();
+		expect(screen.queryByRole('button', { name: BACKGROUND_COLOUR_LABEL })).not.toBeInTheDocument();
+	});
+
+	it('should not render the section background selector if the block is nested', () => {
+		render(<ColorControls
+			{...defaultProps}
+			attributes={{
+				colorTheme: 'primary',
+				backgroundColor: 'white',
+				sectionBackground: 'light-dark'
+			}}
+			context={{ isNested: true }}
+		/>);
+
+		expect(screen.queryByRole('button', { name: SECTION_BACKGROUND_LABEL })).not.toBeInTheDocument();
+	});
+
+	it('should render the colour pair and section background selectors if all three attributes are supported and the block is not nested', () => {
+		render(<ColorControls
+			{...defaultProps}
+			attributes={{
+				colorTheme: 'primary',
+				backgroundColor: 'white',
+				sectionBackground: 'light-dark'
+			}}
+			context={{ isNested: false }}
+		/>);
+
+		expect(screen.getByRole('button', { name: COLOUR_PAIR_LABEL })).toBeVisible();
+		expect(screen.getByRole('button', { name: SECTION_BACKGROUND_LABEL })).toBeVisible();
+
+		expect(screen.queryByRole('button', { name: COLOUR_THEME_LABEL })).not.toBeInTheDocument();
+		expect(screen.queryByRole('button', { name: BACKGROUND_COLOUR_LABEL })).not.toBeInTheDocument();
 	});
 });

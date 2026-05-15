@@ -36,7 +36,7 @@ const { Dropdown, Button, ColorIndicator, ColorPalette, GradientPicker } = wp.co
         }));
     }, [palette]);
     return (wp.element.createElement("div", { "data-testid": "comet-single-color-selector" },
-        wp.element.createElement(Dropdown, { renderToggle: ({ onToggle, isOpen }) => (wp.element.createElement(Button, { onClick: onToggle, "aria-expanded": isOpen, ref: triggerRef, __next40pxDefaultSize: true },
+        wp.element.createElement(Dropdown, { renderToggle: ({ onToggle, isOpen }) => (wp.element.createElement(Button, { onClick: onToggle, "aria-expanded": isOpen, ref: triggerRef, "aria-label": label, __next40pxDefaultSize: true },
                 label,
                 value && value.includes('-') ?
                     (wp.element.createElement(ColorIndicator, { colorValue: `var(--gradient-${value})`, "data-testid": "comet-color-indicator", "aria-label": `Selected colours: ${value.replace('-', ' and ')}` })) : (wp.element.createElement(ColorIndicator, { colorValue: value ? `var(--color-${value})` : undefined, "data-testid": "comet-color-indicator", "aria-label": value ? `Selected colour: ${value}` : 'No colour selected' })))), renderContent: ({ onToggle, ...props }) => (wp.element.createElement("div", { className: "comet-color-selector-content" },
