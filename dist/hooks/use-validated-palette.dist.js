@@ -11,7 +11,22 @@ function useValidatedPalette({ blockName, palette, isNested = false }) {
         }
         return !['black', 'white'].includes(key);
     })
-        ?.map(([key, value]) => ({ slug: key, name: key, color: value }));
+        ?.map(([key, value]) => ({ slug: key, name: key, color: value }))
+        ?.sort((a, b) => {
+        const order = ['white', 'dark', 'light', 'primary', 'secondary', 'accent'];
+        const aIndex = order.indexOf(a.slug);
+        const bIndex = order.indexOf(b.slug);
+        if (aIndex === -1 && bIndex === -1) {
+            return 0;
+        }
+        if (aIndex === -1) {
+            return 1;
+        }
+        if (bIndex === -1) {
+            return -1;
+        }
+        return aIndex - bIndex;
+    });
     // Most blocks shouldn't have access to the status/message type colours, only brand colours, whereas others are the opposite
     if (['comet/callout'].includes(blockName)) {
         result = result.filter(color => ['error', 'success', 'info', 'warning'].includes(color.slug));

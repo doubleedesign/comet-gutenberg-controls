@@ -6,30 +6,26 @@ import { BACKGROUND_COLOUR_LABEL, COLOUR_PAIR_LABEL, COLOUR_THEME_LABEL, SECTION
 const mockSetAttributes = vi.fn();
 const defaultProps = {
 	name: 'comet/demo-block',
-	attributes: {
-		colorTheme: 'white' as ThemeColor,
-		backgroundColor: 'primary' as ThemeColor,
-		sectionBackground: 'light-dark' as ThemeGradient
-	},
 	setAttributes: mockSetAttributes
 };
 
 describe('ColorControls', () => {
 
-	it('should render the control group', () => {
-		render(<ColorControls {...defaultProps} />);
+	it('renders the control group', () => {
+		render(<ColorControls {...defaultProps}
+			attributes={{
+				colorTheme: 'white' as ThemeColor,
+				backgroundColor: 'primary' as ThemeColor,
+				sectionBackground: 'light-dark' as ThemeGradient
+			}} />);
 
 		expect(screen.getByRole('heading', { name: /Colours/i })).toBeVisible();
 	});
 
-	it('should render the single colour theme selector if there is no background or sectionBackground attribute set', () => {
+	it('renders the single colour theme selector if there is no background or sectionBackground attribute set', () => {
 		render(<ColorControls
 			{...defaultProps}
-			attributes={{
-				colorTheme: 'primary',
-				background: undefined,
-				sectionBackground: undefined
-			}}
+			attributes={{ colorTheme: 'primary', }}
 		/>);
 
 		expect(screen.getByRole('button', { name: COLOUR_THEME_LABEL })).toBeVisible();
@@ -37,27 +33,22 @@ describe('ColorControls', () => {
 		expect(screen.queryByRole('button', { name: SECTION_BACKGROUND_LABEL })).not.toBeInTheDocument();
 	});
 
-	it('should render the single background colour selector if there is no colorTheme attribute set', () => {
+	it('renders the single background colour selector if there is no colorTheme attribute set', () => {
 		render(<ColorControls
 			{...defaultProps}
-			attributes={{
-				colorTheme: undefined,
-				backgroundColor: 'primary',
-				sectionBackground: undefined
-			}}
+			attributes={{ backgroundColor: 'primary', }}
 		/>);
 
 		expect(screen.getByRole('button', { name: BACKGROUND_COLOUR_LABEL })).toBeVisible();
 		expect(screen.queryByRole('button', { name: COLOUR_THEME_LABEL })).not.toBeInTheDocument();
 	});
 
-	it('should render the colour pair selector if there is both colourTheme and background attribute set', () => {
+	it('renders the colour pair selector if there is both colourTheme and background attribute set', () => {
 		render(<ColorControls
 			{...defaultProps}
 			attributes={{
 				colorTheme: 'primary',
 				backgroundColor: 'white',
-				sectionBackground: undefined
 			}}
 		/>);
 
@@ -66,14 +57,10 @@ describe('ColorControls', () => {
 		expect(screen.queryByRole('button', { name: BACKGROUND_COLOUR_LABEL })).not.toBeInTheDocument();
 	});
 
-	it('should render the section background selector if the attribute is supported and colorTheme and backgroundColor are not', () => {
+	it('renders the section background selector if the attribute is supported and colorTheme and backgroundColor are not', () => {
 		render(<ColorControls
 			{...defaultProps}
-			attributes={{
-				colorTheme: undefined,
-				backgroundColor: undefined,
-				sectionBackground: 'light-dark'
-			}}
+			attributes={{ sectionBackground: 'light-dark' }}
 		/>);
 
 		expect(screen.getByRole('button', { name: SECTION_BACKGROUND_LABEL })).toBeVisible();
@@ -95,7 +82,7 @@ describe('ColorControls', () => {
 		expect(screen.queryByRole('button', { name: SECTION_BACKGROUND_LABEL })).not.toBeInTheDocument();
 	});
 
-	it('should render the colour pair and section background selectors if all three attributes are supported and the block is not nested', () => {
+	it('renders the colour pair and section background selectors if all three attributes are supported and the block is not nested', () => {
 		render(<ColorControls
 			{...defaultProps}
 			attributes={{

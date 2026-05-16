@@ -15,7 +15,7 @@ export function ColorComboPreview({ colorTheme, backgroundColor, sectionBackgrou
 			role="presentation"
 		>
 			<div className="comet-color-combo-preview__content" data-background={sectionBackground ? backgroundColor : undefined} data-color-theme={colorTheme}>
-				<p>The quick brown fox jumps over the lazy dog</p>
+				<p style={{ color: `var(--color-${colorTheme})` }}>The quick brown fox jumps over the lazy dog</p>
 			</div>
 		</div>
 	);
