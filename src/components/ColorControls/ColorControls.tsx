@@ -34,7 +34,7 @@ export const ColorControls = (props: ColorControlsProps) => {
 
 function ColorControlsInner({ name, context, attributes, setAttributes }: ColorControlsProps) {
 	const singleColourPalette = useValidatedPalette({ blockName: name, palette: comet?.filteredPalette ?? comet?.palette });
-	const singleBackgroundPalette = useValidatedPalette({ blockName: name, palette: comet?.palette });
+	const singleBackgroundPalette = useValidatedPalette({ blockName: name, isNested: context?.isNested, palette: comet?.palette });
 	if(!singleColourPalette && !singleBackgroundPalette) {
 		return;
 	}
@@ -57,7 +57,7 @@ function ColorControlsInner({ name, context, attributes, setAttributes }: ColorC
 
 	// Use refs to keep track of the presence of attribute support without the fields disappearing when the colour field is cleared
 	const hasColorThemeSupport = useRef(!!values.colorTheme);
-	const hasBackgroundColorSupport = useRef(!!values.backgroundColor);
+	const hasBackgroundColorSupport = useRef(Object.keys(attributes).includes('backgroundColor'));
 	const hasSectionBackgroundSupport = useRef(sectionBackgrounds.length > 0 && Object.keys(attributes).includes('sectionBackground'));
 	if (!hasColorThemeSupport.current && !hasBackgroundColorSupport.current && !hasSectionBackgroundSupport.current) {
 		return null;
@@ -96,8 +96,10 @@ function ColorControlsInner({ name, context, attributes, setAttributes }: ColorC
 		return (
 			<BackgroundColourSelector
 				attributes={attributes}
-				values={values} palette={singleBackgroundPalette}
+				values={values}
+				palette={singleBackgroundPalette}
 				handleChange={(newValue: string) => handleChange({ backgroundColor: newValue })}
+				clearable={['comet/group'].includes(name)}
 			/>
 		);
 	}
@@ -152,7 +154,7 @@ function ColourThemeSelector({ values, palette, handleChange }) {
 	);
 }
 
-function BackgroundColourSelector({ attributes, values, palette, handleChange }) {
+function BackgroundColourSelector({ attributes, values, palette, handleChange, clearable = false }) {
 	return (
 		<>
 			<ColorComboPreview
@@ -161,9 +163,10 @@ function BackgroundColourSelector({ attributes, values, palette, handleChange })
 			<div className="comet-color-controls__item">
 				<ColorPaletteDropdown
 					label={BACKGROUND_COLOUR_LABEL}
-					value={values.backgroundColor}
+					value={values.backgroundColor !== 'none' ? values.backgroundColor : undefined}
 					palette={palette}
 					onChange={handleChange}
+					clearable={clearable}
 				/>
 			</div>
 		</>
@@ -174,7 +177,7 @@ function SectionBackgroundSelector({ values, palette, handleChange }) {
 	return (
 		<ColorPaletteDropdown
 			label={SECTION_BACKGROUND_LABEL}
-			value={values.sectionBackground}
+			value={values.sectionBackground !== 'none' ? values.sectionBackground : undefined}
 			palette={palette}
 			clearable={true}
 			onChange={handleChange}

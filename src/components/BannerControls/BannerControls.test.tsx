@@ -1,6 +1,4 @@
-import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/vitest';
 import { BannerControls } from './BannerControls'; 
 
 const mockSetAttributes = vi.fn();
@@ -14,8 +12,6 @@ describe('BannerControls', () => {
 	test('should mount', () => {
 		render(<BannerControls {...defaultProps} />);
 
-		const BannerControls = screen.getByRole('label', { name: /BannerControls/i });
-
-		expect(BannerControls).toBeVisible();
+		expect(screen.getByRole('label', { name: /BannerControls/i })).toBeVisible();
 	});
 });

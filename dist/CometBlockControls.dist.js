@@ -13,7 +13,7 @@ function CometBlockControls({ BlockEdit, ...props }) {
         wp.element.createElement("div", { className: "comet-plugin-blocks-custom-controls" },
             wp.element.createElement(InspectorControls, null,
                 wp.element.createElement(LayoutControls, { ...props }),
-                wp.element.createElement(ColumnLayoutControls, { ...props }),
+                wp.element.createElement(ColumnLayoutControls, { ...props, attributes: { ...props.attributes, qty: props?.attributes?.qty ?? 2 } }),
                 wp.element.createElement(ColorControls, { ...props }),
                 wp.element.createElement(BannerControls, { ...props }),
                 wp.element.createElement(GalleryControls, { ...props })),

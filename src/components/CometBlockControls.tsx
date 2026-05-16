@@ -20,7 +20,7 @@ export function CometBlockControls({ BlockEdit, ...props }: CometBlockControlsPr
 			<div className="comet-plugin-blocks-custom-controls">
 				<InspectorControls>
 					<LayoutControls {...props} />
-					<ColumnLayoutControls {...props} />
+					<ColumnLayoutControls {...props} attributes={{ ...props.attributes, qty: props?.attributes?.qty ?? 2 }} />
 					<ColorControls {...props} />
 					<BannerControls {...props} />
 					<GalleryControls {...props} />
