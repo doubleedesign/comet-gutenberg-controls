@@ -2,7 +2,6 @@ import { FieldTooltip } from '../../FieldTooltip/FieldTooltip.dist.js';
 
 /* global wp */
 const { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption } = wp.components;const HorizontalAlignment = ({ attributes, setAttributes }) => {
-    // TODO: Use component defaults from comet JS object (which are set using the PHP global Config object). They should take precedence over block.json
     if (!attributes?.hAlign) {
         return null;
     }
@@ -15,7 +14,7 @@ const { __experimentalToggleGroupControl, __experimentalToggleGroupControlOption
         // @ts-expect-error TS2322: Type Element is not assignable to type string
         label: wp.element.createElement(wp.element.Fragment, null,
             "Horizontal Alignment",
-            wp.element.createElement(FieldTooltip, { tooltip: 'How to align the content if it does not take up the full width of the container' })), onChange: (value) => setAttributes({ hAlign: value }), value: attributes.hAlign },
+            wp.element.createElement(FieldTooltip, { tooltip: 'How to align the content if it does not take up the full width of the container' })), "aria-label": "Horizontal alignment", onChange: (value) => setAttributes({ hAlign: value }), value: attributes.hAlign },
         wp.element.createElement(ToggleGroupControlOption
         // @ts-expect-error TS2322: Type Element is not assignable to type string
         , { 

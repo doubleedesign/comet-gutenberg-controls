@@ -13,23 +13,21 @@ import { CONTAINER_SIZES } from '../constants';
 type StoryArgs = Omit<ColumnLayoutControlsProps, 'attributes'> & ColumnLayoutControlsProps['attributes'];
 type Story = StoryObj<StoryArgs>;
 
-const meta: Meta<StoryArgs> = {
+const meta: Meta<StoryArgs & { blockCount: number }> = {
 	title: 'Block-Specific Control Groups/ColumnLayoutControls',
+	// @ts-expect-error TS2322: Type ComponentType<StoryArgs> is not assignable to type
 	component: ColumnLayoutControls as ComponentType<StoryArgs>,
 	decorators: [withMockBlockContext],
 	args: {
+		blockCount: 2,
 		...COMMON_STORY_ARGS,
 		name: 'comet/columns',
 		size: 'contained',
 		hAlign: 'center',
 		vAlign: 'start',
 		columnLayout: 'even',
-		blockCount: 2
 	},
 	argTypes: {
-		...EDITOR_CONTROL_PROPS_ARGTYPES,
-		...CONTAINER_SIZE_CONTROL_ARTYPES,
-		...ALIGNMENT_CONTROL_ARTYPES,
 		blockCount: {
 			name: 'Block count',
 			description: 'Mock block editor data of how many innerBlocks the block currently has',
@@ -46,8 +44,14 @@ const meta: Meta<StoryArgs> = {
 			}
 		},
 		clientId: {
-			control: { disable: true }
-		}
+			control: { disable: true },
+			table: {
+				category: 'Block editor context',
+			}
+		},
+		...EDITOR_CONTROL_PROPS_ARGTYPES,
+		...CONTAINER_SIZE_CONTROL_ARTYPES,
+		...ALIGNMENT_CONTROL_ARTYPES,
 	},
 	parameters: {
 		controls: {
