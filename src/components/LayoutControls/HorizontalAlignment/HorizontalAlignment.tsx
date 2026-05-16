@@ -28,6 +28,7 @@ export const HorizontalAlignment = ({ attributes, setAttributes }) => {
 					/>
 				</>
 			}
+			aria-label="Horizontal alignment"
 			onChange={(value) => setAttributes({ hAlign: value })}
 			value={attributes.hAlign}
 		>
