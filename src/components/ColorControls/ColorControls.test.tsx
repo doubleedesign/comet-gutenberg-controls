@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { ColorControls } from './ColorControls';
 import { ThemeColor, ThemeGradient } from '../../types';
-import { mockCometConfig } from '../../mocks/mock-comet-config';
 import { BACKGROUND_COLOUR_LABEL, COLOUR_PAIR_LABEL, COLOUR_THEME_LABEL, SECTION_BACKGROUND_LABEL } from './constants';
 
 const mockSetAttributes = vi.fn();
@@ -16,14 +15,6 @@ const defaultProps = {
 };
 
 describe('ColorControls', () => {
-	beforeEach(() => {
-		mockCometConfig();
-	});
-
-	afterEach(() => {
-		// @ts-expect-error TS2551: Property comet does not exist on type Window & typeof globalThis.
-		delete window.comet;
-	});
 
 	it('should render the control group', () => {
 		render(<ColorControls {...defaultProps} />);

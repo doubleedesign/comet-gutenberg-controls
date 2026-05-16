@@ -58,7 +58,7 @@
 		"@wordpress/server-side-render": "^6.13.0",
 		"eslint": "^9.39.4",
 		"glob": "^13.0.6",
-		"jsdom": "^29.1.0",
+		"happy-dom": "^20.9.0",
 		"prismjs": "^1.30.0",
 		"react": "^18.3.1",
 		"react-syntax-highlighter": "^16.1.1",

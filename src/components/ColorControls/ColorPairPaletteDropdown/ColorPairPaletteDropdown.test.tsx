@@ -14,16 +14,7 @@ const defaultProps = {
 };
 
 describe('ColorPairPaletteDropdown', () => {
-	beforeEach(() => {
-		mockCometConfig();
-		mockMatchMedia();
-	});
 
-	afterEach(() => {
-		// @ts-expect-error TS2551: Property comet does not exist on type Window & typeof globalThis.
-		delete window.comet;
-	});
-	
 	it('renders', () => {
 		render(<ColorPairPaletteDropdown {...defaultProps} />);
 
