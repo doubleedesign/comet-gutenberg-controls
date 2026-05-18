@@ -11,7 +11,7 @@ export const ASPECT_RATIOS = [
 ];
 
 export const CONTAINER_SIZES = [
-	{ label: 'Full-width', value: 'full' },
+	{ label: 'Full-width', value: 'fullwidth' },
 	{ label: 'Wide', value: 'wide' },
 	{ label: 'Contained', value: 'contained' },
 	{ label: 'Narrow', value: 'narrow' },

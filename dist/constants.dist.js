@@ -10,7 +10,7 @@ const ASPECT_RATIOS = [
     { name: 'CINEMASCOPE', value: '2.35:1' },
 ];
 const CONTAINER_SIZES = [
-    { label: 'Full-width', value: 'full' },
+    { label: 'Full-width', value: 'fullwidth' },
     { label: 'Wide', value: 'wide' },
     { label: 'Contained', value: 'contained' },
     { label: 'Narrow', value: 'narrow' },
