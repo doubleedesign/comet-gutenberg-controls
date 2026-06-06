@@ -1,67 +1,93 @@
-import { useMemo, useRef, useState, useEffect } from '@wordpress/element';
-import { Dropdown, Button, ColorIndicator, GradientPicker } from '@wordpress/components';
-import { ColorPair } from '../../../types';
+import { useMemo, useRef, useState, useEffect, useCallback } from '@wordpress/element';
+import { Dropdown, Button, ColorIndicator } from '@wordpress/components';
+import { ColorPair, ThemeColor, ColourPalette } from '../../../types';
 import { ColorSwatch } from '../ColorSwatch/ColorSwatch';
-import { COLOUR_PAIR_LABEL } from '../constants';
+import { ColourTypeLabel } from '../constants';
+import { useColourContext } from '../../../controllers/ColourContextProvider';
+import { ColorPalettePicker } from '../ColorPalettePicker/ColorPalettePicker';
+import { transformColorPairsToPalette } from '../../../utils';
 
-export type ColorPairPaletteDropdownProps = {
-	blockName: string;
+type ColorPairPaletteCommonProps = {
 	label?: string;
-	value: ColorPair;
-	onChange: (value: { foreground: string; background: string }) => void;
 };
 
-export function ColorPairPaletteDropdown({ blockName, label = COLOUR_PAIR_LABEL, value, onChange }) {
-	const [foreground, setForeground] = useState(value?.foreground ?? '');
-	const [background, setBackground] = useState(value?.background !== 'transparent' ? value?.background : (comet?.globalBackground ?? 'white'));
+export type ContextualColorPairDropdownProps = ColorPairPaletteCommonProps & {
+	blockName: string;
+};
+
+export type ColorPairPaletteDropdownProps = ColorPairPaletteCommonProps & {
+	value: ColorPair;
+	palette: ColourPalette;
+	onChange: (newValue: ColorPair) => void;
+};
+
+export function ContextualColorPairDropdown({ blockName, ...props }: ContextualColorPairDropdownProps) {
+	const { values, onChange } = useColourContext();
+
+	const pairs = comet?.colourPairOverrides?.[blockName] ?? comet?.colourPairs ?? [];
+	const palette = transformColorPairsToPalette(pairs);
+
+	// Neither the foreground/colorTheme nor backgroundColor should be undefined,
+	// unlike other ColorState controls, hence sticking with the ColorPair type here.
+	const mappedValues = useMemo(() => ({
+		foreground: values.colorTheme,
+		background: values?.backgroundColor,
+	} as ColorPair), [values.colorTheme, values.backgroundColor]);
+
+	const handleChange = useCallback((newValues: ColorPair) => {
+		onChange({
+			colorTheme: newValues.foreground,
+			backgroundColor: newValues.background,
+		});
+	}, []);
+
+	return <ColorPairPaletteDropdown {...props} value={mappedValues} palette={palette} onChange={handleChange} />;
+}
+
+export function ColorPairPaletteDropdown({ label = ColourTypeLabel.PAIR, value, palette, onChange }: ColorPairPaletteDropdownProps) {
+	const [foreground, setForeground] = useState<ThemeColor>(value?.foreground ?? '');
+	const [background, setBackground] = useState<ThemeColor>(value?.background ?? (comet?.globalBackground ?? 'white'));
 	const triggerRef = useRef();
 	const popoverAnchorRef = useRef<HTMLDivElement>(null);
-	const pairs = comet?.colourPairOverrides?.[blockName] ?? comet?.colourPairs ?? [];
 
-	const palette = pairs.map((pair: ColorPair) => ({
-		name: `${pair.foreground} on ${pair.background}`,
-		slug: `${pair.foreground}-${pair.background}`,
-		// eslint-disable-next-line max-len
-		gradient: `linear-gradient(135deg, var(--color-${pair.foreground}) 0%, var(--color-${pair.foreground}) 50%, var(--color-${pair.background}) 50%, var(--color-${pair.background}) 100%)`,
-	}));
+	const doChange = useCallback((newForeground: ThemeColor, newBackground: ThemeColor) => {
+		setForeground(newForeground);
+		setBackground(newBackground);
+		onChange({
+			foreground: newForeground,
+			background: newBackground,
+		});
+	}, [onChange]);
 
 	useEffect(() => {
 		if(!palette) return;
+		if(Object.values(value).every(val => val === undefined)) return;
 
-		function validatePair(value) {
-			return palette.find((pair) => pair.slug === `${value.foreground}-${value.background}`) !== undefined;
+		function validatePair(value: ColorPair) {
+			return palette.find((pair) => pair.slug === `${value.foreground}-${value.background}`);
 		}
 
-		if(!validatePair(value)) {
+		if(!validatePair(value) && palette.length > 0) {
 			// If the current value is not valid, default to the first palette option
-			setForeground(palette[0]?.slug.split('-')[0] ?? '');
-			setBackground(palette[0]?.slug.split('-')[1] ?? '');
-			onChange({
-				foreground: palette[0]?.slug.split('-')[0] ?? '',
-				background: palette[0]?.slug.split('-')[1] ?? '',
-			});
+			const defaultForeground = palette[0].slug.split('-')[0] as ThemeColor;
+			const defaultBackground = palette[0].slug.split('-')[1] as ThemeColor;
+			doChange(defaultForeground, defaultBackground);
 		}
 	}, [value, palette]);
 
-	const gradientPreview = useMemo(() => {
+	const handleChange = (newValue: string) => {
+		// New value is the gradient string; find the matching palette object
+		const matchedPair = palette.find((pair) => pair.gradient === newValue);
+		if (matchedPair) {
+			const [newForeground, newBackground] = matchedPair.slug.split('-') as ThemeColor[];
+			doChange(newForeground, newBackground);
+		}
+	};
+
+	const previewIndicator = useMemo(() => {
 		// eslint-disable-next-line max-len
 		return `linear-gradient(135deg, var(--color-${foreground}) 0%, var(--color-${foreground}) 50%, var(--color-${background}) 50%, var(--color-${background}) 100%)`;
 	}, [foreground, background]);
-
-	const handleChange = (newValue) => {
-		// New value is the gradient string; find the matching palette object
-		const matchedPair = palette.find((pair) => pair.gradient === newValue);
-
-		if (matchedPair) {
-			const [newForeground, newBackground] = matchedPair.slug.split('-');
-			setForeground(newForeground);
-			setBackground(newBackground);
-			onChange({
-				foreground: newForeground,
-				background: newBackground,
-			});
-		}
-	};
 
 	return (
 		<div ref={popoverAnchorRef} className="comet-color-controls__item"  data-testid="comet-color-pair-selector">
@@ -75,28 +101,21 @@ export function ColorPairPaletteDropdown({ blockName, label = COLOUR_PAIR_LABEL,
 					>
 						{label}
 						<ColorIndicator
-							colorValue={gradientPreview}
+							colorValue={previewIndicator}
 							data-testid="comet-color-pair-indicator"
 							aria-label={`Selected colours: ${foreground} on ${background}`}
 						/>
 					</Button>
 				)}
-				renderContent={({ isOpen, onToggle }) => (
-					<div className="comet-color-selector-content">
-						<ColorSwatch colorTheme={foreground} backgroundColor={background} />
-						<div className="comet-color-selector-content__pickers">
-							<GradientPicker
-								value={gradientPreview}
-								gradients={palette}
-								disableCustomGradients={true}
-								className={`comet-color-controls comet-color-controls--${blockName}`}
-								onChange={(value) => {
-									handleChange(value);
-									onToggle(); // close dropdown after selection
-								}}
-							/>
-						</div>
-					</div>
+				renderContent={({ onToggle }) => (
+					<ColorPalettePicker
+						value={`${foreground}-${background}`}
+						gradients={palette}
+						onChange={(newValue: string) => {
+							handleChange(newValue);
+							onToggle(); // close dropdown after selection
+						}}
+					/>
 				)}
 				popoverProps={{ inline: true, anchorRef: popoverAnchorRef }}
 			/>

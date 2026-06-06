@@ -1,43 +1,43 @@
-import { ColorPairPaletteDropdown, ColorPairPaletteDropdownProps } from './ColorPairPaletteDropdown';
+import { ComponentType, useState } from '@wordpress/element';
+import { ColorPairPaletteDropdown, type ColorPairPaletteDropdownProps } from './ColorPairPaletteDropdown';
 import type { StoryObj, Meta } from '@storybook/react-webpack5';
+import { COLOUR_CONTROL_INNER_COMMON_ARGTYPES } from '../../../mocks/common-story-args';
+import { ColorPair } from '../../../types';
+import { omit } from 'lodash';
+import { withCometConfig } from '../../../mocks/with-comet-config';
+import { transformColorPairsToPalette } from '../../../utils';
 import { action } from 'storybook/actions';
 
-type Story = StoryObj<ColorPairPaletteDropdownProps>;
+type StoryArgs = ColorPairPaletteDropdownProps & { value: ColorPair };
+type Story = StoryObj<StoryArgs>;
 
-const meta: Meta<ColorPairPaletteDropdownProps> = {
+const meta: Meta<StoryArgs> = {
 	title: 'Internals/ColorPairPaletteDropdown',
-	component: ColorPairPaletteDropdown,
-	decorators: [],
+	component: ColorPairPaletteDropdown as ComponentType<StoryArgs>,
+	decorators: [withCometConfig],
 	args: {
-		blockName: 'comet/demo-block',
-		value: {
-			foreground: 'primary',
-			background: 'secondary',
-		},
-		onChange: (value) => action('onChange')(value),
+		value: { foreground: 'white', background: 'primary' } as ColorPair,
+		palette: []
 	},
 	argTypes: {
-		blockName: {
-			type: 'string',
-			description: 'The name of the WordPress block this control is used in, used to determine which pairs are available based on the global config',
-		},
-		label: {
-			type: 'string',
-			description: 'The label for the dropdown trigger button',
-		},
+		...(omit(COLOUR_CONTROL_INNER_COMMON_ARGTYPES, ['value'])),
 		value: {
-			description: 'The currently selected foreground and background colour values; should match valid ThemeColors',
-			table: {
-				type: {
-					summary: 'ColorPair'
-				}
-			}
-		},
-		onChange: {
-			type: 'function',
-			description: 'Callback function for when a colour pair is selected, receives an object with foreground and background properties',
+			description: 'The currently selected colour pair of ThemeColors',
+			control: { type: 'object' },
+			table: { category: 'Context', type: { summary: 'ColorPair' }, },
 		}
 	},
+	render: function Wrapper(args) {
+		const [value, setValue] = useState<ColorPair>(args.value);
+		const palette = transformColorPairsToPalette(comet?.colourPairs ?? []);
+
+		const onChange = (newValue: ColorPair) => {
+			setValue(newValue);
+			action('onChange')(newValue);
+		};
+
+		return <ColorPairPaletteDropdown {...args} value={value} onChange={onChange} palette={palette} />;
+	}
 };
 export default meta;
 

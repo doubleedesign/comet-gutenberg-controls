@@ -1,45 +1,48 @@
-import { Dropdown, Button, ColorIndicator, ColorPalette, GradientPicker } from '@wordpress/components';
-import { useRef, useCallback, useEffect, useMemo } from '@wordpress/element';
-import { ColorSwatch } from '../ColorSwatch/ColorSwatch';
-import { ColourPaletteItem, ThemeColor } from '../../../types';
+import { Dropdown, Button, ColorIndicator } from '@wordpress/components';
+import { useRef, useEffect, useMemo } from '@wordpress/element';
+import { ColorState, ColourPalette, ThemeColor, ThemeGradient } from '../../../types';
+import { ColorPalettePicker } from '../ColorPalettePicker/ColorPalettePicker';
+import { useSingleColourContext } from '../../../controllers/ColourContextProvider';
 
-export type ColorPaletteDropdownProps = {
+type ColorPaletteDropdownCommonProps = {
 	label: string;
-	value: string;
-	palette: Array<ColourPaletteItem>;
-	onChange: (value: string) => void;
+	palette: ColourPalette;
 	clearable?: boolean;
 };
 
-export function ColorPaletteDropdown({ label = 'Colour', value, palette, onChange, clearable = false }: ColorPaletteDropdownProps) {
+export type ContextualColorPaletteDropdownProps = ColorPaletteDropdownCommonProps & {
+	colorContextKey?: keyof ColorState;
+};
+
+export type ColorPaletteDropdownProps = ColorPaletteDropdownCommonProps & {
+	value?: ThemeColor | ThemeGradient;
+	onChange: (newValue?: ThemeColor | ThemeGradient) => void;
+};
+
+export function ContextualColorPaletteDropdown({ colorContextKey, ...props }: ContextualColorPaletteDropdownProps) {
+	const { value, onChange } = useSingleColourContext(colorContextKey ?? 'colorTheme');
+
+	return (
+		<ColorPaletteDropdown {...props} value={value} onChange={onChange} />
+	);
+}
+
+export function ColorPaletteDropdown({ value, label, palette, onChange, clearable = false }: ColorPaletteDropdownProps) {
 	const triggerRef = useRef();
 	const popoverAnchorRef = useRef<HTMLDivElement>(null);
-
-	const handleChange = useCallback((newValue) => {
-		// Handle clearable selector
-		if(!newValue) {
-			onChange('');
-
-			return;
-		}
-		
-		const name = newValue.replace('var(--color-', '').replace(')', '').replace('var(--gradient-', '');
-		onChange(name);
-	}, [onChange]);
 
 	useEffect(() => {
 		if(!palette) return;
 
 		if(!value) return; // allows clearing the value
 
-		function validateValue(value) {
+		function validateValue(value: string) {
 			return palette.find((color) => color.slug === value) !== undefined;
 		}
 
-		if(!validateValue(value)) {
-			// If the current value is not valid, default to the first palette option
-			const defaultColor = palette[0]?.slug ?? '';
-			onChange(defaultColor);
+		// If the current value is not valid, default to the first palette option
+		if(!validateValue(value) && palette?.[0]?.slug) {
+			onChange(palette[0].slug);
 		}
 	}, [value, palette]);
 
@@ -81,36 +84,17 @@ export function ColorPaletteDropdown({ label = 'Colour', value, palette, onChang
 								)}
 					</Button>
 				)}
-				renderContent={({ onToggle, ...props }) => (
-					<div className="comet-color-selector-content">
-						{value !== undefined && <ColorSwatch backgroundColor={value as ThemeColor} />}
-						<div className="comet-color-selector-content__pickers">
-							{gradients.length > 0 && (
-								<GradientPicker
-									clearable={clearable}
-									value={value ? `var(--gradient-${value})` : undefined}
-									gradients={gradients}
-									disableCustomGradients={true}
-									onChange={(value) => {
-										handleChange(value);
-										onToggle(); // close dropdown after selection
-									}}
-								/>
-							)}
-							{ /* This needs to be here even when there's only gradients, so that the Clear button is kept */ }
-							<ColorPalette
-								clearable={clearable}
-								value={`var(--color-${value})`}
-								// @ts-ignore
-								colors={singleColours}
-								disableCustomColors={true}
-								onChange={(newValue) => {
-									handleChange(newValue);
-									onToggle(); // close dropdown after selection
-								}}
-							/>
-						</div>
-					</div>
+				renderContent={({ onToggle }) => (
+					<ColorPalettePicker
+						clearable={clearable}
+						value={value}
+						colors={singleColours}
+						gradients={gradients}
+						onChange={(newValue: string) => {
+							onChange(newValue);
+							onToggle(); // close dropdown after selection
+						}}
+					/>
 				)}
 				popoverProps={{ inline: true, anchorRef: popoverAnchorRef }}
 			/>

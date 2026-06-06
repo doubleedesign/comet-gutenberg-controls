@@ -1,53 +1,39 @@
-import { useState } from '@wordpress/element';
+import { ComponentType, useState } from '@wordpress/element';
 import { ColorPaletteDropdown, ColorPaletteDropdownProps } from './ColorPaletteDropdown';
 import type { StoryObj, Meta } from '@storybook/react-webpack5';
 import { MOCK_PALETTE, MOCK_GRADIENTS } from '../../../mocks/common-defaults';
+import { COLOUR_CONTROL_INNER_COMMON_ARGTYPES } from '../../../mocks/common-story-args';
+import { transformColorValueToKey } from '../../../utils';
 import { action } from 'storybook/actions';
 
-type Story = StoryObj<ColorPaletteDropdownProps>;
+type StoryArgs = ColorPaletteDropdownProps;
+type Story = StoryObj<StoryArgs>;
 
-const meta: Meta<ColorPaletteDropdownProps> = {
+const meta: Meta<StoryArgs> = {
 	title: 'Internals/ColorPaletteDropdown',
-	component: ColorPaletteDropdown,
+	component: ColorPaletteDropdown as ComponentType<StoryArgs>,
 	decorators: [],
 	args: {
 		label: 'Colour',
-		value: MOCK_PALETTE.find(c => c.slug === 'primary')?.slug || '',
 		palette: MOCK_PALETTE,
-		onChange: (value) => action('onChange')(value),
 		clearable: false,
 	},
 	argTypes: {
-		label: {
-			type: 'string',
-			description: 'The label for the dropdown trigger button',
-		},
-		value: {
-			type: 'string',
-			description: 'The currently selected colour value in hexadecimal format; should match a valid ThemeColor',
-		},
-		palette: {
-			description: 'An array of colour objects available for selection, each with a slug, name, and color value that align to a valid ThemeColor',
-		},
-		onChange: {
-			type: 'function',
-			description: 'Callback function for when a colour is selected',
+		...COLOUR_CONTROL_INNER_COMMON_ARGTYPES
+	},
+	parameters: {
+		controls: {
+			exclude: ['colorContextKey']
 		}
 	},
 	render: function Wrapper(args) {
-		// Somewhat mock the block attribute context so the component doesn't need an extra layer of state management
-		// of the current value just so it will update in Storybook on change
-		const [value, setValue] = useState(args.value);
+		const [value, setValue] = useState<string|undefined>('primary');
+		const onChange = (newValue?: string) => {
+			setValue(transformColorValueToKey(newValue));
+			action('onChange')(newValue);
+		};
 
-		return (
-			<ColorPaletteDropdown
-				{...args}
-				value={value}
-				onChange={(newValue) => {
-					setValue(newValue);
-					args.onChange(newValue);
-				}} />
-		);
+		return <ColorPaletteDropdown {...args} value={value} onChange={onChange}/>;
 	}
 };
 export default meta;
@@ -60,7 +46,6 @@ export const Gradients: Story = {
 	name: 'Gradients',
 	args: {
 		palette: MOCK_GRADIENTS,
-		clearable: true
 	}
 };
 
@@ -68,6 +53,5 @@ export const Both: Story = {
 	name: 'Both',
 	args: {
 		palette: [...MOCK_PALETTE, ...MOCK_GRADIENTS],
-		clearable: true
 	}
 };

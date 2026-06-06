@@ -1,6 +1,6 @@
-import {Config, ThemeColor} from '../types';
-import {ASPECT_RATIOS} from "../components/constants";
-import { MOCK_PALETTE, MOCK_GRADIENTS } from "./common-defaults";
+import { Config, ThemeColor } from '../types';
+import { ASPECT_RATIOS } from '../components/constants';
+import { MOCK_PALETTE, MOCK_GRADIENTS } from './common-defaults';
 
 export function mockCometConfig(overrides?: Partial<Config>): Config {
 	const mockConfig: Config = {
@@ -8,6 +8,7 @@ export function mockCometConfig(overrides?: Partial<Config>): Config {
 		aspectRatios: ASPECT_RATIOS,
 		palette: MOCK_PALETTE.reduce((acc, color) => {
 			acc[color.slug as ThemeColor] = color.color;
+ 
 			return acc;
 		}, {} as Record<ThemeColor, string>),
 		colourPairs: [
@@ -21,6 +22,7 @@ export function mockCometConfig(overrides?: Partial<Config>): Config {
 		colourPairOverrides: {},
 		sectionBackgrounds: MOCK_GRADIENTS.reduce((acc, gradient) => {
 			acc[gradient.slug] = gradient.gradient;
+
 			return acc;
 		}, {} as Record<string, string>),
 		// Component-level defaults
@@ -31,7 +33,7 @@ export function mockCometConfig(overrides?: Partial<Config>): Config {
 			object_type: 'page',
 			id: 123,
 		}
-	}
+	};
 
 	window.comet = mockConfig;
 

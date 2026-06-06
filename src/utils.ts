@@ -1,0 +1,26 @@
+import { ColorPair } from './types';
+
+export function transformColorValueToKey(value?: string) {
+	if(!value || typeof value !== 'string') {
+		return undefined;
+	}
+
+	if(value.startsWith('var(--color-')) {
+		return value.replace('var(--color-', '').replace(')', '');
+	}
+
+	if(value.startsWith('var(--gradient-')) {
+		return value.replace('var(--gradient-', '').replace(')', '');
+	}
+
+	return value;
+}
+
+export function transformColorPairsToPalette(pairs: ColorPair[]) {
+	return pairs.map((pair: ColorPair) => ({
+		name: `${pair.foreground} on ${pair.background}`,
+		slug: `${pair.foreground}-${pair.background}`,
+		// eslint-disable-next-line max-len
+		gradient: `linear-gradient(135deg, var(--color-${pair.foreground}) 0%, var(--color-${pair.foreground}) 50%, var(--color-${pair.background}) 50%, var(--color-${pair.background}) 100%)`,
+	}));
+}

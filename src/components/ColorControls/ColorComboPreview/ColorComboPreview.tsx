@@ -1,10 +1,6 @@
-import { ThemeColor, ThemeGradient } from '../../../types';
+import { ColorState } from '../../../types';
 
-export type ColorComboPreviewProps = {
-	colorTheme?: ThemeColor;
-	backgroundColor: ThemeColor;
-	sectionBackground?: ThemeColor | ThemeGradient;
-};
+export type ColorComboPreviewProps = ColorState;
 
 export function ColorComboPreview({ colorTheme, backgroundColor, sectionBackground }: ColorComboPreviewProps) {
 

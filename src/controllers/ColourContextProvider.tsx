@@ -1,50 +1,76 @@
-import { createContext, useContext, useState, useCallback, Element } from '@wordpress/element';
-import { ThemeColor, ThemeGradient } from "../types";
+import { createContext, useContext, useCallback } from '@wordpress/element';
+import { ColorState, ThemeColor, ThemeGradient } from '../types';
+import { transformColorValueToKey } from '../utils';
 
-type ColourContext = {
-    value: ThemeColor | ThemeGradient;
-    handleChange: (value: string) => void;
-}
-
+// Values provided to the context, at the top level.
 type ColourContextProviderProps = {
-    initialValue: ThemeColor | ThemeGradient;
-    onChange: (value: string) => void;
-    children: Element
-}
+	/** The current values of the colour state. Generally expected to be the relevant attributes from the block's attributes prop. */
+	values: ColorState;
+	/** Callback function to handle updating the state in the parent component. Generally expected to be the block's setAttributes function. */
+	onChange: (newValue: ColorState) => void;
+	/** Controls that will use the colour context. */
+	children: any;
+};
 
-const ColourContext = createContext<ColourContext>({
-    value: 'primary',
-    handleChange: (newValue: string) => {},
-});
+// Values and functions provided to the hook, which then passes them down to the consuming components (with modifications as necessary)
+type ColourContext = Pick<ColourContextProviderProps, 'values'> & {
+	onChange: (newValue: ColorState) => void;
+};
 
-export const ColourContextProvider = ({ initialValue, onChange, children }: ColourContextProviderProps) => {
-    const [value, setValue] = useState(initialValue);
+type ColourContextHookSingleValue = {
+	value: ThemeColor | ThemeGradient | undefined;
+	onChange: (newValue: ThemeColor | ThemeGradient | undefined) => void;
+};
 
-    const handleChange = useCallback((newValue: string) => {
-        // Handle clearable selector
-        if(!newValue) {
-            onChange('');
+const ColourContext = createContext<ColourContext>({ values: {}, onChange: () => {} });
 
-            return;
-        }
+export const ColourContextProvider = ({ values, onChange, children }: ColourContextProviderProps) => {
 
-        const name = newValue.replace('var(--color-', '').replace(')', '').replace('var(--gradient-', '');
-        onChange(name);
-    }, [onChange]);
+	const handleChange = useCallback((newValue: ColorState) => {
+		const transformedNewValue: ColorState = Object.keys(newValue).reduce((acc, key, index) => {
+			const value = newValue[key as keyof ColorState];
+			acc[key] = value ? transformColorValueToKey(value as string) : undefined;
 
-    return (
-        <ColourContext.Provider value={{ value, handleChange }}>
-            {children}
-        </ColourContext.Provider>
-    )
-}
+			return acc;
+		}, {} as ColorState);
 
-export const useColourContext = () => {
-    const context = useContext(ColourContext);
+		onChange(transformedNewValue);
+	}, []);
 
-    if (!context) {
-        throw new Error("useColourContext must be called from within the ColourContextProvider")
-    }
+	return (
+		<ColourContext.Provider value={{ values, onChange: handleChange }}>
+			{children}
+		</ColourContext.Provider>
+	);
+};
 
-    return context;
-}
+export const useColourContext: () => ColourContext = () => {
+	const context = useContext(ColourContext);
+
+	if (!context) {
+		throw new Error('useColourContext must be called from within the ColourContextProvider');
+	}
+	
+	return context;
+};
+
+export const useSingleColourContext = (key: string): ColourContextHookSingleValue => {
+	const context = useContext(ColourContext);
+
+	if (!context) {
+		throw new Error('useSingleColourContext must be called from within the ColourContextProvider');
+	}
+
+	const { values, onChange } = context;
+
+	const handleSingleValueChange = useCallback((value: ThemeColor | ThemeGradient | undefined) => {
+		onChange({ [key]: value });
+	}, [onChange]);
+
+	return {
+		value: values[key] as ThemeColor | undefined,
+		onChange: (value: ThemeColor | ThemeGradient | undefined) => {
+			handleSingleValueChange(value);
+		}
+	};
+};

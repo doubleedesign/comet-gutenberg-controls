@@ -1,3 +1,10 @@
+@mixin grid-like-a-transparent-png-preview() {
+	background: repeating-linear-gradient(45deg,#efefef 25%,transparent 25%,transparent 75%, #efefef 75%, #efefef),
+				repeating-linear-gradient(45deg,#efefef 25%,transparent 25%,transparent 75%, #efefef 75%, #efefef);
+	background-size: 2rem 2rem;
+	background-position: 0 0, 1rem 1rem;
+}
+
 .comet-color-swatch {
 	border: 1px solid #DDD;
 	border-radius: 0.25rem;
@@ -19,6 +26,10 @@
 		border-top-left-radius: 0.25rem;
 		border-top-right-radius: 0.25rem;
 		border-bottom: 1px solid #DDD;
+
+		&:not([data-background]) {
+			@include grid-like-a-transparent-png-preview();
+		}
 	}
 
 	&__caption {

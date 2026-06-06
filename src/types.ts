@@ -39,6 +39,12 @@ export type ColorPair = {
 	background: ThemeColor;
 };
 
+export type ColorState = {
+	colorTheme?: ThemeColor | '';
+	backgroundColor?: ThemeColor | '';
+	sectionBackground?: ThemeColor | ThemeGradient;
+};
+
 // Colour palette in the format required by the block controls
 export type ColourPalette = ColourPaletteItem[];
 
@@ -48,7 +54,7 @@ export type ColourPaletteItem = {
 	// Note: Should only have color OR gradient
 	color?: string;
 	gradient?: string;
-}
+};
 
 export type ThemeGradient = string;
 

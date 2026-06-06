@@ -1,13 +1,14 @@
 /* global wp */
-import { useRef, useMemo, useCallback, useEffect } from '@wordpress/element';
+import { useMemo } from '@wordpress/element';
 import { EditorControlProps } from '../types';
 import { PanelBody } from '@wordpress/components';
 import { ThemeColor, ThemeGradient } from '../../types';
-import { ColorPaletteDropdown } from './ColorPaletteDropdown/ColorPaletteDropdown';
-import { ColorPairPaletteDropdown } from './ColorPairPaletteDropdown/ColorPairPaletteDropdown';
+import { ContextualColorPaletteDropdown } from './ColorPaletteDropdown/ColorPaletteDropdown';
+import { ContextualColorPairDropdown } from './ColorPairPaletteDropdown/ColorPairPaletteDropdown';
 import { useValidatedPalette } from '../../hooks/use-validated-palette';
 import { ColorComboPreview } from './ColorComboPreview/ColorComboPreview';
-import { BACKGROUND_COLOUR_LABEL, COLOUR_THEME_LABEL, COLOUR_PAIR_LABEL, SECTION_BACKGROUND_LABEL } from './constants';
+import { ColourTypeLabel } from './constants';
+import { ColourContextProvider } from '../../controllers/ColourContextProvider';
 
 export type ColorControlsProps = EditorControlProps & {
 	attributes: {
@@ -31,6 +32,10 @@ export const ColorControls = (props: ColorControlsProps) => {
 		</PanelBody>
 	);
 };
+
+function ContextualColorPairPaletteDropdown(props: { blockName: string }) {
+	return null;
+}
 
 function ColorControlsInner({ name, context, attributes, setAttributes }: ColorControlsProps) {
 	const singleColourPalette = useValidatedPalette({
@@ -69,96 +74,41 @@ function ColorControlsInner({ name, context, attributes, setAttributes }: ColorC
 	const showSingleBackgroundColourControl = !showColourPairControl && hasBackgroundColorSupport && !hasColorThemeSupport;
 	const showSectionBackgroundControl = useMemo(() => hasSectionBackgroundSupport && !context?.isNested, [context?.isNested]);
 
-	const handleChange = useCallback((newValues) => {
-		setAttributes(newValues);
-	}, [setAttributes]);
-
 	return (
-		<>
-			{showColourPairControl && (
-				<ColorComboPreview
-					colorTheme={attributes?.colorTheme as ThemeColor}
-					backgroundColor={attributes?.backgroundColor as ThemeColor}
-					sectionBackground={attributes?.sectionBackground !== 'none' ? attributes?.sectionBackground as ThemeColor | ThemeGradient : undefined}
+		<ColourContextProvider values={values} onChange={setAttributes}>
+			{showSingleColourThemeControl && singleColourPalette && (
+				<ContextualColorPaletteDropdown
+					colorContextKey="colorTheme"
+					label={ColourTypeLabel.COLOUR_THEME}
+					palette={singleColourPalette}
 				/>
 			)}
-			{showSingleColourThemeControl && (
-				<ColourThemeSelector values={values} palette={singleBackgroundPalette} handleChange={handleChange} />
-			)}
-			{showSingleBackgroundColourControl && (
-				<BackgroundColourSelector
-					attributes={attributes}
-					values={values}
+			{showSingleBackgroundColourControl && singleBackgroundPalette && (
+				<ContextualColorPaletteDropdown
+					colorContextKey="backgroundColor"
+					label={ColourTypeLabel.BACKGROUND}
 					palette={singleBackgroundPalette}
-					handleChange={(newValue: string) => handleChange({ backgroundColor: newValue })}
-					clearable={['comet/group'].includes(name)}
+					clearable={true}
 				/>
 			)}
 			{showColourPairControl && (
-				<ColorPairPaletteDropdown
-					value={{
-						foreground: values.colorTheme,
-						background: values.backgroundColor
-					}}
-					blockName={name.split('/')[1]}
-					onChange={(newValue) => {
-						handleChange({
-							colorTheme: newValue.foreground,
-							backgroundColor: newValue.background
-						});
-					}}
-				/>
+				<>
+					<ColorComboPreview
+						colorTheme={attributes?.colorTheme as ThemeColor}
+						backgroundColor={attributes?.backgroundColor as ThemeColor}
+						sectionBackground={attributes?.sectionBackground !== 'none' ? attributes?.sectionBackground as ThemeColor | ThemeGradient : undefined}
+					/>
+					<ContextualColorPairDropdown blockName={name.split('/')[1]}/>
+				</>
 			)}
 			{showSectionBackgroundControl && (
-				<SectionBackgroundSelector
-					values={values}
+				<ContextualColorPaletteDropdown
+					colorContextKey="sectionBackground"
+					label={ColourTypeLabel.SECTION_BACKGROUND}
 					palette={sectionBackgrounds}
-					handleChange={(newValue: string) => {
-						handleChange({ sectionBackground: newValue });
-					}}
+					clearable={true}
 				/>
 			)}
-		</>
-	);
-}
-
-
-function ColourThemeSelector({ values, palette, handleChange }) {
-	return (
-		<ColorPaletteDropdown
-			label={COLOUR_THEME_LABEL}
-			value={values.colorTheme}
-			palette={palette}
-			onChange={handleChange}
-		/>
-	);
-}
-
-function BackgroundColourSelector({ attributes, values, palette, handleChange, clearable = false }) {
-	return (
-		<>
-			<ColorComboPreview
-				backgroundColor={attributes?.backgroundColor as ThemeColor}
-			/>
-			<ColorPaletteDropdown
-				label={BACKGROUND_COLOUR_LABEL}
-				value={values.backgroundColor !== 'none' ? values.backgroundColor : undefined}
-				palette={palette}
-				onChange={handleChange}
-				clearable={clearable}
-			/>
-		</>
-	);
-}
-
-function SectionBackgroundSelector({ values, palette, handleChange }) {
-	return (
-		<ColorPaletteDropdown
-			label={SECTION_BACKGROUND_LABEL}
-			value={values.sectionBackground !== 'none' ? values.sectionBackground : undefined}
-			palette={palette}
-			clearable={true}
-			onChange={handleChange}
-		/>
+		</ColourContextProvider>
 	);
 }

@@ -1,0 +1,44 @@
+.comet-color-palette {
+	font-family: var(--font-family-system);
+
+	.components-circular-option-picker {
+		min-width: 260px;
+		margin: 0;
+
+		[role="listbox"] {
+			display: flex;
+		}
+
+		&__swatches {
+			display: contents;
+
+			&[class*="option-group"] {
+				display: flex;
+			}
+		}
+
+		&__clear {
+			font-family: var(--font-family-system);
+		}
+
+		&__option-wrapper {
+			display: block;
+
+			&:before {
+				content: none !important;
+			}
+		}
+
+		&__option {
+			color: transparent !important; // stop text colour overriding gradient swatch background value
+		}
+
+		&__custom-clear-wrapper {
+			width: 100%;
+			display: flex;
+			justify-content: flex-end;
+			margin-top: 0;
+			order: 5;
+		}
+	}
+}
