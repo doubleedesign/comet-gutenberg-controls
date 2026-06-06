@@ -1,6 +1,4 @@
-@use '../node_modules/@doubleedesign/doublee-site-style/doublee-fonts.scss';
-@use '../node_modules/@doubleedesign/doublee-site-style/doublee-common.scss';
-@use '../node_modules/@doubleedesign/doublee-site-style/doublee-storybook-preview.scss';
+@use '../node_modules/@doubleedesign/doublee-site-style/_functions' as func;
 
 .page-nav {
 	display: flex;
@@ -57,31 +55,57 @@
 	}
 }
 
-$colorNames: ('primary', 'secondary', 'accent', 'light', 'dark', 'white', 'info', 'warning', 'success', 'error');
-@each $colorName in $colorNames {
-	[data-background="#{$colorName}"] {
-		--background-color: var(--color-#{$colorName});
-		--theme-color: contrast-color(var(--color-#{$colorName}));
-		background: var(--background-color);
-		color: var(--theme-color);
-	}
+@layer comet-gutenberg-controls-demo {
+	:root {
+		--color-primary: #502595;
+		--color-secondary: #845ec2;
+		--color-accent: #b01b87;
+		--color-info: #24a8e1;
+		--color-warning: #ffc75f;
+		--color-success: #0abfa0;
+		--color-error: #ff775f;
+		--color-light: ghostwhite;
+		--color-dark: #{func.darken(primary, 60)};
+		--color-white: #ffffff;
+		--color-body-text: #181825;
+		--color-body-text-muted: #{func.mute-color(body-text, 0.2, 0.35)};
 
-	@each $colorName2 in $colorNames {
-		@if $colorName != $colorName2 {
-			[data-background="#{$colorName}-#{$colorName2}"] {
-				--background-color: var(--gradient-#{$colorName}-#{$colorName2});
-				background: var(--background-color);
+		$colorNames: (primary, secondary, accent, light, dark, white);
+		@each $colorName in $colorNames {
+			@each $colorName2 in $colorNames {
+				@if $colorName != $colorName2 {
+					--gradient-#{$colorName}-#{$colorName2}: linear-gradient(to bottom, var(--color-#{$colorName}) 50%, var(--color-#{$colorName2}) 50%);
+				}
 			}
 		}
 	}
-}
 
-// Separate loop for color theme to ensure it takes precedence in the cascade
-// (e.g., so data-background="white" isn't further down in the CSS than data-color-theme="primary",
-// causing an element with both attributes to end up with the wrong text color)
-@each $colorName in $colorNames {
-	[data-color-theme="#{$colorName}"] {
-		--theme-color: var(--color-#{$colorName});
-		color: var(--theme-color);
+	$colorNames: ('primary', 'secondary', 'accent', 'light', 'dark', 'white', 'info', 'warning', 'success', 'error');
+	@each $colorName in $colorNames {
+		[data-background="#{$colorName}"] {
+			--background-color: var(--color-#{$colorName});
+			--theme-color: contrast-color(var(--color-#{$colorName}));
+			background: var(--background-color);
+			color: var(--theme-color);
+		}
+
+		@each $colorName2 in $colorNames {
+			@if $colorName != $colorName2 {
+				[data-background="#{$colorName}-#{$colorName2}"] {
+					--background-color: var(--gradient-#{$colorName}-#{$colorName2});
+					background: var(--background-color);
+				}
+			}
+		}
+	}
+
+	// Separate loop for color theme to ensure it takes precedence in the cascade
+	// (e.g., so data-background="white" isn't further down in the CSS than data-color-theme="primary",
+	// causing an element with both attributes to end up with the wrong text color)
+	@each $colorName in $colorNames {
+		[data-color-theme="#{$colorName}"] {
+			--theme-color: var(--color-#{$colorName});
+			color: var(--theme-color);
+		}
 	}
 }

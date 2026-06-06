@@ -3,16 +3,17 @@ import { withCometConfig } from '../src/mocks/with-comet-config.tsx';
 import { themes } from 'storybook/theming';
 import { create } from 'storybook/theming/create';
 import { doubleeTheme } from '@doubleedesign/doublee-site-style';
+import './preview.css';
 import '@wordpress/components/build-style/style.css';
 import '../dist/style.css';
-import './preview.css';
 
 import { SyntaxHighlighter } from 'storybook/internal/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
 import php from 'react-syntax-highlighter/dist/esm/languages/prism/php';
 import powershell from 'react-syntax-highlighter/dist/esm/languages/prism/powershell';
-import {DocsContainer} from "@storybook/addon-docs/blocks";
-import {withMockWpDataStore} from "../src/mocks/with-mock-wp-data-store.tsx";
+import { DocsContainer } from "@storybook/addon-docs/blocks";
+import { withMockWpDataStore } from "../src/mocks/with-mock-wp-data-store.tsx";
+import { withDocsStylesMaybe } from "./decorators/withDocsStylesMaybe.tsx";
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 SyntaxHighlighter.registerLanguage('php', php);
@@ -39,13 +40,14 @@ const preview = {
         docs: {
             inlineStories: false, // put stories into an iframe
             theme: mergedTheme,
-            container: ({ children, context }) => (
+            // The preview.decorators array does not apply to MDX files, but we can wrap them in decorators here
+            container: ({ children, context }) => withDocsStylesMaybe(() => (
                 <DocsContainer context={context}>
                     <div className="sb-unstyled" data-typography-mode="docs">
                         {children}
                     </div>
                 </DocsContainer>
-            ),
+            ), context)
         },
         options: {
             storySort: (a, b) => {
@@ -62,7 +64,7 @@ const preview = {
     decorators: [
         withMaxWidth('280px'),
         withCometConfig,
-        withMockWpDataStore
+        withMockWpDataStore,
     ],
 };
 
