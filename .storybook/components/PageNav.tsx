@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import wp from '@wordpress/element';
+import { useEffect, useState } from 'react';
+// @ts-expect-error TS2882: Cannot find module or type declarations for side-effect import of ./page-nav.css
+import './page-nav.css';
 
 type IndexEntry = {
     id: string;
