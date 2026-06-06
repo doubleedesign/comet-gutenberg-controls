@@ -14,83 +14,85 @@
 	}
 }
 
+.block-editor-inspector-popover-header__heading {
+	font-family: inherit;
+}
+
+.edit-post-meta-boxes-area {
+	&__container {
+		padding-inline: 0;
+	}
+}
+
 .ui-sortable-handle {
 	font-family: inherit;
 }
 
-
-// Custom vertical alignment used for the banner block (and possibly others added after this)
-.components-base-control:has([aria-label="Change vertical alignment"]) {
-	// Hack it into position next to the horizontal justification in the layout panel above
-	padding: 1rem;
-	width: max-content;
-	margin-left: auto;
-	margin-top: -96px;
-	margin-bottom: 0;
-
-	// Make the button match the horizontal justification one
-	.components-dropdown-menu__toggle {
-		border: 1px solid transparent;
-		margin-top: 1px;
-
-		&:hover, &:focus, &:active {
-			border-color: var(--wp-components-color-gray-700, #757575);
+.components-panel {
+	&__body {
+		&-title {
+			font-family: inherit;
 		}
-	}
-}
 
-.components-button {
-	svg {
-		height: unset;
-	}
-}
-
-.edit-post-meta-boxes-area__container {
-	padding-inline: 0;
-}
-
-.components-panel__body {
-	&-title {
-		font-family: inherit;
-	}
-
-	// When the layout panel is closed, hide the custom vertical alignment and container size so they appear like they're in the layout panel
-	+ .comet-custom-layout-controls {
-		display: none;
-	}
-
-	&.is-opened {
+		// When the layout panel is closed, hide the custom vertical alignment and container size so they appear like they're in the layout panel
 		+ .comet-custom-layout-controls {
-			display: block;
+			display: none;
+		}
+
+		&.is-opened {
+			+ .comet-custom-layout-controls {
+				display: block;
+			}
+		}
+
+		&-toggle {
+			font-family: var(--font-family-system);
 		}
 	}
 
-	&-toggle {
-		font-family: var(--font-family-system);
+	&__row {
+		gap: 0.25rem;
 	}
 }
 
-.components-base-control__label,
-.components-input-control__label {
-	display: flex !important;
-	align-items: center;
-	gap: 0.25rem;
+.components-base-control,
+.components-input-control {
+	&__label {
+		display: flex !important;
+		align-items: center;
+		gap: 0.25rem;
+	}
 }
 
-.components-panel__row {
-	gap: 0.25rem;
+.components-base-control {
+	margin-block: 0;
 
-	.components-base-control {
+	&__field {
 		margin-block: 0;
+	}
 
-		&__field {
-			margin-block: 0;
+	// Custom vertical alignment used for the banner block (and possibly others added after this)
+	&:has([aria-label="Change vertical alignment"]) {
+		// Hack it into position next to the horizontal justification in the layout panel above
+		padding: 1rem;
+		width: max-content;
+		margin-left: auto;
+		margin-top: -96px;
+		margin-bottom: 0;
+
+		// Make the button match the horizontal justification one
+		.components-dropdown-menu__toggle {
+			border: 1px solid transparent;
+			margin-top: 1px;
+
+			&:hover, &:focus, &:active {
+				border-color: var(--wp-components-color-gray-700, #757575);
+			}
 		}
 	}
 }
 
 .components-toggle-control {
-
 	&__label {
 		display: flex !important;
 		align-items: center;
@@ -124,28 +126,25 @@
 	}
 }
 
-.components-resizable-box__container {
-	max-width: 100% !important;
-
-	img {
+.components-resizable-box {
+	&__container {
 		max-width: 100% !important;
-	}
 
-	.advanced-image-field {
 		img {
-			max-width: unset !important;
+			max-width: 100% !important;
+		}
+
+		.advanced-image-field {
+			img {
+				max-width: unset !important;
+			}
 		}
 	}
 }
 
-.comet-toggle-group {
-	button {
-		min-height: 2rem;
-
-		svg {
-			width: 1.5rem;
-			height: auto;
-		}
+.components-button {
+	svg {
+		height: unset;
 	}
 }
 
@@ -167,12 +166,21 @@
 	}
 }
 
-.components-color-palette__custom-color-text-wrapper {
-	font-family: var(--font-family-system);
+.components-color-palette {
+	&__custom-color-text-wrapper {
+		font-family: var(--font-family-system);
+	}
 }
 
-.block-editor-inspector-popover-header__heading {
-	font-family: inherit;
+.comet-toggle-group {
+	button {
+		min-height: 2rem;
+
+		svg {
+			width: 1.5rem;
+			height: auto;
+		}
+	}
 }
 
 .comet-control-pair {
@@ -181,3 +189,4 @@
 	grid-gap: 0.5rem;
 	margin-bottom: 0.5rem;
 }
+

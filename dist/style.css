@@ -126,31 +126,16 @@
   font-family: inherit;
 }
 
-.ui-sortable-handle {
+.block-editor-inspector-popover-header__heading {
   font-family: inherit;
-}
-
-.components-base-control:has([aria-label="Change vertical alignment"]) {
-  padding: 1rem;
-  width: max-content;
-  margin-left: auto;
-  margin-top: -96px;
-  margin-bottom: 0;
-}
-.components-base-control:has([aria-label="Change vertical alignment"]) .components-dropdown-menu__toggle {
-  border: 1px solid transparent;
-  margin-top: 1px;
-}
-.components-base-control:has([aria-label="Change vertical alignment"]) .components-dropdown-menu__toggle:hover, .components-base-control:has([aria-label="Change vertical alignment"]) .components-dropdown-menu__toggle:focus, .components-base-control:has([aria-label="Change vertical alignment"]) .components-dropdown-menu__toggle:active {
-  border-color: var(--wp-components-color-gray-700, #757575);
-}
-
-.components-button svg {
-  height: unset;
 }
 
 .edit-post-meta-boxes-area__container {
   padding-inline: 0;
+}
+
+.ui-sortable-handle {
+  font-family: inherit;
 }
 
 .components-panel__body-title {
@@ -165,6 +150,9 @@
 .components-panel__body-toggle {
   font-family: var(--font-family-system);
 }
+.components-panel__row {
+  gap: 0.25rem;
+}
 
 .components-base-control__label,
 .components-input-control__label {
@@ -173,14 +161,25 @@
   gap: 0.25rem;
 }
 
-.components-panel__row {
-  gap: 0.25rem;
-}
-.components-panel__row .components-base-control {
+.components-base-control {
   margin-block: 0;
 }
-.components-panel__row .components-base-control__field {
+.components-base-control__field {
   margin-block: 0;
+}
+.components-base-control:has([aria-label="Change vertical alignment"]) {
+  padding: 1rem;
+  width: max-content;
+  margin-left: auto;
+  margin-top: -96px;
+  margin-bottom: 0;
+}
+.components-base-control:has([aria-label="Change vertical alignment"]) .components-dropdown-menu__toggle {
+  border: 1px solid transparent;
+  margin-top: 1px;
+}
+.components-base-control:has([aria-label="Change vertical alignment"]) .components-dropdown-menu__toggle:hover, .components-base-control:has([aria-label="Change vertical alignment"]) .components-dropdown-menu__toggle:focus, .components-base-control:has([aria-label="Change vertical alignment"]) .components-dropdown-menu__toggle:active {
+  border-color: var(--wp-components-color-gray-700, #757575);
 }
 
 .components-toggle-control__label {
@@ -217,12 +216,8 @@
   max-width: unset !important;
 }
 
-.comet-toggle-group button {
-  min-height: 2rem;
-}
-.comet-toggle-group button svg {
-  width: 1.5rem;
-  height: auto;
+.components-button svg {
+  height: unset;
 }
 
 .components-dropdown {
@@ -244,8 +239,12 @@
   font-family: var(--font-family-system);
 }
 
-.block-editor-inspector-popover-header__heading {
-  font-family: inherit;
+.comet-toggle-group button {
+  min-height: 2rem;
+}
+.comet-toggle-group button svg {
+  width: 1.5rem;
+  height: auto;
 }
 
 .comet-control-pair {
