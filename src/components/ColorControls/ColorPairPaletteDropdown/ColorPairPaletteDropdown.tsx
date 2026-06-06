@@ -15,6 +15,7 @@ export function ColorPairPaletteDropdown({ blockName, label = COLOUR_PAIR_LABEL,
 	const [foreground, setForeground] = useState(value?.foreground ?? '');
 	const [background, setBackground] = useState(value?.background !== 'transparent' ? value?.background : (comet?.globalBackground ?? 'white'));
 	const triggerRef = useRef();
+	const popoverAnchorRef = useRef<HTMLDivElement>(null);
 	const pairs = comet?.colourPairOverrides?.[blockName] ?? comet?.colourPairs ?? [];
 
 	const palette = pairs.map((pair: ColorPair) => ({
@@ -63,7 +64,7 @@ export function ColorPairPaletteDropdown({ blockName, label = COLOUR_PAIR_LABEL,
 	};
 
 	return (
-		<div data-testid="comet-color-pair-selector">
+		<div ref={popoverAnchorRef} className="comet-color-controls__item"  data-testid="comet-color-pair-selector">
 			<Dropdown
 				renderToggle={({ onToggle, isOpen }) => (
 					<Button onClick={onToggle}
@@ -97,6 +98,7 @@ export function ColorPairPaletteDropdown({ blockName, label = COLOUR_PAIR_LABEL,
 						</div>
 					</div>
 				)}
+				popoverProps={{ inline: true, anchorRef: popoverAnchorRef }}
 			/>
 		</div>
 	);

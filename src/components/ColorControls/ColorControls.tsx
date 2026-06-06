@@ -83,9 +83,7 @@ function ColorControlsInner({ name, context, attributes, setAttributes }: ColorC
 				/>
 			)}
 			{showSingleColourThemeControl && (
-				<div className="comet-color-controls__item">
-					<ColourThemeSelector values={values} palette={singleBackgroundPalette} handleChange={handleChange} />
-				</div>
+				<ColourThemeSelector values={values} palette={singleBackgroundPalette} handleChange={handleChange} />
 			)}
 			{showSingleBackgroundColourControl && (
 				<BackgroundColourSelector
@@ -97,32 +95,28 @@ function ColorControlsInner({ name, context, attributes, setAttributes }: ColorC
 				/>
 			)}
 			{showColourPairControl && (
-				<div className="comet-color-controls__item">
-					<ColorPairPaletteDropdown
-						value={{
-							foreground: values.colorTheme,
-							background: values.backgroundColor
-						}}
-						blockName={name.split('/')[1]}
-						onChange={(newValue) => {
-							handleChange({
-								colorTheme: newValue.foreground,
-								backgroundColor: newValue.background
-							});
-						}}
-					/>
-				</div>
+				<ColorPairPaletteDropdown
+					value={{
+						foreground: values.colorTheme,
+						background: values.backgroundColor
+					}}
+					blockName={name.split('/')[1]}
+					onChange={(newValue) => {
+						handleChange({
+							colorTheme: newValue.foreground,
+							backgroundColor: newValue.background
+						});
+					}}
+				/>
 			)}
 			{showSectionBackgroundControl && (
-				<div className="comet-color-controls__item">
-					<SectionBackgroundSelector
-						values={values}
-						palette={sectionBackgrounds}
-						handleChange={(newValue: string) => {
-							handleChange({ sectionBackground: newValue });
-						}}
-					/>
-				</div>
+				<SectionBackgroundSelector
+					values={values}
+					palette={sectionBackgrounds}
+					handleChange={(newValue: string) => {
+						handleChange({ sectionBackground: newValue });
+					}}
+				/>
 			)}
 		</>
 	);
@@ -146,15 +140,13 @@ function BackgroundColourSelector({ attributes, values, palette, handleChange, c
 			<ColorComboPreview
 				backgroundColor={attributes?.backgroundColor as ThemeColor}
 			/>
-			<div className="comet-color-controls__item">
-				<ColorPaletteDropdown
-					label={BACKGROUND_COLOUR_LABEL}
-					value={values.backgroundColor !== 'none' ? values.backgroundColor : undefined}
-					palette={palette}
-					onChange={handleChange}
-					clearable={clearable}
-				/>
-			</div>
+			<ColorPaletteDropdown
+				label={BACKGROUND_COLOUR_LABEL}
+				value={values.backgroundColor !== 'none' ? values.backgroundColor : undefined}
+				palette={palette}
+				onChange={handleChange}
+				clearable={clearable}
+			/>
 		</>
 	);
 }

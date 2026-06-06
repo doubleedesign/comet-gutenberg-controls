@@ -13,6 +13,7 @@ export type ColorPaletteDropdownProps = {
 
 export function ColorPaletteDropdown({ label = 'Colour', value, palette, onChange, clearable = false }: ColorPaletteDropdownProps) {
 	const triggerRef = useRef();
+	const popoverAnchorRef = useRef<HTMLDivElement>(null);
 
 	const handleChange = useCallback((newValue) => {
 		// Handle clearable selector
@@ -55,7 +56,7 @@ export function ColorPaletteDropdown({ label = 'Colour', value, palette, onChang
 	}, [palette]);
 
 	return (
-		<div data-testid="comet-single-color-selector">
+		<div ref={popoverAnchorRef} className="comet-color-controls__item" data-testid="comet-single-color-selector">
 			<Dropdown
 				renderToggle={({ onToggle, isOpen }) => (
 					<Button onClick={onToggle}
@@ -78,7 +79,6 @@ export function ColorPaletteDropdown({ label = 'Colour', value, palette, onChang
 										aria-label={value ? `Selected colour: ${value}` : 'No colour selected'}
 									/>
 								)}
-
 					</Button>
 				)}
 				renderContent={({ onToggle, ...props }) => (
@@ -112,6 +112,7 @@ export function ColorPaletteDropdown({ label = 'Colour', value, palette, onChang
 						</div>
 					</div>
 				)}
+				popoverProps={{ inline: true, anchorRef: popoverAnchorRef }}
 			/>
 		</div>
 	);
