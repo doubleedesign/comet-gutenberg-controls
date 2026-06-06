@@ -1,46 +1,37 @@
-import { ThemeColor } from '../../../types';
+import { ColorState } from '../../../types';
 
-export type ColorSwatchProps = {
-	colorTheme?: ThemeColor;
-	backgroundColor?: ThemeColor;
-};
+export type ColorSwatchProps = Pick<ColorState, 'colorTheme' | 'backgroundColor'>;
 
 export function ColorSwatch({ colorTheme, backgroundColor }: ColorSwatchProps) {
-	if(!colorTheme && !backgroundColor) {
+	if(!colorTheme || !backgroundColor) {
 		return null;
 	}
 
 	if(!backgroundColor) {
 		return (
-			<figure className="comet-color-swatch" data-testid="comet-color-swatch" aria-label={`Colour preview: ${colorTheme}`}>
-				<div className="comet-color-swatch__preview" data-background={colorTheme}>
-				</div>
-				<figcaption className="comet-color-swatch__caption">
-					{colorTheme}
-				</figcaption>
-			</figure>
+			<ColorSwatchInner colorTheme={colorTheme} caption={colorTheme} />
 		);
 	}
 
 	if(!colorTheme) {
 		return (
-			<figure className="comet-color-swatch" data-testid="comet-color-swatch" aria-label={`Colour preview: ${backgroundColor}`}>
-				<div className="comet-color-swatch__preview" data-background={backgroundColor}>
-				</div>
-				<figcaption className="comet-color-swatch__caption">
-					{backgroundColor}
-				</figcaption>
-			</figure>
+			<ColorSwatchInner backgroundColor={backgroundColor} caption={backgroundColor} />
 		);
 	}
 
 	return (
-		<figure className="comet-color-swatch" data-testid="comet-color-swatch" aria-label={`Colour preview: ${colorTheme} on ${backgroundColor}`}>
+		<ColorSwatchInner caption={`${colorTheme} on ${backgroundColor}`} colorTheme={colorTheme} backgroundColor={backgroundColor} />
+	);
+}
+
+function ColorSwatchInner({ colorTheme, backgroundColor, caption }: ColorSwatchProps & { caption: string }) {
+	return (
+		<figure className="comet-color-swatch" data-testid="comet-color-swatch" aria-label={`Colour preview: ${caption}`}>
 			<div className="comet-color-swatch__preview" data-background={backgroundColor} data-color-theme={colorTheme}>
 				The quick brown fox jumps over the lazy dog
 			</div>
 			<figcaption className="comet-color-swatch__caption">
-				{colorTheme} on {backgroundColor}
+				{caption}
 			</figcaption>
 		</figure>
 	);
