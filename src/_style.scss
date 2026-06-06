@@ -76,6 +76,7 @@
 	.components-input-control,
 	.components-toggle-control {
 		&__label {
+			margin-block: 0 !important;
 			display: flex !important;
 			align-items: center;
 			gap: 0.125rem;
@@ -95,10 +96,6 @@
 	.components-base-control {
 		margin-block: 0.75rem;
 
-		&__label {
-			margin-block: 0 !important;
-		}
-
 		&__field {
 			margin-block: 0;
 		}
@@ -111,10 +108,8 @@
 	}
 
 	.components-toggle-control {
-		&__help {
-			code {
-				font-size: var(--caption-font-size);
-			}
+		&__label {
+			font-size: var(--input-font-size) !important;
 		}
 	}
 
@@ -155,6 +150,7 @@
 
 	.components-dropdown {
 		width: 100%;
+		font-family: var(--font-family-system);
 
 		button {
 			width: 100%;
@@ -167,23 +163,6 @@
 			&[aria-expanded="true"] {
 				background: var(--color-light, #EFEFEF);
 				text-decoration-color: currentColor;
-			}
-		}
-	}
-
-	.components-color-palette {
-		&__custom-color-text-wrapper {
-			font-family: var(--font-family-system);
-		}
-	}
-
-	.comet-toggle-group {
-		button {
-			min-height: 2rem;
-
-			svg {
-				width: 1.5rem;
-				height: auto;
 			}
 		}
 	}
