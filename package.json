@@ -1,6 +1,6 @@
 {
 	"name": "@doubleedesign/comet-gutenberg-controls",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"author": "Leesa Ward",
 	"homepage": "https://cometcomponents.io",
 	"description": "Customised WordPress block editor controls for the Comet Components plugin",
@@ -60,7 +60,7 @@
 		"@wordpress/server-side-render": "^6.24.0",
 		"eslint": "^9.39.4",
 		"glob": "^13.0.6",
-		"happy-dom": "^20.10.1",
+		"happy-dom": "^20.10.2",
 		"lodash": "^4.18.1",
 		"prismjs": "^1.30.0",
 		"react": "^18.3.1",
