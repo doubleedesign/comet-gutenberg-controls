@@ -142,7 +142,12 @@ function ColorPalettePickerInner({ colors = [], gradients = [], value, onChange,
 			disableCustomColors
 			value={transformColorKeyToValue(value)}
 			onChange={(newValue, index, slug) => {
-				onChange(slug);
+				if(slug) {
+					onChange(slug);
+				}
+				else {
+					onChange(transformColorValueToKey(newValue));
+				}
 			}}
 		/>
 	);

@@ -93,7 +93,12 @@ function ColorPalettePickerInner({ colors = [], gradients = [], value, onChange,
         ];
     }, [brandColors, statusColors]);
     return (wp.element.createElement(ColorPalette, { ...props, className: "comet-color-palette__picker", asButtons: true, headingLevel: "3", colors: statusColors.length > 0 ? multiPalette : combinedBrandPalette, disableCustomColors: true, value: transformColorKeyToValue(value), onChange: (newValue, index, slug) => {
-            onChange(slug);
+            if (slug) {
+                onChange(slug);
+            }
+            else {
+                onChange(transformColorValueToKey(newValue));
+            }
         } }));
 }
 
