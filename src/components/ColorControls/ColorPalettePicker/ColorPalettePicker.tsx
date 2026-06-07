@@ -5,9 +5,8 @@ import { ColorPaletteProps } from '@wordpress/components/build-types/color-palet
 import { GradientPickerComponentProps } from '@wordpress/components/src/gradient-picker/types';
 import { ColorPalette } from '@wordpress/components';
 import { ColorSwatch } from '../ColorSwatch/ColorSwatch';
-import { transformColorKeyToValue, transformColorValueToKey, transformValueKeyToPair } from '../../../utils';
+import { transformColorKeyToValue, transformColorValueToKey, transformValueKeyToPair, difference } from '../../../utils';
 import { useHoverAndFocus } from '../../../hooks/use-hover-and-focus';
-import difference from 'lodash/difference';
 import { ThemeColor } from '../../../types';
 
 // Colour pairs are handled as gradients to an extent (and transformed back and forth in their palette component)

@@ -56,3 +56,7 @@ export function transformColorPairsToPalette(pairs: ColorPair[]) {
 		gradient: `linear-gradient(135deg, var(--color-${pair.foreground}) 0%, var(--color-${pair.foreground}) 50%, var(--color-${pair.background}) 50%, var(--color-${pair.background}) 100%)`,
 	}));
 }
+
+export function difference(array1: any[], array2: any[]) {
+	return array1.filter(item => !array2.some(otherItem => otherItem.slug === item.slug));
+}

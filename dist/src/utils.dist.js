@@ -43,9 +43,6 @@ function transformColorPairsToPalette(pairs) {
         gradient: `linear-gradient(135deg, var(--color-${pair.foreground}) 0%, var(--color-${pair.foreground}) 50%, var(--color-${pair.background}) 50%, var(--color-${pair.background}) 100%)`,
     }));
 }
-function difference(array1, array2) {
-    return array1.filter(item => !array2.some(otherItem => otherItem.slug === item.slug));
-}
 
-export { difference, transformColorKeyToValue, transformColorPairsToPalette, transformColorValueToKey, transformValueKeyToPair };
+export { transformColorKeyToValue, transformColorPairsToPalette, transformColorValueToKey, transformValueKeyToPair };
 //# sourceMappingURL=utils.dist.js.map

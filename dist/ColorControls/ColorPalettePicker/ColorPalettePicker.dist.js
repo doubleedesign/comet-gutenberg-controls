@@ -1,7 +1,6 @@
 import { ColorSwatch } from '../ColorSwatch/ColorSwatch.dist.js';
-import { transformColorValueToKey, transformValueKeyToPair, transformColorKeyToValue } from '../../utils.dist.js';
+import { transformColorValueToKey, transformValueKeyToPair, difference, transformColorKeyToValue } from '../../utils.dist.js';
 import { useHoverAndFocus } from '../../hooks/use-hover-and-focus.dist.js';
-import difference from 'lodash/difference';
 
 const { useState, useMemo, useCallback, useRef, useEffect } = wp.element;const { ColorPalette } = wp.components;function ColorPalettePicker({ previewType, value, onChange, ...props }) {
     const elementRef = useRef(null);
