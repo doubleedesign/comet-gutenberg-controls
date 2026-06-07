@@ -1,6 +1,10 @@
 .comet-color-palette {
 	font-family: var(--font-family-system);
 
+	.components-heading {
+		font-family: inherit;
+	}
+
 	.components-circular-option-picker {
 		min-width: 260px;
 		margin: 0;

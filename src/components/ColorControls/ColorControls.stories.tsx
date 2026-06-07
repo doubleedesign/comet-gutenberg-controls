@@ -41,11 +41,20 @@ export const All: Story = {
 };
 
 export const ColorThemeOnly: Story = {
-	name: 'Color theme only',
+	name: 'Color theme only (basic)',
 	args: {
 		colorTheme: 'primary',
 		backgroundColor: undefined,
 	}
+};
+
+export const ColorThemeWithStatusColors: Story = {
+	name: 'Color theme only (with status)',
+	args: {
+		name: 'comet/copy',
+		colorTheme: 'info',
+		backgroundColor: undefined,
+	},
 };
 
 export const SingleBackgroundOnly: Story = {

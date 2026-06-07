@@ -29,8 +29,7 @@ export function ContextualColorPaletteDropdown({ colorContextKey, ...props }: Co
 }
 
 export function ColorPaletteDropdown({ value, label, palette, onChange, clearable = false }: ColorPaletteDropdownProps) {
-
-
+	
 	useEffect(() => {
 		if(!palette) return;
 

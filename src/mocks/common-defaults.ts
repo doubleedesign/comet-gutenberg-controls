@@ -8,11 +8,12 @@ export const MOCK_PALETTE = [
 	{ name: 'Success', slug: 'success', color: 'var(--color-success)' },
 	{ name: 'Warning', slug: 'warning', color: 'var(--color-warning)' },
 	{ name: 'Error', slug: 'error', color: 'var(--color-error' },
-]
+];
 
 export const MOCK_GRADIENTS = [
 	{ name: 'white-dark', slug: 'white-dark', gradient: 'var(--gradient-white-dark)' },
 	{ name: 'dark-white', slug: 'dark-white', gradient: 'var(--gradient-dark-white)' },
 	{ name: 'white-primary', slug: 'white-primary', gradient: 'var(--gradient-white-primary)' },
 	{ name: 'primary-white', slug: 'primary-white', gradient: 'var(--gradient-primary-white)' },
-]
+	{ name: 'info-white', slug: 'info-white', gradient: 'var(--gradient-info-white)' },
+];

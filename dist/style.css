@@ -92,6 +92,9 @@
 .comet-color-palette {
   font-family: var(--font-family-system);
 }
+.comet-color-palette .components-heading {
+  font-family: inherit;
+}
 .comet-color-palette .components-circular-option-picker {
   min-width: 260px;
   margin: 0;

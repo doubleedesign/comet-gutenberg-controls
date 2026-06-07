@@ -2,7 +2,7 @@ import { MOCK_GRADIENTS, MOCK_PALETTE } from './common-defaults';
 import { ArgTypes } from 'storybook/internal/csf';
 import { ASPECT_RATIOS, CONTAINER_SIZES } from '../components/constants';
 
-export const COMMON_STORY_ARGS = { name: 'comet/demo-block', };
+export const COMMON_STORY_ARGS = { name: 'comet/demo-block' };
 
 /**
  * Storybook argTypes mapping to the EditorControlProps type,

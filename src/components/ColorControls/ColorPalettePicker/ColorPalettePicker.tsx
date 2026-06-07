@@ -3,10 +3,11 @@ import { useState, useMemo, useCallback, useRef } from '@wordpress/element';
 import { ColorPaletteProps } from '@wordpress/components/build-types/color-palette/types';
 // @ts-expect-error TS2307: Cannot find module @wordpress/components/build-types/gradient-picker/types or its corresponding type declarations.
 import { GradientPickerComponentProps } from '@wordpress/components/src/gradient-picker/types';
-import { ColorPalette, GradientPicker } from '@wordpress/components';
+import { ColorPalette } from '@wordpress/components';
 import { ColorSwatch } from '../ColorSwatch/ColorSwatch';
 import { transformColorKeyToValue, transformColorValueToKey } from '../../../utils';
 import { useHoverAndFocus } from '../../../hooks/use-hover-and-focus';
+import { difference } from 'lodash';
 
 // Colour pairs are handled as gradients to an extent (and transformed back and forth in their palette component)
 // so we need a way to preview them differently to gradients intended as background/fill colours in the swatch preview here.
@@ -47,14 +48,21 @@ export function ColorPalettePicker({ previewType, value, onChange, ...props }: C
 }
 
 function ColorPalettePickerInner({ colors = [], gradients = [], value, onChange, ...props }: ColorPalettePickerInnerProps) {
+	const statusColors = useMemo(() => colors.filter(color => ['success', 'info', 'warning', 'error'].includes(color.slug)), [colors]);
+	const brandColors = useMemo(() => difference(colors, statusColors), [colors, statusColors]);
+
 	// Because we are working with a limited palette and CSS variables instead of raw colour values,
 	// with some CSS adjustments we don't actually need to use the gradient-specific palette component
 	// - we can treat them all as colours
-	const combinedPalette = useMemo(() => {
-		return [...colors, ...gradients].reduce((acc, item) => {
+	const combinedBrandPalette = useMemo(() => {
+		return [...brandColors, ...gradients].reduce((acc, item) => {
 			if ('color' in item) {
 				acc.push(item);
 
+				return acc;
+			}
+
+			if (['success', 'info', 'warning', 'error'].some(status => item.slug.includes(status))) {
 				return acc;
 			}
 
@@ -68,11 +76,41 @@ function ColorPalettePickerInner({ colors = [], gradients = [], value, onChange,
 		}, []);
 	}, [colors, gradients]);
 
+	const combinedStatusPalette = useMemo(() => {
+		return [...statusColors, ...gradients].reduce((acc, item) => {
+			if ('color' in item) {
+				acc.push(item);
+
+				return acc;
+			}
+
+			if (!['success', 'info', 'warning', 'error'].some(status => item.slug.includes(status))) {
+				return acc;
+			}
+
+			acc.push({
+				name: item.name,
+				slug: item.slug,
+				color: item.gradient,
+			});
+
+			return acc;
+		}, []);
+	}, [colors, gradients]);
+
+	const multiPalette = useMemo(() => {
+		return [
+			{ name: 'Brand colours', slug: 'brand', colors: combinedBrandPalette },
+			{ name: 'Status colours', slug: 'status', colors: combinedStatusPalette },
+		];
+	}, [brandColors, statusColors]);
+
 	return (
 		<ColorPalette
 			{...props}
 			asButtons
-			colors={combinedPalette}
+			headingLevel="3"
+			colors={statusColors.length > 0 ? multiPalette : combinedBrandPalette}
 			disableCustomColors
 			value={transformColorKeyToValue(value)}
 			onChange={(newValue, index, slug) => {
