@@ -16,6 +16,18 @@ export function transformColorValueToKey(value?: string) {
 	return value;
 }
 
+export function transformColorKeyToValue(key?: string) {
+	if(!key || typeof key !== 'string') {
+		return undefined;
+	}
+
+	if(key.includes('-')) {
+		return `var(--gradient-${key})`;
+	}
+
+	return `var(--color-${key})`;
+}
+
 export function transformColorPairsToPalette(pairs: ColorPair[]) {
 	return pairs.map((pair: ColorPair) => ({
 		name: `${pair.foreground} on ${pair.background}`,

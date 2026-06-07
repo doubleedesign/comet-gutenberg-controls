@@ -6,6 +6,7 @@ import { ColourTypeLabel } from '../constants';
 import { useColourContext } from '../../../controllers/ColourContextProvider';
 import { ColorPalettePicker } from '../ColorPalettePicker/ColorPalettePicker';
 import { transformColorPairsToPalette } from '../../../utils';
+import { PopupMenu } from '../../PopupMenu/PopupMenu';
 
 type ColorPairPaletteCommonProps = {
 	label?: string;
@@ -47,8 +48,6 @@ export function ContextualColorPairDropdown({ blockName, ...props }: ContextualC
 export function ColorPairPaletteDropdown({ label = ColourTypeLabel.PAIR, value, palette, onChange }: ColorPairPaletteDropdownProps) {
 	const [foreground, setForeground] = useState<ThemeColor>(value?.foreground ?? '');
 	const [background, setBackground] = useState<ThemeColor>(value?.background ?? (comet?.globalBackground ?? 'white'));
-	const triggerRef = useRef();
-	const popoverAnchorRef = useRef<HTMLDivElement>(null);
 
 	const doChange = useCallback((newForeground: ThemeColor, newBackground: ThemeColor) => {
 		setForeground(newForeground);
@@ -77,7 +76,7 @@ export function ColorPairPaletteDropdown({ label = ColourTypeLabel.PAIR, value, 
 
 	const handleChange = (newValue: string) => {
 		// New value is the gradient string; find the matching palette object
-		const matchedPair = palette.find((pair) => pair.gradient === newValue);
+		const matchedPair = palette.find((pair) => pair.slug === newValue);
 		if (matchedPair) {
 			const [newForeground, newBackground] = matchedPair.slug.split('-') as ThemeColor[];
 			doChange(newForeground, newBackground);
@@ -90,24 +89,17 @@ export function ColorPairPaletteDropdown({ label = ColourTypeLabel.PAIR, value, 
 	}, [foreground, background]);
 
 	return (
-		<div ref={popoverAnchorRef} className="comet-color-controls__item"  data-testid="comet-color-pair-selector">
-			<Dropdown
-				renderToggle={({ onToggle, isOpen }) => (
-					<Button onClick={onToggle}
-						aria-expanded={isOpen}
-						ref={triggerRef}
-						__next40pxDefaultSize
-						aria-label={label}
-					>
-						{label}
-						<ColorIndicator
-							colorValue={previewIndicator}
-							data-testid="comet-color-pair-indicator"
-							aria-label={`Selected colours: ${foreground} on ${background}`}
-						/>
-					</Button>
-				)}
-				renderContent={({ onToggle }) => (
+		<PopupMenu className="comet-color-controls__item"  data-testid="comet-color-pair-selector">
+			<PopupMenu.Trigger ariaLabel={label}>
+				{label}
+				<ColorIndicator
+					colorValue={previewIndicator}
+					data-testid="comet-color-pair-indicator"
+					aria-label={`Selected colours: ${foreground} on ${background}`}
+				/>
+			</PopupMenu.Trigger>
+			<PopupMenu.Content>
+				{({ onToggle }) => (
 					<ColorPalettePicker
 						value={`${foreground}-${background}`}
 						gradients={palette}
@@ -117,8 +109,7 @@ export function ColorPairPaletteDropdown({ label = ColourTypeLabel.PAIR, value, 
 						}}
 					/>
 				)}
-				popoverProps={{ inline: true, anchorRef: popoverAnchorRef }}
-			/>
-		</div>
+			</PopupMenu.Content>
+		</PopupMenu>
 	);
 }
