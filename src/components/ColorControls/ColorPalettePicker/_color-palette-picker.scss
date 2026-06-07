@@ -35,6 +35,39 @@
 
 		&__option {
 			color: transparent !important; // stop text colour overriding gradient swatch background value
+
+			// Workaround for the WP component using background-color where we need background or background-image
+			// Also fix the checkmark SVGs while we're at it
+			// Note: The aria-labels for single colours are in title case, hence the to-lower-case function used in a bunch of this loop
+			$colors: ('Primary', 'Secondary', 'Accent', 'Light', 'Dark', 'White', 'Black', 'Info', 'Success', 'Warning', 'Error');
+			@each $color in $colors {
+
+				@each $color2 in $colors {
+					@if (to-lower-case($color) != to-lower-case($color2)) {
+						&[aria-label=#{to-lower-case($color)}-#{to-lower-case($color2)}],
+						&[aria-label="#{to-lower-case($color)} on #{to-lower-case($color2)}"] {
+							background-image: var(--gradient-#{to-lower-case($color)}-#{to-lower-case($color2)}) !important;
+
+							&[aria-pressed="true"] + svg {
+								fill: gray; // TODO: Figure out a better way to handle checkmarks on top of contrasting gradients
+							}
+						}
+
+						&[aria-label="#{to-lower-case($color)} on #{to-lower-case($color2)}"] {
+							transform: rotate(-45deg);
+						}
+					}
+				}
+
+				&[aria-label="#{$color}"][aria-pressed="true"] {
+					+ svg {
+						fill: contrast-color(var(--color-#{to-lower-case($color)})) !important;
+						text-shadow: 0 0 1px black;
+					}
+				}
+			}
+
+
 		}
 
 		&__custom-clear-wrapper {
