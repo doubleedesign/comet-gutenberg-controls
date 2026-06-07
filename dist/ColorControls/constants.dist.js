@@ -1,7 +1,10 @@
-const COLOUR_THEME_LABEL = 'Colour theme';
-const BACKGROUND_COLOUR_LABEL = 'Background colour';
-const COLOUR_PAIR_LABEL = 'Colour pair';
-const SECTION_BACKGROUND_LABEL = 'Section background';
+var ColourTypeLabel;
+(function (ColourTypeLabel) {
+    ColourTypeLabel["COLOUR_THEME"] = "Colour theme";
+    ColourTypeLabel["BACKGROUND"] = "Background colour";
+    ColourTypeLabel["SECTION_BACKGROUND"] = "Section background";
+    ColourTypeLabel["PAIR"] = "Colour pair";
+})(ColourTypeLabel || (ColourTypeLabel = {}));
 
-export { BACKGROUND_COLOUR_LABEL, COLOUR_PAIR_LABEL, COLOUR_THEME_LABEL, SECTION_BACKGROUND_LABEL };
+export { ColourTypeLabel };
 //# sourceMappingURL=constants.dist.js.map

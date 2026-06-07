@@ -34,10 +34,10 @@ function useValidatedPalette({ blockName, palette, isNested = false }) {
     else if (['comet/separator'].includes(blockName)) {
         result = result.filter(color => !['error', 'success', 'info', 'warning', 'light'].includes(color.slug));
     }
-    else if (['comet/copy', 'comet/copy-image'].includes(blockName)) {
+    else if (['comet/copy-image'].includes(blockName)) {
         result = result.filter(color => !['error', 'success', 'info', 'warning', 'light', 'accent'].includes(color.slug));
     }
-    else {
+    else if (!['comet/copy'].includes(blockName)) {
         result = result.filter(color => !['error', 'success', 'info', 'warning'].includes(color.slug));
     }
     if (!result || result.length === 0) {

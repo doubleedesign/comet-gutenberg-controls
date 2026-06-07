@@ -48,7 +48,7 @@ const { PanelBody } = wp.components;const LayoutControls = (props) => {
         wp.element.createElement(ContentMaxWidth, { ...props }),
         wp.element.createElement(NegativeMargins, { ...props }),
         wp.element.createElement(GroupLayout, { ...props }),
-        wp.element.createElement("div", { className: "comet-control-pair" },
+        wp.element.createElement("div", { className: "components-base-control comet-control-pair" },
             wp.element.createElement(ItemCount, { ...props }),
             wp.element.createElement(MaxPerRow, { ...props })),
         wp.element.createElement(LayoutOrientation, { ...props }),

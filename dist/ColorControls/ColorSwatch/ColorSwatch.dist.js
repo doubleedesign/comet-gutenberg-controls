@@ -1,23 +1,21 @@
 function ColorSwatch({ colorTheme, backgroundColor }) {
+    const defaultBackground = comet?.globalBackground ?? 'white';
     if (!colorTheme && !backgroundColor) {
-        return null;
+        return (wp.element.createElement(ColorSwatchInner, { caption: "No colour selected", backgroundColor: undefined }));
     }
-    if (!backgroundColor) {
-        return (wp.element.createElement("figure", { className: "comet-color-swatch", "data-testid": "comet-color-swatch", "aria-label": `Colour preview: ${colorTheme}` },
-            wp.element.createElement("div", { className: "comet-color-swatch__preview", "data-background": colorTheme }),
-            wp.element.createElement("figcaption", { className: "comet-color-swatch__caption" }, colorTheme)));
+    if (!backgroundColor && colorTheme) {
+        return (wp.element.createElement(ColorSwatchInner, { colorTheme: colorTheme, caption: colorTheme, backgroundColor: defaultBackground }));
     }
-    if (!colorTheme) {
-        return (wp.element.createElement("figure", { className: "comet-color-swatch", "data-testid": "comet-color-swatch", "aria-label": `Colour preview: ${backgroundColor}` },
-            wp.element.createElement("div", { className: "comet-color-swatch__preview", "data-background": backgroundColor }),
-            wp.element.createElement("figcaption", { className: "comet-color-swatch__caption" }, backgroundColor)));
+    if (!colorTheme && backgroundColor) {
+        return (wp.element.createElement(ColorSwatchInner, { backgroundColor: backgroundColor, caption: backgroundColor }));
     }
-    return (wp.element.createElement("figure", { className: "comet-color-swatch", "data-testid": "comet-color-swatch", "aria-label": `Colour preview: ${colorTheme} on ${backgroundColor}` },
-        wp.element.createElement("div", { className: "comet-color-swatch__preview", "data-background": backgroundColor, "data-color-theme": colorTheme }, "The quick brown fox jumps over the lazy dog"),
-        wp.element.createElement("figcaption", { className: "comet-color-swatch__caption" },
-            colorTheme,
-            " on ",
-            backgroundColor)));
+    return (wp.element.createElement(ColorSwatchInner, { caption: `${colorTheme} on ${backgroundColor}`, colorTheme: colorTheme, backgroundColor: backgroundColor }));
+}
+function ColorSwatchInner({ colorTheme, backgroundColor, caption }) {
+    const backgroundIsGradientOrUndefined = backgroundColor?.includes('-') || backgroundColor === undefined;
+    return (wp.element.createElement("figure", { className: "comet-color-swatch", "data-testid": "comet-color-swatch", "aria-label": `Colour preview: ${caption}` },
+        wp.element.createElement("div", { className: "comet-color-swatch__preview", "data-background": backgroundColor, "data-color-theme": colorTheme }, (!backgroundIsGradientOrUndefined) ? 'The quick brown fox jumps over the lazy dog' : null),
+        wp.element.createElement("figcaption", { className: "comet-color-swatch__caption" }, caption)));
 }
 
 export { ColorSwatch };

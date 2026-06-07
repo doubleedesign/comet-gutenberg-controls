@@ -1,11 +1,12 @@
-import { ColorPaletteDropdown } from './ColorPaletteDropdown/ColorPaletteDropdown.dist.js';
-import { ColorPairPaletteDropdown } from './ColorPairPaletteDropdown/ColorPairPaletteDropdown.dist.js';
+import { ContextualColorPaletteDropdown } from './ColorPaletteDropdown/ColorPaletteDropdown.dist.js';
+import { ContextualColorPairDropdown } from './ColorPairPaletteDropdown/ColorPairPaletteDropdown.dist.js';
 import { useValidatedPalette } from '../hooks/use-validated-palette.dist.js';
 import { ColorComboPreview } from './ColorComboPreview/ColorComboPreview.dist.js';
-import { COLOUR_THEME_LABEL, BACKGROUND_COLOUR_LABEL, SECTION_BACKGROUND_LABEL } from './constants.dist.js';
+import { ColourTypeLabel } from './constants.dist.js';
+import { ColourContextProvider } from '../controllers/ColourContextProvider.dist.js';
 
 /* global wp */
-const { useMemo, useCallback } = wp.element;const { PanelBody } = wp.components;const ColorControls = (props) => {
+const { useMemo } = wp.element;const { PanelBody } = wp.components;const ColorControls = (props) => {
     if (!Object.keys(props?.attributes).some(attr => ['colorTheme', 'backgroundColor', 'sectionBackground'].includes(attr))) {
         return null;
     }
@@ -44,40 +45,13 @@ function ColorControlsInner({ name, context, attributes, setAttributes }) {
     const showSingleColourThemeControl = !showColourPairControl && !hasBackgroundColorSupport && hasColorThemeSupport;
     const showSingleBackgroundColourControl = !showColourPairControl && hasBackgroundColorSupport && !hasColorThemeSupport;
     const showSectionBackgroundControl = useMemo(() => hasSectionBackgroundSupport && !context?.isNested, [context?.isNested]);
-    const handleChange = useCallback((newValues) => {
-        setAttributes(newValues);
-    }, [setAttributes]);
-    return (wp.element.createElement(wp.element.Fragment, null,
-        showColourPairControl && (wp.element.createElement(ColorComboPreview, { colorTheme: attributes?.colorTheme, backgroundColor: attributes?.backgroundColor, sectionBackground: attributes?.sectionBackground !== 'none' ? attributes?.sectionBackground : undefined })),
-        showSingleColourThemeControl && (wp.element.createElement("div", { className: "comet-color-controls__item" },
-            wp.element.createElement(ColourThemeSelector, { values: values, palette: singleBackgroundPalette, handleChange: handleChange }))),
-        showSingleBackgroundColourControl && (wp.element.createElement(BackgroundColourSelector, { attributes: attributes, values: values, palette: singleBackgroundPalette, handleChange: (newValue) => handleChange({ backgroundColor: newValue }), clearable: ['comet/group'].includes(name) })),
-        showColourPairControl && (wp.element.createElement("div", { className: "comet-color-controls__item" },
-            wp.element.createElement(ColorPairPaletteDropdown, { value: {
-                    foreground: values.colorTheme,
-                    background: values.backgroundColor
-                }, blockName: name.split('/')[1], onChange: (newValue) => {
-                    handleChange({
-                        colorTheme: newValue.foreground,
-                        backgroundColor: newValue.background
-                    });
-                } }))),
-        showSectionBackgroundControl && (wp.element.createElement("div", { className: "comet-color-controls__item" },
-            wp.element.createElement(SectionBackgroundSelector, { values: values, palette: sectionBackgrounds, handleChange: (newValue) => {
-                    handleChange({ sectionBackground: newValue });
-                } })))));
-}
-function ColourThemeSelector({ values, palette, handleChange }) {
-    return (wp.element.createElement(ColorPaletteDropdown, { label: COLOUR_THEME_LABEL, value: values.colorTheme, palette: palette, onChange: handleChange }));
-}
-function BackgroundColourSelector({ attributes, values, palette, handleChange, clearable = false }) {
-    return (wp.element.createElement(wp.element.Fragment, null,
-        wp.element.createElement(ColorComboPreview, { backgroundColor: attributes?.backgroundColor }),
-        wp.element.createElement("div", { className: "comet-color-controls__item" },
-            wp.element.createElement(ColorPaletteDropdown, { label: BACKGROUND_COLOUR_LABEL, value: values.backgroundColor !== 'none' ? values.backgroundColor : undefined, palette: palette, onChange: handleChange, clearable: clearable }))));
-}
-function SectionBackgroundSelector({ values, palette, handleChange }) {
-    return (wp.element.createElement(ColorPaletteDropdown, { label: SECTION_BACKGROUND_LABEL, value: values.sectionBackground !== 'none' ? values.sectionBackground : undefined, palette: palette, clearable: true, onChange: handleChange }));
+    return (wp.element.createElement(ColourContextProvider, { values: values, onChange: setAttributes },
+        showSingleColourThemeControl && singleColourPalette && (wp.element.createElement(ContextualColorPaletteDropdown, { colorContextKey: "colorTheme", label: ColourTypeLabel.COLOUR_THEME, palette: singleColourPalette })),
+        showSingleBackgroundColourControl && singleBackgroundPalette && (wp.element.createElement(ContextualColorPaletteDropdown, { colorContextKey: "backgroundColor", label: ColourTypeLabel.BACKGROUND, palette: singleBackgroundPalette, clearable: true })),
+        showColourPairControl && (wp.element.createElement(wp.element.Fragment, null,
+            wp.element.createElement(ColorComboPreview, { colorTheme: attributes?.colorTheme, backgroundColor: attributes?.backgroundColor, sectionBackground: attributes?.sectionBackground !== 'none' ? attributes?.sectionBackground : undefined }),
+            wp.element.createElement(ContextualColorPairDropdown, { blockName: name.split('/')[1] }))),
+        showSectionBackgroundControl && (wp.element.createElement(ContextualColorPaletteDropdown, { colorContextKey: "sectionBackground", label: ColourTypeLabel.SECTION_BACKGROUND, palette: sectionBackgrounds, clearable: true }))));
 }
 
 export { ColorControls };
