@@ -1,8 +1,9 @@
-import { Dropdown, Button, ColorIndicator } from '@wordpress/components';
-import { useRef, useEffect, useMemo } from '@wordpress/element';
+import { ColorIndicator } from '@wordpress/components';
+import { useEffect, useMemo } from '@wordpress/element';
 import { ColorState, ColourPalette, ThemeColor, ThemeGradient } from '../../../types';
 import { ColorPalettePicker } from '../ColorPalettePicker/ColorPalettePicker';
 import { useSingleColourContext } from '../../../controllers/ColourContextProvider';
+import { PopupMenu } from '../../PopupMenu/PopupMenu';
 
 type ColorPaletteDropdownCommonProps = {
 	label: string;
@@ -28,8 +29,7 @@ export function ContextualColorPaletteDropdown({ colorContextKey, ...props }: Co
 }
 
 export function ColorPaletteDropdown({ value, label, palette, onChange, clearable = false }: ColorPaletteDropdownProps) {
-	const triggerRef = useRef();
-	const popoverAnchorRef = useRef<HTMLDivElement>(null);
+
 
 	useEffect(() => {
 		if(!palette) return;
@@ -59,32 +59,25 @@ export function ColorPaletteDropdown({ value, label, palette, onChange, clearabl
 	}, [palette]);
 
 	return (
-		<div ref={popoverAnchorRef} className="comet-color-controls__item" data-testid="comet-single-color-selector">
-			<Dropdown
-				renderToggle={({ onToggle, isOpen }) => (
-					<Button onClick={onToggle}
-						aria-expanded={isOpen}
-						ref={triggerRef}
-						aria-label={label}
-						__next40pxDefaultSize
-					>
-						{label}
-						{value && value.includes('-') ?
-								(
-									<ColorIndicator
-										colorValue={`var(--gradient-${value})`}
-										data-testid="comet-color-indicator"
-										aria-label={`Selected colours: ${value.replace('-', ' and ')}`} />
-								) : (
-									<ColorIndicator
-										colorValue={value ? `var(--color-${value})` : undefined}
-										data-testid="comet-color-indicator"
-										aria-label={value ? `Selected colour: ${value}` : 'No colour selected'}
-									/>
-								)}
-					</Button>
-				)}
-				renderContent={({ onToggle }) => (
+		<PopupMenu className="comet-color-controls__item" data-testid="comet-single-color-selector">
+			<PopupMenu.Trigger ariaLabel={label}>
+				{label}
+				{value && value.includes('-') ?
+						(
+							<ColorIndicator
+								colorValue={`var(--gradient-${value})`}
+								data-testid="comet-color-indicator"
+								aria-label={`Selected colours: ${value.replace('-', ' and ')}`} />
+						) : (
+							<ColorIndicator
+								colorValue={value ? `var(--color-${value})` : undefined}
+								data-testid="comet-color-indicator"
+								aria-label={value ? `Selected colour: ${value}` : 'No colour selected'}
+							/>
+						)}
+			</PopupMenu.Trigger>
+			<PopupMenu.Content>
+				{({ onToggle }) => (
 					<ColorPalettePicker
 						clearable={clearable}
 						value={value}
@@ -96,8 +89,7 @@ export function ColorPaletteDropdown({ value, label, palette, onChange, clearabl
 						}}
 					/>
 				)}
-				popoverProps={{ inline: true, anchorRef: popoverAnchorRef }}
-			/>
-		</div>
+			</PopupMenu.Content>
+		</PopupMenu>
 	);
 }

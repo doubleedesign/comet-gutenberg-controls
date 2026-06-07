@@ -1,0 +1,25 @@
+.comet-popup {
+	width: 100%;
+	container-type: inline-size;
+
+	&__trigger {
+		width: 100%;
+		border: 1px solid #e0e0e0;
+		display: flex;
+		gap: 0.5rem;
+		justify-content: flex-start;
+		align-items: center;
+
+		&[aria-expanded="true"] {
+			border-color: var(--wp-components-color-primary, #007cba);
+		}
+	}
+
+	&__content {
+		min-width: 100cqw;
+
+		> * {
+			width: 100%;
+		}
+	}
+}
