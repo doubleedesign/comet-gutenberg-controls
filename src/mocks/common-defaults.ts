@@ -15,5 +15,6 @@ export const MOCK_GRADIENTS = [
 	{ name: 'dark-white', slug: 'dark-white', gradient: 'var(--gradient-dark-white)' },
 	{ name: 'white-primary', slug: 'white-primary', gradient: 'var(--gradient-white-primary)' },
 	{ name: 'primary-white', slug: 'primary-white', gradient: 'var(--gradient-primary-white)' },
+	{ name: 'accent-dark', slug: 'accent-dark', gradient: 'var(--gradient-accent-dark)' },
 	{ name: 'info-white', slug: 'info-white', gradient: 'var(--gradient-info-white)' },
 ];

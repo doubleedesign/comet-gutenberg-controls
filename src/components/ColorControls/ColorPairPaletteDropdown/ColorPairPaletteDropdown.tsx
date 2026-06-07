@@ -103,6 +103,7 @@ export function ColorPairPaletteDropdown({ label = ColourTypeLabel.PAIR, value, 
 					<ColorPalettePicker
 						value={`${foreground}-${background}`}
 						gradients={palette}
+						previewType="content"
 						onChange={(newValue: string) => {
 							handleChange(newValue);
 							onToggle(); // close dropdown after selection

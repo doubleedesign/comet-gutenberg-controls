@@ -28,6 +28,26 @@ export function transformColorKeyToValue(key?: string) {
 	return `var(--color-${key})`;
 }
 
+export function transformValueKeyToPair(key?: string) {
+	if (!key || typeof key !== 'string' || !key.includes('')) {
+		return undefined;
+	}
+
+	if(key.includes(' on ')) {
+		const [foreground, background] = key.split(' on ');
+
+		return {
+			foreground: foreground.trim(),
+			background: background.trim(),
+		};
+	}
+
+	return {
+		foreground: key.split('-')[0],
+		background: key.split('-')[1],
+	};
+}
+
 export function transformColorPairsToPalette(pairs: ColorPair[]) {
 	return pairs.map((pair: ColorPair) => ({
 		name: `${pair.foreground} on ${pair.background}`,

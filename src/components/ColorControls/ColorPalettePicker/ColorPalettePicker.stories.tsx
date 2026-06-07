@@ -19,8 +19,13 @@ const meta: Meta<StoryArgs> = {
 		value: 'primary',
 		colors: MOCK_PALETTE,
 		clearable: true,
+		previewType: 'background'
 	},
 	argTypes: {
+		previewType: {
+			control: { type: 'select' },
+			options: ['background', 'content'],
+		},
 		...COLOUR_CONTROL_INNER_COMMON_ARGTYPES,
 		colors: { control: { disable: true } },
 		gradients: { control: { disable: true } },
@@ -40,14 +45,31 @@ export default meta;
 
 export const Basic: Story = {
 	name: 'Basic',
+	args: {
+		colors: MOCK_PALETTE.slice(0,3)
+	}
 };
+
+export const BasicManyItems: Story = {
+	name: 'Basic with many items',
+	args: {
+		// At the time of writing, these do not contain status colours - update this if that changes
+		colors: MOCK_PALETTE.slice(0, 5),
+		gradients: MOCK_GRADIENTS.slice(0, 5),
+	},
+};
+
+export const BasicWithGroups: Story = {
+	name: 'Basic with groups',
+};
+
 
 export const Gradients: Story = {
 	name: 'Gradients',
 	args: {
 		colors: undefined,
 		gradients: MOCK_GRADIENTS,
-		value: 'primary-white'
+		value: 'primary-white',
 	},
 };
 export const Both: Story = {

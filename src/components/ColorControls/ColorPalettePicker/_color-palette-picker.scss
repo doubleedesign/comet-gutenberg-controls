@@ -1,81 +1,133 @@
 .comet-color-palette {
 	font-family: var(--font-family-system);
+	width: 100%;
+	container-type: inline-size;
 
 	.components-heading {
 		font-family: inherit;
+		width: 100%;
+		flex-basis: 100%;
+		font-size: var(--label-font-size) !important;
+		line-height: 1;
 	}
 
-	.components-circular-option-picker {
-		min-width: 260px;
-		margin: 0;
+	&__picker {
+		display: flex !important;
+		justify-content: flex-start !important;
+		flex-direction: row !important;
+		align-items: flex-end !important;
+		flex-wrap: wrap;
+		gap: 0.5rem !important;
 
-		[role="listbox"] {
-			display: flex;
-		}
-
-		&__swatches {
+		.components-circular-option-picker {
+			min-width: 260px;
+			margin: 0;
 			display: contents;
 
-			&[class*="option-group"] {
-				display: flex;
+			&__swatches {
+				width: fit-content;
+				flex-grow: 1;
+				display: contents;
+
+				.components-circular-option-picker__option-group {
+					display: contents;
+				}
+
+				> .components-h-stack {
+					display: contents;
+				}
+
+				.components-h-stack {
+					&:has(.components-heading) {
+						margin-block-end: 0.5rem;
+
+						&:last-child {
+							margin-block-end: 0;
+						}
+
+						.components-circular-option-picker__option-group {
+							display: flex;
+							gap: 0.5rem;
+						}
+					}
+				}
 			}
-		}
 
-		&__clear {
-			font-family: var(--font-family-system);
-		}
-
-		&__option-wrapper {
-			display: block;
-
-			&:before {
-				content: none !important;
+			&__clear {
+				font-family: var(--font-family-system);
 			}
-		}
 
-		&__option {
-			color: transparent !important; // stop text colour overriding gradient swatch background value
+			&__option-group {
+				display: contents;
+			}
 
-			// Workaround for the WP component using background-color where we need background or background-image
-			// Also fix the checkmark SVGs while we're at it
-			// Note: The aria-labels for single colours are in title case, hence the to-lower-case function used in a bunch of this loop
-			$colors: ('Primary', 'Secondary', 'Accent', 'Light', 'Dark', 'White', 'Black', 'Info', 'Success', 'Warning', 'Error');
-			@each $color in $colors {
+			&__option-wrapper {
+				display: block;
 
-				@each $color2 in $colors {
-					@if (to-lower-case($color) != to-lower-case($color2)) {
-						&[aria-label=#{to-lower-case($color)}-#{to-lower-case($color2)}],
-						&[aria-label="#{to-lower-case($color)} on #{to-lower-case($color2)}"] {
-							background-image: var(--gradient-#{to-lower-case($color)}-#{to-lower-case($color2)}) !important;
+				&:before {
+					content: none !important;
+				}
+			}
 
-							&[aria-pressed="true"] + svg {
-								fill: gray; // TODO: Figure out a better way to handle checkmarks on top of contrasting gradients
+			&__option {
+				color: transparent !important; // stop text colour overriding gradient swatch background value
+
+				// Workaround for the WP component using background-color where we need background or background-image
+				// Also fix the checkmark SVGs while we're at it
+				// Note: The aria-labels for single colours are in title case, hence the to-lower-case function used in a bunch of this loop
+				$colors: ('Primary', 'Secondary', 'Accent', 'Light', 'Dark', 'White', 'Black', 'Info', 'Success', 'Warning', 'Error');
+				@each $color in $colors {
+
+					@each $color2 in $colors {
+						@if (to-lower-case($color) != to-lower-case($color2)) {
+							&[aria-label=#{to-lower-case($color)}-#{to-lower-case($color2)}],
+							&[aria-label="#{to-lower-case($color)} on #{to-lower-case($color2)}"] {
+								background-image: var(--gradient-#{to-lower-case($color)}-#{to-lower-case($color2)}) !important;
+
+								&[aria-pressed="true"] + svg {
+									fill: gray; // TODO: Figure out a better way to handle checkmarks on top of contrasting gradients
+								}
+							}
+
+							&[aria-label="#{to-lower-case($color)} on #{to-lower-case($color2)}"] {
+								transform: rotate(-45deg);
 							}
 						}
+					}
 
-						&[aria-label="#{to-lower-case($color)} on #{to-lower-case($color2)}"] {
-							transform: rotate(-45deg);
+					&[aria-label="#{$color}"][aria-pressed="true"] {
+						+ svg {
+							fill: contrast-color(var(--color-#{to-lower-case($color)})) !important;
+							text-shadow: 0 0 1px black;
 						}
 					}
 				}
 
-				&[aria-label="#{$color}"][aria-pressed="true"] {
-					+ svg {
-						fill: contrast-color(var(--color-#{to-lower-case($color)})) !important;
-						text-shadow: 0 0 1px black;
+
+			}
+
+			&__custom-clear-wrapper {
+				display: flex;
+				justify-content: flex-end;
+				margin-top: 0;
+				align-items: flex-end;
+				width: fit-content;
+				flex-basis: auto;
+				flex-grow: 0;
+				margin-inline-start: auto;
+
+				> button {
+					width: auto;
+					height: 28px; // same as the swatches
+					transition: all 0.2s ease;
+					text-decoration: underline;
+					text-decoration-color: transparent;
+
+					&:hover, &:focus {
+						text-decoration-color: currentColor;
 					}
 				}
 			}
-
-
-		}
-
-		&__custom-clear-wrapper {
-			width: 100%;
-			display: flex;
-			justify-content: flex-end;
-			margin-top: 0;
-			order: 5;
 		}
 	}
 }

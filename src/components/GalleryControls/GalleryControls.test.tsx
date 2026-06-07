@@ -1,6 +1,4 @@
-import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/vitest';
 import { GalleryControls } from './GalleryControls'; 
 
 const mockSetAttributes = vi.fn();
@@ -14,8 +12,6 @@ describe('GalleryControls', () => {
 	test('should mount', () => {
 		render(<GalleryControls {...defaultProps} />);
 
-		const GalleryControls = screen.getByRole('label', { name: /GalleryControls/i });
-
-		expect(GalleryControls).toBeVisible();
+		expect(screen.getByRole('label', { name: /Gallery options/i })).toBeVisible();
 	});
 });

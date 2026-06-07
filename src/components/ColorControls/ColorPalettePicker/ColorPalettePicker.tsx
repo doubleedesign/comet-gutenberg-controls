@@ -1,13 +1,14 @@
-import { useState, useMemo, useCallback, useRef } from '@wordpress/element';
+import { useState, useMemo, useCallback, useRef, useEffect } from '@wordpress/element';
 // @ts-expect-error TS2307: Cannot find module @wordpress/components/build-types/color-palette/types or its corresponding type declarations.
 import { ColorPaletteProps } from '@wordpress/components/build-types/color-palette/types';
 // @ts-expect-error TS2307: Cannot find module @wordpress/components/build-types/gradient-picker/types or its corresponding type declarations.
 import { GradientPickerComponentProps } from '@wordpress/components/src/gradient-picker/types';
 import { ColorPalette } from '@wordpress/components';
 import { ColorSwatch } from '../ColorSwatch/ColorSwatch';
-import { transformColorKeyToValue, transformColorValueToKey } from '../../../utils';
+import { transformColorKeyToValue, transformColorValueToKey, transformValueKeyToPair } from '../../../utils';
 import { useHoverAndFocus } from '../../../hooks/use-hover-and-focus';
 import { difference } from 'lodash';
+import { ThemeColor } from '../../../types';
 
 // Colour pairs are handled as gradients to an extent (and transformed back and forth in their palette component)
 // so we need a way to preview them differently to gradients intended as background/fill colours in the swatch preview here.
@@ -22,14 +23,22 @@ export type ColorPalettePickerInnerProps = (ColorPaletteProps | GradientPickerCo
 export function ColorPalettePicker({ previewType, value, onChange, ...props }: ColorPalettePickerProps) {
 	const elementRef = useRef<HTMLDivElement>(null);
 	const [activeValue, setActiveValue] = useState(value);
+	const [mounted, setMounted] = useState(false);
+
+	// Trigger a re-render when the ref has mounted so the useHoverAndFocus hook gets the resolved element, not null
+	useEffect(() => {
+		if(elementRef?.current) {
+			setMounted(true);
+		}
+	}, [elementRef]);
 
 	// Because the individual colour palette swatches are buried deep in the imported components,
 	// which don't have callback props for the events we want to use,
 	// this is a somewhat hacky way of finding them to temporarily swap our preview swatch on hover/focus.
 	useHoverAndFocus({
 		element: elementRef?.current,
-		onEnterFocusableChild: () => {},
-		onLeaveFocusableChild: () => setActiveValue(value),
+		onEnterButton: (slug: string|undefined) => setActiveValue(slug),
+		onLeaveButton: () => setActiveValue(value),
 	});
 
 	// Handle an actual selection change (click/Enter)
@@ -39,9 +48,28 @@ export function ColorPalettePicker({ previewType, value, onChange, ...props }: C
 		onChange(valueKey);
 	}, []);
 
+	const gradientAsColorPair = transformValueKeyToPair(activeValue);
+
+	const swatchValues = useMemo(() => {
+		if(previewType === 'content') {
+			return gradientAsColorPair ? {
+				colorTheme: gradientAsColorPair.foreground as ThemeColor,
+				backgroundColor: gradientAsColorPair.background as ThemeColor,
+			} : {
+				colorTheme: activeValue,
+				backgroundColor: undefined,
+			};
+		}
+
+		return {
+			colorTheme: undefined,
+			backgroundColor: activeValue,
+		};
+	}, [activeValue, previewType, gradientAsColorPair]);
+
 	return (
 		<div ref={elementRef} className="comet-color-palette">
-			<ColorSwatch backgroundColor={activeValue} />
+			<ColorSwatch {...swatchValues} />
 			<ColorPalettePickerInner {...props} value={value} onChange={handleChange} />
 		</div>
 	);
@@ -108,6 +136,7 @@ function ColorPalettePickerInner({ colors = [], gradients = [], value, onChange,
 	return (
 		<ColorPalette
 			{...props}
+			className="comet-color-palette__picker"
 			asButtons
 			headingLevel="3"
 			colors={statusColors.length > 0 ? multiPalette : combinedBrandPalette}

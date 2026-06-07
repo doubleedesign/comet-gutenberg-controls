@@ -3,8 +3,16 @@
 	border: 1px solid #DDD;
 	border-radius: 0.25rem;
 
+	&[data-background="white"] + [data-background="white"] {
+		padding: 0.5rem;
+	}
+
 	&__content {
 		padding: 0.5rem;
+
+		&:not([data-background]) {
+			padding: 0;
+		}
 
 		p {
 			margin: 0;

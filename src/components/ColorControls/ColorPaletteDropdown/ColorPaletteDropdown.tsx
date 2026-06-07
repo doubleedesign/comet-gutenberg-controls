@@ -18,17 +18,18 @@ export type ContextualColorPaletteDropdownProps = ColorPaletteDropdownCommonProp
 export type ColorPaletteDropdownProps = ColorPaletteDropdownCommonProps & {
 	value?: ThemeColor | ThemeGradient;
 	onChange: (newValue?: ThemeColor | ThemeGradient) => void;
+	previewType: 'content' | 'background';
 };
 
 export function ContextualColorPaletteDropdown({ colorContextKey, ...props }: ContextualColorPaletteDropdownProps) {
 	const { value, onChange } = useSingleColourContext(colorContextKey ?? 'colorTheme');
 
 	return (
-		<ColorPaletteDropdown {...props} value={value} onChange={onChange} />
+		<ColorPaletteDropdown {...props} value={value} onChange={onChange} previewType={colorContextKey === 'colorTheme' ? 'content' : 'background'} />
 	);
 }
 
-export function ColorPaletteDropdown({ value, label, palette, onChange, clearable = false }: ColorPaletteDropdownProps) {
+export function ColorPaletteDropdown({ value, label, palette, onChange, clearable = false, previewType = 'background' }: ColorPaletteDropdownProps) {
 	
 	useEffect(() => {
 		if(!palette) return;
@@ -82,6 +83,7 @@ export function ColorPaletteDropdown({ value, label, palette, onChange, clearabl
 						value={value}
 						colors={singleColours}
 						gradients={gradients}
+						previewType={previewType}
 						onChange={(newValue: string) => {
 							onChange(newValue);
 							onToggle(); // close dropdown after selection
