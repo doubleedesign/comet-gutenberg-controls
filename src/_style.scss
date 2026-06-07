@@ -6,6 +6,7 @@
 @use "./components/ColorControls/ColorPalettePicker/_color-palette-picker.scss";
 @use "./components/ColumnLayoutControls/_column-layout-controls.scss";
 @use "./components/FieldTooltip/_field-tooltip.scss";
+@use '../node_modules/@wordpress/base-styles/colors' as wp;
 
 @layer doublee-common, comet-gutenberg-controls;
 
@@ -16,6 +17,16 @@
 		--label-font-size: 0.7rem;
 		--input-font-size: 0.85rem;
 		--caption-font-size: 0.75rem;
+
+		--wp-components-color-gray-900: #{wp.$gray-900};
+		--wp-components-color-gray-800: #{wp.$gray-800};
+		--wp-components-color-gray-700: #{wp.$gray-700};
+		--wp-components-color-gray-600: #{wp.$gray-600};
+		--wp-components-color-gray-400: #{wp.$gray-400};
+		--wp-components-color-gray-300: #{wp.$gray-300};
+		--wp-components-color-gray-200: #{wp.$gray-200};
+		--wp-components-color-gray-100: #{wp.$gray-100};
+		--wp-components-color-background: white;
 	}
 
 	.block-editor-block-card {
@@ -117,11 +128,19 @@
 
 	.components-toggle-group-control {
 		transition: border 0.2s ease-in-out;
-		border: 1px solid var(--wp-components-color-gray-300, #dee2e6) !important;
-		min-height: 2rem !important; // default 36px is 2px too high for the buttons and I can't unsee it
+		border: 1px solid var(--wp-components-color-gray-600, wp.$gray-600) !important;
+		padding: 3px !important;
+
+		&:before {
+			background: var(--wp-components-color-gray-900, wp.$gray-900) !important;
+			height: 34px !important;
+			top: 2px !important;
+			bottom: 2px !important;
+			border: 0 !important;
+		}
 
 		&:hover, &:focus-within {
-			border-color: var(--wp-components-color-gray-700, #757575) !important;
+			border-color: var(--wp-components-color-gray-700, wp.$gray-700);
 		}
 
 		&-option-base {
@@ -132,9 +151,17 @@
 				height: auto;
 			}
 
-			&:not([aria-checked="true"]):not([aria-pressed="true"]) {
+			&[aria-checked="true"] {
+				color: white;
+
+				svg {
+					fill: white;
+				}
+			}
+
+			&:not([aria-checked="true"]) {
 				&:hover, &:focus {
-					background: #EEE;
+					background: var(--wp-components-color-gray-300, wp.$gray-300);
 				}
 			}
 		}

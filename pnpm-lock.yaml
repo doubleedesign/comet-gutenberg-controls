@@ -11,6 +11,10 @@ overrides:
 importers:
 
   .:
+    dependencies:
+      '@wordpress/base-styles':
+        specifier: ^9.1.0
+        version: 9.1.0
     devDependencies:
       '@babel/eslint-parser':
         specifier: ^7.29.7
