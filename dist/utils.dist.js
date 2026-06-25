@@ -8,6 +8,15 @@ function transformColorValueToKey(value) {
     if (value.startsWith('var(--gradient-')) {
         return value.replace('var(--gradient-', '').replace(')', '');
     }
+    if (value.startsWith('linear-gradient')) {
+        const regex = /var\(--color-([a-zA-Z0-9]+)\)/g;
+        const matches = [...value.matchAll(regex)]?.map((match) => match[1]);
+        const uniqueMatches = [...new Set(matches)];
+        if (uniqueMatches.length == 2) {
+            return `${uniqueMatches[0]}-${uniqueMatches[1]}`;
+        }
+    }
+    console.log('unmatched value', value);
     return value;
 }
 function transformColorKeyToValue(key) {

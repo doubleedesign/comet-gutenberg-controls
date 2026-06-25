@@ -1,7 +1,6 @@
-import { useMemo, useRef, useState, useEffect, useCallback } from '@wordpress/element';
-import { Dropdown, Button, ColorIndicator } from '@wordpress/components';
+import { useMemo, useState, useEffect, useCallback } from '@wordpress/element';
+import { ColorIndicator } from '@wordpress/components';
 import { ColorPair, ThemeColor, ColourPalette } from '../../../types';
-import { ColorSwatch } from '../ColorSwatch/ColorSwatch';
 import { ColourTypeLabel } from '../constants';
 import { useColourContext } from '../../../controllers/ColourContextProvider';
 import { ColorPalettePicker } from '../ColorPalettePicker/ColorPalettePicker';

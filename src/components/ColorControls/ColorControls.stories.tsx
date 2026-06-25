@@ -32,11 +32,19 @@ const meta: Meta<StoryArgs> = {
 };
 export default meta;
 
-export const All: Story = {
+export const AllSet: Story = {
 	name: 'All colour attributes',
 	args: {
 		...meta.args,
 		sectionBackground: 'light-dark',
+	}
+};
+
+export const AllAvailable: Story = {
+	name: 'All available but section background not set',
+	args: {
+		...meta.args,
+		sectionBackground: ''
 	}
 };
 

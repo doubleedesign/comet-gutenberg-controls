@@ -97,6 +97,8 @@ function ColorPalettePickerInner({ colors = [], gradients = [], value, onChange,
                 onChange(slug);
             }
             else {
+                // Sometimes the underlying component doesn't pass the slug back up even when we've definitely provided it,
+                // so we need a fallback to handle that scenario
                 onChange(transformColorValueToKey(newValue));
             }
         } }));
