@@ -12,10 +12,8 @@ const { PanelRow, BaseControl, __experimentalUnitControl } = wp.components;const
         wp.element.createElement(PanelRow, null,
             wp.element.createElement(UnitControl, { label: "Top", __next40pxDefaultSize: true, max: 0, value: attributes.negativeTopMargin, onChange: (value) => setAttributes({ negativeTopMargin: value }), onUnitChange: (unit) => setAttributes({ negativeTopMargin: `${parseFloat(attributes.negativeTopMargin)}${unit}` }) }),
             wp.element.createElement(UnitControl, { label: "Bottom", __next40pxDefaultSize: true, max: 0, value: attributes.negativeBottomMargin, onChange: (value) => {
-                    console.log(value);
                     return setAttributes({ negativeBottomMargin: value });
                 }, onUnitChange: (unit) => {
-                    console.log(unit);
                     return setAttributes({ negativeBottomMargin: `${parseFloat(attributes.negativeBottomMargin)}${unit}` });
                 } }))));
 };

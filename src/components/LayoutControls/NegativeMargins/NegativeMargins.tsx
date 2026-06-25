@@ -28,12 +28,10 @@ export const NegativeMargins = ({ name, attributes, setAttributes }) => {
 					max={0}
 					value={attributes.negativeBottomMargin}
 					onChange={(value) => {
-						console.log(value);
 
 						return setAttributes({ negativeBottomMargin: value });
 					}}
 					onUnitChange={(unit) => {
-						console.log(unit);
 
 						return setAttributes({ negativeBottomMargin: `${parseFloat(attributes.negativeBottomMargin)}${unit}` });
 					}}
