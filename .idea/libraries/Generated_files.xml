@@ -3,7 +3,6 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/src/components/ColorControls/ColorControls.dist.js" />
-        <item url="file://$PROJECT_DIR$/src/components/ContainerSize/ContainerSize.dist.js" />
         <item url="file://$PROJECT_DIR$/src/components/CustomControlsWrapper/CustomControlsWrapper.dist.js" />
         <item url="file://$PROJECT_DIR$/src/components/HtmlTag/HtmlTag.dist.js" />
         <item url="file://$PROJECT_DIR$/src/components/HtmlTag/HtmlTag.stories.dist.js" />

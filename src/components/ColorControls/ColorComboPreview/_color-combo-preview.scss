@@ -9,6 +9,7 @@
 
 	&__content {
 		padding: 0.5rem;
+		transform: none !important;
 
 		&:not([data-background]) {
 			padding: 0;

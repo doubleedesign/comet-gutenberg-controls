@@ -7,6 +7,7 @@
     <list default="true" id="4efc53ce-fc9f-48a4-bbf2-7a288629ae08" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/components/ColumnLayoutControls/_column-layout-controls.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/dist/CometBlockControls.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/CometBlockControls.dist.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/CometBlockControls.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/CometBlockControls.dist.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/LayoutControls/LayoutControls.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/LayoutControls.dist.js" afterDir="false" />
@@ -20,6 +21,23 @@
       <change beforePath="$PROJECT_DIR$/src/components/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mocks/common-story-args.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/mocks/common-story-args.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mocks/with-mock-wp-data-store.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/mocks/with-mock-wp-data-store.tsx" afterDir="false" />
+=======
+<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/dist/BannerControls/BannerControls.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/BannerControls/BannerControls.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorComboPreview/ColorComboPreview.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorComboPreview/ColorComboPreview.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorPairPaletteDropdown/ColorPairPaletteDropdown.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorPaletteDropdown/ColorPaletteDropdown.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ColorControls/ColorSwatch/ColorSwatch.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ColorControls/ColorSwatch/ColorSwatch.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/MaxPerRow/MaxPerRow.dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/MaxPerRow/MaxPerRow.dist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LayoutControls/MaxPerRow/MaxPerRow.dist.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/LayoutControls/MaxPerRow/MaxPerRow.dist.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LayoutControls/LayoutControls.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/LayoutControls.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LayoutControls/MaxPerRow/MaxPerRow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutControls/MaxPerRow/MaxPerRow.tsx" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/components/BannerControls/BannerControls.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BannerControls/BannerControls.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GalleryControls/GalleryControls.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GalleryControls/GalleryControls.test.tsx" afterDir="false" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,10 +115,10 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\leesa\WebstormProjects\comet-gutenberg-controls\src\components\ColorControls" />
       <recent name="C:\Users\leesa\WebstormProjects\comet-gutenberg-controls\src\components\LayoutControls\ContainerSize" />
       <recent name="C:\Users\leesa\WebstormProjects\comet-gutenberg-controls\src\components\BannerControls" />
       <recent name="C:\Users\leesa\WebstormProjects\comet-gutenberg-controls\src\components" />
-      <recent name="C:\Users\leesa\WebstormProjects\comet-gutenberg-controls\src\components\ColorControls" />
       <recent name="C:\Users\leesa\WebstormProjects\comet-gutenberg-controls\src\components\LayoutControls" />
     </key>
   </component>
@@ -172,9 +190,16 @@
       <workItem from="1777966167258" duration="1837000" />
       <workItem from="1777970147310" duration="1206000" />
       <workItem from="1777985621378" duration="2263000" />
+<<<<<<< Updated upstream
       <workItem from="1778331046299" duration="819000" />
       <workItem from="1778375047640" duration="541000" />
       <workItem from="1778387275970" duration="534000" />
+=======
+      <workItem from="1778285230515" duration="2664000" />
+      <workItem from="1778289278345" duration="730000" />
+      <workItem from="1778294521019" duration="652000" />
+      <workItem from="1778304733949" duration="293000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>

@@ -47,6 +47,7 @@
 }
 .comet-color-combo-preview__content {
   padding: 0.5rem;
+  transform: none !important;
 }
 .comet-color-combo-preview__content:not([data-background]) {
   padding: 0;
@@ -1340,20 +1341,21 @@
     border-color: var(--wp-components-color-gray-700, #757575);
   }
   .components-toggle-group-control-option-base {
-    transition: background 0.2s ease-in-out;
+    transition: all 0.2s linear !important;
+    background: white;
   }
   .components-toggle-group-control-option-base svg {
     width: 1.5rem;
     height: auto;
   }
   .components-toggle-group-control-option-base[aria-checked=true] {
-    color: white;
+    color: white !important;
   }
   .components-toggle-group-control-option-base[aria-checked=true] svg {
     fill: white;
   }
   .components-toggle-group-control-option-base:not([aria-checked=true]):hover, .components-toggle-group-control-option-base:not([aria-checked=true]):focus {
-    background: var(--wp-components-color-gray-300, #ddd);
+    background: var(--wp-components-color-gray-200, #e0e0e0) !important;
   }
   .components-input-base {
     gap: 0 !important;
